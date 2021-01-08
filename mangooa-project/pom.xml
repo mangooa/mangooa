@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mangooa</groupId>
+		<artifactId>mangooa-build</artifactId>
+		<version>${revision}</version>
+	</parent>
+	<artifactId>mangooa-project</artifactId>
+	<packaging>pom</packaging>
+	<name>Mangooa Project</name>
+	<description>Mangooa Project</description>
+	<properties>
+		<main.basedir>${basedir}/..</main.basedir>
+	</properties>
+	<modules>
+		<module>mangooa-dependencies</module>
+		<module>mangooa-parent</module>
+		<module>mangooa-common</module>
+		<module>mangooa-web</module>
+		<module>mangooa-uaaa</module>
+		<module>mangooa-nacos</module>
+	</modules>
+</project>

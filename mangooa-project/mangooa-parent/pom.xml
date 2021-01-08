@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mangooa</groupId>
+		<artifactId>mangooa-dependencies</artifactId>
+		<version>${revision}</version>
+		<relativePath>../mangooa-dependencies</relativePath>
+	</parent>
+	<artifactId>mangooa-parent</artifactId>
+	<packaging>pom</packaging>
+	<name>Mangooa Parent</name>
+	<description>Mangooa Parent</description>
+	<organization>
+		<name>Mangooa Software, Inc.</name>
+		<url>https://www.mangooa.com</url>
+	</organization>
+	<properties>
+		<main.basedir>${basedir}/../..</main.basedir>
+		<git.url>https://github.com/mangooa/mangooa</git.url>
+		<git.connection>scm:git:git://github.com/mangooa/mangooa.git</git.connection>
+		<git.developerConnection>scm:git:ssh://git@github.com/mangooa/mangooa.git</git.developerConnection>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.version>3.6.3</maven.version>
+	</properties>
+	<scm>
+		<url>${git.url}</url>
+		<connection>${git.connection}</connection>
+		<developerConnection>${git.developerConnection}</developerConnection>
+	</scm>
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/mangooa/mangooa/issues</url>
+	</issueManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<parameters>true</parameters>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
