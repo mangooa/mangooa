@@ -9,9 +9,9 @@
 		<version>${revision}</version>
 		<relativePath>../mangooa-parent</relativePath>
 	</parent>
-	<artifactId>mangooa-uaaa</artifactId>
-	<name>Mangooa Uaaa</name>
-	<description>Mangooa Uaaa</description>
+	<artifactId>mangooa-radius</artifactId>
+	<name>Mangooa Radius</name>
+	<description>Mangooa Radius</description>
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
 	</properties>
@@ -23,11 +23,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.mangooa</groupId>
-			<artifactId>mangooa-radius</artifactId>
+			<artifactId>mangooa-common</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.mangooa</groupId>
-			<artifactId>mangooa-web</artifactId>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
 		</dependency>
 	</dependencies>
 </project>

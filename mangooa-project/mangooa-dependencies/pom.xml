@@ -76,6 +76,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.mangooa</groupId>
+				<artifactId>mangooa-radius</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mangooa</groupId>
 				<artifactId>mangooa-web</artifactId>
 				<version>${revision}</version>
 			</dependency>

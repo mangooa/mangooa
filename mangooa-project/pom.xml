@@ -18,8 +18,9 @@
 		<module>mangooa-dependencies</module>
 		<module>mangooa-parent</module>
 		<module>mangooa-common</module>
+		<module>mangooa-nacos</module>
+		<module>mangooa-radius</module>
 		<module>mangooa-web</module>
 		<module>mangooa-uaaa</module>
-		<module>mangooa-nacos</module>
 	</modules>
 </project>
