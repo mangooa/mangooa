@@ -2,6 +2,8 @@ package com.mangooa.radius.packet;
 
 import com.mangooa.radius.attribute.RadiusAttribute;
 
+import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,56 @@ import java.util.List;
 public class RadiusPacket {
 
 	/**
+	 * 1 接入请求
+	 */
+	public static final int ACCESS_REQUEST = 1;
+
+	/**
+	 * 2 接入允许
+	 */
+	public static final int ACCESS_ACCEPT = 2;
+
+	/**
+	 * 3 接入拒绝
+	 */
+	public static final int ACCESS_REJECT = 3;
+
+	/**
+	 * 4 计费请求
+	 */
+	public static final int ACCOUNTING_REQUEST = 4;
+
+	/**
+	 * 5 计费响应
+	 */
+	public static final int ACCOUNTING_RESPONSE = 5;
+
+	/**
+	 * 11 接入询问
+	 */
+	public static final int ACCESS_CHALLENGE = 11;
+
+	/**
+	 * 12 服务器状态
+	 */
+	public static final int STATUS_SERVER = 12;
+
+	/**
+	 * 13 客户端状态
+	 */
+	public static final int STATUS_CLIENT = 13;
+
+	/**
+	 * 255 保留
+	 */
+	public static final int RESERVED = 255;
+
+	/**
+	 * 0 未定义
+	 */
+	public static final int UNDEFINED = 0;
+
+	/**
 	 * 数据包最小长度为20个字节。
 	 */
 	public static final int PACKET_MIN_LENGTH = 20;
@@ -28,97 +80,57 @@ public class RadiusPacket {
 	public static final int PACKET_MAX_LENGTH = 4096;
 
 	/**
-	 * 数据包类型。
+	 * 数据包类型1字节。
 	 */
-	private Type type = Type.UNDEFINED;
+	private int type = UNDEFINED;
 
 	/**
-	 * 数据包的标识符。
+	 * 数据包标识符1字节，用于匹配请求包和响应包，同一组请求包和响应包的Identifier应相同。
 	 */
 	private int identifier = 0;
 
 	/**
-	 * 数据包的属性。
+	 * 数据包验证字16字节，用于对数据包进行签名。
 	 */
-	private final List<RadiusAttribute> attributes =  new ArrayList<>();
+	private byte[] authenticator = null;
 
+	/**
+	 * 数据包属性。
+	 */
+	private final List<RadiusAttribute> attributes = new ArrayList<>();
 
 
 	/**
-	 * 远程认证拨号用户服务数据包类型枚举。
+	 * 获取下一个发送的数据包标识符，返回值在[1-255]之间。
 	 *
-	 * @author Weimin Gao
-	 * @since 1.0.0
-	 **/
-	public enum Type {
-
-		/**
-		 * 1 接入请求
-		 */
-		ACCESS_REQUEST(1, "接入请求"),
-
-		/**
-		 * 2 接入允许
-		 */
-		ACCESS_ACCEPT(2, "接入允许"),
-
-		/**
-		 * 3 接入拒绝
-		 */
-		ACCESS_REJECT(3, "接入拒绝"),
-
-		/**
-		 * 4 计费请求
-		 */
-		ACCOUNTING_REQUEST(4, "计费请求"),
-
-		/**
-		 * 5 计费响应
-		 */
-		ACCOUNTING_RESPONSE(5, "计费响应"),
-
-		/**
-		 * 11 接入询问
-		 */
-		ACCESS_CHALLENGE(11, "接入询问"),
-
-		/**
-		 * 12 服务器状态
-		 */
-		STATUS_SERVER(12, "服务器状态"),
-
-		/**
-		 * 13 客户端状态
-		 */
-		STATUS_CLIENT(13, "客户端状态"),
-
-		/**
-		 * 255 保留
-		 */
-		RESERVED(255, "保留"),
-
-		/**
-		 * 0 未定义
-		 */
-		UNDEFINED(0, "未定义");
-
-		private int code;
-
-		private String name;
-
-		Type(int code, String name) {
-			this.code = code;
-			this.name = name;
+	 * @return 下一个发送的数据包标识符。
+	 */
+	public static synchronized int getNextIdentifier() {
+		nextId++;
+		if (nextId > INT_255) {
+			nextId = 0;
 		}
-
-		public int getCode() {
-			return code;
-		}
-
-		public String getName() {
-			return name;
-		}
+		return nextId;
 	}
 
+	/**
+	 * 下一个发送的数据包标识符。
+	 */
+	private static int nextId = 0;
+
+	/**
+	 * 常量整型255。
+	 */
+	private static final int INT_255 = 255;
+
+	/**
+	 * MD5摘要。
+	 */
+	private MessageDigest md5Digest = null;
+
+	/**
+	 * 随机数生成器。
+	 */
+	private static SecureRandom random = new SecureRandom();
 
 }

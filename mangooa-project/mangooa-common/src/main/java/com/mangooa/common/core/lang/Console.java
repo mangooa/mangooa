@@ -10,12 +10,13 @@ import static java.lang.System.out;
  * @author Weimin Gao
  * @since 1.0.0
  **/
+@SuppressWarnings("unused")
 public class Console {
 
 	/**
 	 * 消息内容替换占位符。
 	 */
-	private static final  String MESSAGE_REPLACE_PLACEHOLDER = "{}";
+	private static final String MESSAGE_REPLACE_PLACEHOLDER = "{}";
 
 	private Console() {
 		super();
@@ -38,7 +39,6 @@ public class Console {
 
 
 	/**
-	 *
 	 * @param cause
 	 * @param message
 	 * @param values
