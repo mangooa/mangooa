@@ -5,4 +5,5 @@ package com.mangooa.uaaa.radius;
  * @since 1.0.0
  **/
 public class RadiusProperties {
+
 }
