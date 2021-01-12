@@ -16,7 +16,7 @@ import java.util.Objects;
  * 摘要编码器。
  *
  * @author Weimin Gao
- * @see java.security.MessageDigest
+ * @see MessageDigest
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")

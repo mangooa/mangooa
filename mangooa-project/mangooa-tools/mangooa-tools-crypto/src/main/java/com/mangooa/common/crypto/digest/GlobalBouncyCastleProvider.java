@@ -31,7 +31,7 @@ public enum GlobalBouncyCastleProvider {
 	 * 获取BouncyCastleProvider实例，如果未引入BouncyCastle则返回null值。
 	 *
 	 * @return Provider接口实例。
-	 * @see java.security.Provider
+	 * @see Provider
 	 */
 	public Provider getProvider() {
 		return this.provider;

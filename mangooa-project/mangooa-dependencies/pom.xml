@@ -71,6 +71,16 @@
 			<!-- Mangooa -->
 			<dependency>
 				<groupId>com.mangooa</groupId>
+				<artifactId>mangooa-tools-core</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mangooa</groupId>
+				<artifactId>mangooa-tools-crypto</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mangooa</groupId>
 				<artifactId>mangooa-common</artifactId>
 				<version>${revision}</version>
 			</dependency>
@@ -82,6 +92,11 @@
 			<dependency>
 				<groupId>com.mangooa</groupId>
 				<artifactId>mangooa-web</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mangooa</groupId>
+				<artifactId>mangooa-app</artifactId>
 				<version>${revision}</version>
 			</dependency>
 			<dependency>
