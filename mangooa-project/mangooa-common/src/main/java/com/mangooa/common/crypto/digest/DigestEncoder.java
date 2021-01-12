@@ -2,7 +2,7 @@ package com.mangooa.common.crypto.digest;
 
 import com.mangooa.common.core.lang.ArrayUtil;
 import com.mangooa.common.core.lang.CharsetUtil;
-import com.mangooa.common.core.lang.StringUtils;
+import com.mangooa.common.core.lang.StringUtil;
 import com.mangooa.common.crypto.CryptoException;
 import com.mangooa.common.crypto.SecurityUtil;
 
@@ -13,14 +13,14 @@ import java.security.Provider;
 import java.util.Objects;
 
 /**
- * 摘要算法包装类。
+ * 摘要编码器。
  *
  * @author Weimin Gao
  * @see java.security.MessageDigest
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-class DigestWrapper {
+public class DigestEncoder {
 
 	private MessageDigest digest;
 
@@ -44,46 +44,46 @@ class DigestWrapper {
 	 *
 	 * @param algorithm 算法。
 	 */
-	protected DigestWrapper(DigestAlgorithm algorithm) {
+	public DigestEncoder(DigestAlgorithm algorithm) {
 		this(algorithm.value(), null);
 	}
 
 	/**
-	 * 构造函数，使用JDK实现。
+	 * 构造函数。
 	 *
-	 * @param algorithm 算法。
+	 * @param algorithm 摘要算法，使用jdk provider。
 	 */
-	protected DigestWrapper(String algorithm) {
+	public DigestEncoder(String algorithm) {
 		this(algorithm, null);
 	}
 
 	/**
 	 * 构造函数。
 	 *
-	 * @param algorithm 算法。
-	 * @param provider  算法提供者，传null时表示JDK默认。
+	 * @param algorithm 摘要算法。
+	 * @param provider  摘要算法算法提供者，此参数为{@code null}时使用jdk provider。
 	 */
-	protected DigestWrapper(DigestAlgorithm algorithm, Provider provider) {
+	public DigestEncoder(DigestAlgorithm algorithm, Provider provider) {
 		init(algorithm.value(), provider);
 	}
 
 	/**
 	 * 构造函数。
 	 *
-	 * @param algorithm 算法。
-	 * @param provider  算法提供者，传null时表示JDK默认。
+	 * @param algorithm 摘要算法。
+	 * @param provider  摘要算法算法提供者，此参数为{@code null}时使用jdk provider。
 	 */
-	protected DigestWrapper(String algorithm, Provider provider) {
+	public DigestEncoder(String algorithm, Provider provider) {
 		init(algorithm, provider);
 	}
 
 	/**
-	 * 初始化消息。
+	 * 初始化摘要编码器对象。
 	 *
-	 * @param algorithm 算法。
-	 * @param provider  算法提供者，传null时表示JDK默认。
+	 * @param algorithm 摘要算法。
+	 * @param provider  摘要算法提供者，此参数为{@code null}时使用jdk provider。
 	 */
-	protected void init(String algorithm, Provider provider) {
+	public void init(String algorithm, Provider provider) {
 		if (Objects.isNull(provider)) {
 			this.digest = SecurityUtil.createMessageDigest(algorithm);
 		} else {
@@ -96,12 +96,12 @@ class DigestWrapper {
 	}
 
 	/**
-	 * 设置加盐混淆内容。
+	 * 设置加盐混淆。
 	 *
 	 * @param salt 盐值。
-	 * @return this。
+	 * @return 当前对象。
 	 */
-	public DigestWrapper setSalt(byte[] salt) {
+	public DigestEncoder setSalt(byte[] salt) {
 		this.salt = salt;
 		return this;
 	}
@@ -110,9 +110,9 @@ class DigestWrapper {
 	 * 设置加盐的位置，盐值存在时（即不为null或空数组时）有效。<br/>
 	 *
 	 * @param saltPosition 盐值插入的位置。
-	 * @return this。
+	 * @return 当前对象。
 	 */
-	public DigestWrapper setSaltPosition(int saltPosition) {
+	public DigestEncoder setSaltPosition(int saltPosition) {
 		this.saltPosition = saltPosition;
 		return this;
 	}
@@ -121,26 +121,25 @@ class DigestWrapper {
 	 * 设置重复计算摘要值次数。
 	 *
 	 * @param digestCount 摘要值次数。
-	 * @return this。
+	 * @return 当前对象。
 	 */
-	public DigestWrapper setDigestCount(int digestCount) {
+	public DigestEncoder setDigestCount(int digestCount) {
 		this.digestCount = digestCount;
 		return this;
 	}
 
 	/**
-	 * 重置{@link MessageDigest}。
-	 *
+	 * 重置内置摘要对象{@link MessageDigest}。
 	 */
 	public void reset() {
 		this.digest.reset();
 	}
 
 	/**
-	 * 生成摘要，使用了加盐和重复摘要次数。
+	 * 将给定的字节数组进行摘要加密（使用了加盐和重复摘要次数），返回加密后的字节数组。
 	 *
-	 * @param data 待摘要的数据。
-	 * @return 摘要。
+	 * @param data 给定的字节数组。
+	 * @return 加密后的字节数组。
 	 */
 	public byte[] digest(byte[] data) {
 		byte[] ret;
@@ -163,13 +162,6 @@ class DigestWrapper {
 		return digest1(ret);
 	}
 
-
-	/**
-	 * 生成摘要。
-	 *
-	 * @param data 被摘要数据。
-	 * @return 摘要。
-	 */
 	private byte[] digest0(byte[]... data) {
 		for (byte[] element : data) {
 			if (null != element) {
@@ -179,13 +171,6 @@ class DigestWrapper {
 		return this.digest.digest();
 	}
 
-	/**
-	 * 重复计算摘要，取决于{@link #digestCount}值。<br/>
-	 * 每次计算摘要前都会重置{@link #digest}。
-	 *
-	 * @param data 第一次摘要过的数据。
-	 * @return 摘要。
-	 */
 	private byte[] digest1(byte[] data) {
 		final int digestCount = Math.max(1, this.digestCount);
 		reset();
@@ -197,25 +182,25 @@ class DigestWrapper {
 	}
 
 	/**
-	 * 生成文件摘要。
+	 * 将给定的字符串进行摘要加密，返回加密后字节数组。
 	 *
-	 * @param data 被摘要数据。
-	 * @param charset 编码。
-	 * @return 摘要。
+	 * @param data    给定的字符串。
+	 * @param charset 给定的字符串字符集。
+	 * @return 字节数组。
 	 */
-	public byte[] digest(String data, String charset) {
-		return digest(data, CharsetUtil.charset(charset));
+	public byte[] digest(String data, Charset charset) {
+		return digest(StringUtil.toBytes(data, charset));
 	}
 
 	/**
-	 * 生成文件摘要。
+	 * 将给定的字符串进行摘要加密，返回加密后的字节数组。
 	 *
-	 * @param data 被摘要数据。
-	 * @param charset 编码。
-	 * @return 摘要。
+	 * @param data    给定的字符串。
+	 * @param charset 给定的字符串字符集。
+	 * @return 加密后的字节数组。
 	 */
-	public byte[] digest(String data, Charset charset) {
-		return digest(StringUtils.bytes(data, charset));
+	public byte[] digest(String data, String charset) {
+		return digest(data, CharsetUtil.charset(charset));
 	}
 
 }

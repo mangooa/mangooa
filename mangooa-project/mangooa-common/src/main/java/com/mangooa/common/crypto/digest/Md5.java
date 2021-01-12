@@ -6,7 +6,7 @@ package com.mangooa.common.crypto.digest;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public class Md5 extends DigestWrapper {
+public class Md5 extends DigestEncoder {
 
 	/**
 	 * 构造函数。
