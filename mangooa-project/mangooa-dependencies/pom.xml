@@ -86,6 +86,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.mangooa</groupId>
+				<artifactId>mangooa-data-jpa</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mangooa</groupId>
 				<artifactId>mangooa-radius</artifactId>
 				<version>${revision}</version>
 			</dependency>
