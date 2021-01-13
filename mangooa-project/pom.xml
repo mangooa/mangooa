@@ -20,7 +20,6 @@
 		<module>mangooa-tools</module>
 		<module>mangooa-common</module>
 		<module>mangooa-data-jpa</module>
-		<module>mangooa-nacos</module>
 		<module>mangooa-radius</module>
 		<module>mangooa-web</module>
 		<module>mangooa-app</module>

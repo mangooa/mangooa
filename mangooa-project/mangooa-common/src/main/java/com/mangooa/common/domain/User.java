@@ -1,12 +1,14 @@
 package com.mangooa.common.domain;
 
+import java.io.Serializable;
+
 /**
  * 用户接口。
  *
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public interface User {
+public interface User extends Serializable {
 
 	/**
 	 * 获取用户账号。
