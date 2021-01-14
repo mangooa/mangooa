@@ -1,5 +1,6 @@
 package com.mangooa.common.domain;
 
+import lombok.Getter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -11,8 +12,9 @@ import java.util.Date;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-@SuppressWarnings("unused")
+@Getter
 @MappedSuperclass
+@SuppressWarnings("unused")
 public abstract class BaseJpaEntityStringId implements JpaEntityStringId {
 
 	/**
@@ -69,5 +71,22 @@ public abstract class BaseJpaEntityStringId implements JpaEntityStringId {
 		)}
 	)
 	private Updator updator;
+
+	/**
+	 * 实体更新版本，用于乐观锁。
+	 */
+	@Version
+	@Column(name = "b_version", nullable = false)
+	private Integer version;
+
+	/**
+	 * 设置实体主键。
+	 *
+	 * @param id 实体主键。
+	 */
+	@Override
+	public void setId(String id) {
+		this.id = id;
+	}
 
 }

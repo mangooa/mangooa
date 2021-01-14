@@ -27,6 +27,10 @@
 		</dependency>
 		<dependency>
 			<groupId>com.mangooa</groupId>
+			<artifactId>mangooa-uaaa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mangooa</groupId>
 			<artifactId>mangooa-web</artifactId>
 		</dependency>
 	</dependencies>

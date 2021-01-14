@@ -10,7 +10,21 @@ import java.util.Date;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public interface Entity<ID extends Serializable> extends DataObject<ID> {
+public interface Entity<ID extends Serializable> extends DataObject {
+
+	/**
+	 * 获取对象唯一标识。
+	 *
+	 * @return 对象唯一标识。
+	 */
+	ID getId();
+
+	/**
+	 * 设置对象唯一标识。
+	 *
+	 * @param id 对象唯一标识。
+	 */
+	void setId(ID id);
 
 	/**
 	 * 获取实体创建时间。

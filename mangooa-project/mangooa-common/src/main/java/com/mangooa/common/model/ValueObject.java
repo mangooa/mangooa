@@ -15,5 +15,5 @@ public interface ValueObject extends Serializable {
 	 *
 	 * @return 值对象唯一标识。
 	 */
-	String getId();
+	String getUid();
 }

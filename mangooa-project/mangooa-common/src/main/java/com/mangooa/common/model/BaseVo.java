@@ -18,6 +18,6 @@ public abstract class BaseVo implements ValueObject {
 	/**
 	 * 值对象唯一标识。
 	 */
-	private String id;
+	private String uid;
 
 }

@@ -96,6 +96,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.mangooa</groupId>
+				<artifactId>mangooa-uaaa</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mangooa</groupId>
 				<artifactId>mangooa-web</artifactId>
 				<version>${revision}</version>
 			</dependency>
@@ -106,7 +111,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.mangooa</groupId>
-				<artifactId>mangooa-uaaa</artifactId>
+				<artifactId>mangooa-server</artifactId>
 				<version>${revision}</version>
 			</dependency>
 		</dependencies>
