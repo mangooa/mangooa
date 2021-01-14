@@ -9,9 +9,9 @@
 		<version>${revision}</version>
 		<relativePath>../mangooa-parent</relativePath>
 	</parent>
-	<artifactId>mangooa-uaaa</artifactId>
-	<name>Mangooa Uaaa</name>
-	<description>Mangooa Uaaa</description>
+	<artifactId>mangooa-test</artifactId>
+	<name>Mangooa Test</name>
+	<description>Mangooa Test</description>
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
 	</properties>
@@ -22,12 +22,18 @@
 	</scm>
 	<dependencies>
 		<dependency>
-			<groupId>com.mangooa</groupId>
-			<artifactId>mangooa-radius</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>com.mangooa</groupId>
-			<artifactId>mangooa-web</artifactId>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 		</dependency>
 	</dependencies>
 </project>

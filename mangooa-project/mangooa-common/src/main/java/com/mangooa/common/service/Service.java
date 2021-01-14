@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public interface Service<DAO extends Dao<DO, ID>, DO extends DataObject<ID>, ID extends Serializable> {
+public interface Service<DAO extends Dao<DO, ID>, DO extends DataObject, ID extends Serializable> {
 
 	/**
 	 * 获取数据访问对象。

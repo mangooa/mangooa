@@ -2,6 +2,7 @@ package com.mangooa.common.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 实体接口。
@@ -10,7 +11,18 @@ import java.util.Date;
  * @author Weimin Gao
  * @since 1.0.0
  **/
+@SuppressWarnings("unused")
 public interface Entity<ID extends Serializable> extends DataObject {
+
+	/**
+	 * 获取实体对象唯一标识。
+	 *
+	 * @return 对象唯一标识。
+	 */
+	@Override
+	default String getUid() {
+		return (Objects.isNull(getId()) ? null : getId().toString());
+	}
 
 	/**
 	 * 获取对象唯一标识。

@@ -6,6 +6,7 @@ package com.mangooa.uaaa.domain;
  * @author Weimin Gao
  * @since 1.0.0
  **/
+@SuppressWarnings("unused")
 public interface User extends com.mangooa.common.domain.User {
 
 	/**

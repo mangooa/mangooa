@@ -81,6 +81,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.mangooa</groupId>
+				<artifactId>mangooa-test</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mangooa</groupId>
 				<artifactId>mangooa-common</artifactId>
 				<version>${revision}</version>
 			</dependency>

@@ -21,7 +21,7 @@ public abstract class BaseJpaEntityStringId implements JpaEntityStringId {
 	 * 实体主键。
 	 */
 	@Id
-	@Column(name = "ID", nullable = false, updatable = false, length = 32)
+	@Column(name = "b_id", nullable = false, updatable = false, length = 32)
 	@GenericGenerator(name = "string-id-generator", strategy = "com.mangooa.data.jpa.hibernate.StringIdGenerator")
 	@GeneratedValue(generator = "string-id-generator")
 	private String id;

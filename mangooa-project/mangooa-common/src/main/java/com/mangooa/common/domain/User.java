@@ -8,6 +8,7 @@ import java.io.Serializable;
  * @author Weimin Gao
  * @since 1.0.0
  **/
+@SuppressWarnings("unused")
 public interface User extends Serializable {
 
 	/**
