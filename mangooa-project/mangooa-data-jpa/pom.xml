@@ -23,6 +23,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.mangooa</groupId>
+			<artifactId>mangooa-tools-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mangooa</groupId>
 			<artifactId>mangooa-common</artifactId>
 		</dependency>
 		<dependency>

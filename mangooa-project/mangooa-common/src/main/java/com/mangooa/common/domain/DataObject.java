@@ -12,10 +12,17 @@ import java.io.Serializable;
 public interface DataObject<ID extends Serializable> {
 
 	/**
-	 * 获取数据对象唯一标识。
+	 * 获取对象唯一标识。
 	 *
-	 * @return 数据对象唯一标识。
+	 * @return 对象唯一标识。
 	 */
 	ID getId();
+
+	/**
+	 * 设置对象唯一标识。
+	 *
+	 * @param id 对象唯一标识。
+	 */
+	void setId(ID id);
 
 }

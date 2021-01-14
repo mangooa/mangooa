@@ -1,5 +1,7 @@
 package com.mangooa.common.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -17,14 +19,16 @@ public abstract class BaseJpaEntityStringId implements JpaEntityStringId {
 	 * 实体主键。
 	 */
 	@Id
-	@Column(name = "b_id", nullable = false, length = 32)
+	@Column(name = "ID", nullable = false, updatable = false, length = 32)
+	@GenericGenerator(name = "string-id-generator", strategy = "com.mangooa.data.jpa.hibernate.StringIdGenerator")
+	@GeneratedValue(generator = "string-id-generator")
 	private String id;
 
 	/**
 	 * 实体创建时间。
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "b_create_time", nullable = false)
+	@Column(name = "b_create_time", nullable = false, updatable = false)
 	private Date createTime;
 
 	/**
@@ -34,7 +38,7 @@ public abstract class BaseJpaEntityStringId implements JpaEntityStringId {
 	@AttributeOverrides({
 		@AttributeOverride(
 			name = "account",
-			column = @Column(name = "b_creator_account", nullable = false, length = 32)
+			column = @Column(name = "b_creator_account", nullable = false, updatable = false, length = 32)
 		),
 		@AttributeOverride(
 			name = "name",
