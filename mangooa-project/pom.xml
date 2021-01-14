@@ -24,5 +24,6 @@
 		<module>mangooa-web</module>
 		<module>mangooa-app</module>
 		<module>mangooa-uaaa</module>
-	</modules>
+        <module>mangooa-server</module>
+    </modules>
 </project>
