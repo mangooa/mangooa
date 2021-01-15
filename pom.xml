@@ -17,6 +17,7 @@
 			<id>default</id>
 			<modules>
 				<module>mangooa-project</module>
+				<module>mangooa-apps</module>
 				<module>mangooa-tests</module>
 			</modules>
 		</profile>

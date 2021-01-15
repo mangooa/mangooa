@@ -2,7 +2,9 @@ package com.mangooa.radius.packet;
 
 import com.mangooa.radius.attribute.RadiusAttribute;
 
+import java.net.InetSocketAddress;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +101,6 @@ public class RadiusPacket {
 	 */
 	private final List<RadiusAttribute> attributes = new ArrayList<>();
 
-
 	/**
 	 * 获取下一个发送的数据包标识符，返回值在[1-255]之间。
 	 *
@@ -132,5 +133,53 @@ public class RadiusPacket {
 	 * 随机数生成器。
 	 */
 	private static SecureRandom random = new SecureRandom();
+
+	/**
+	 * 数据包发送地址。
+	 */
+	private InetSocketAddress remoteAddress;
+
+	/**
+	 * 获取数据包发送地址。
+	 *
+	 * @return 发送地址。
+	 */
+	public InetSocketAddress getRemoteAddress() {
+		return remoteAddress;
+	}
+
+	/**
+	 * 设置数据包发送地址。
+	 *
+	 * @param remoteAddress 发送地址。
+	 */
+	public void setRemoteAddress(InetSocketAddress remoteAddress) {
+		this.remoteAddress = remoteAddress;
+	}
+
+	/**
+	 * 获取MD5消息摘要对象。
+	 *
+	 * @return MD5消息摘要对象。
+	 */
+	protected MessageDigest getMd5Digest() {
+		if (null == md5Digest) {
+			try {
+				md5Digest = MessageDigest.getInstance("MD5");
+			} catch (NoSuchAlgorithmException e) {
+				throw new IllegalArgumentException("MD5 digest not support", e);
+			}
+		}
+		return md5Digest;
+	}
+
+	/**
+	 * 获取数据包的标识。
+	 *
+	 * @return 数据包的标识。
+	 */
+	public int getIdentifier() {
+		return identifier;
+	}
 
 }

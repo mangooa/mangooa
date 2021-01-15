@@ -19,12 +19,12 @@ public class Updator implements User {
 	private static final long serialVersionUID = 4080894331626456936L;
 
 	/**
-	 * 创建者账号。
+	 * 更新者账号。
 	 */
 	private String account;
 
 	/**
-	 * 创建者姓名。
+	 * 更新者姓名。
 	 */
 	private String name;
 }

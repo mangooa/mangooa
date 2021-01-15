@@ -13,6 +13,6 @@ import java.io.Serializable;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public interface Dao<DO extends DataObject, ID extends Serializable> {
+public interface Dao<DO extends DataObject<ID>, ID extends Serializable> {
 
 }

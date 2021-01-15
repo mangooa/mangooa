@@ -9,5 +9,12 @@ import java.io.Serializable;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public interface JpaEntity<ID extends Serializable> extends Entity<ID> {
+public interface JpaEntity<ID extends Serializable> extends DataObject<ID> {
+
+	/**
+	 * 返回真表示实体还为保存过。
+	 *
+	 * @return 真表示实体还为保存过。
+	 */
+	boolean isSaved();
 }

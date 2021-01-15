@@ -26,5 +26,8 @@
 		<module>mangooa-uaaa</module>
         <module>mangooa-server</module>
         <module>mangooa-test</module>
-    </modules>
+        <module>mangooa-rocketmq-server</module>
+		<module>mangooa-rocketmq</module>
+		<module>mangooa-webapp</module>
+	</modules>
 </project>

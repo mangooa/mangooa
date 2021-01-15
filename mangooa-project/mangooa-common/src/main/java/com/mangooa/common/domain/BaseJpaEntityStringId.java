@@ -17,6 +17,8 @@ import java.util.Date;
 @SuppressWarnings("unused")
 public abstract class BaseJpaEntityStringId implements JpaEntityStringId {
 
+	private static final long serialVersionUID = -6348009385682984326L;
+
 	/**
 	 * 实体主键。
 	 */
@@ -88,5 +90,11 @@ public abstract class BaseJpaEntityStringId implements JpaEntityStringId {
 	public void setId(String id) {
 		this.id = id;
 	}
+
+	/**
+	 * 是否保存标识，默认为false表示还未保存过。
+	 */
+	@Column(name = "b_saved", nullable = false, updatable = false)
+	private boolean saved = false;
 
 }

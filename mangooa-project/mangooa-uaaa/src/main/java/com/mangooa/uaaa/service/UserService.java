@@ -10,12 +10,12 @@ import com.mangooa.uaaa.domain.User;
  **/
 public interface UserService {
 
-	/**
-	 * 根据用户账号查找对应用户，如果找不到返回{@code null}。
-	 *
-	 * @param account 用户账号。
-	 * @return 用户对象。
-	 */
-	User findUserByAccount(String account);
+//	/**
+//	 * 根据用户账号查找对应用户，如果找不到返回{@code null}。
+//	 *
+//	 * @param account 用户账号。
+//	 * @return 用户对象。
+//	 */
+//	User findUserByAccount(String account);
 
 }

@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public abstract class BaseService<DAO extends Dao<DO, ID>, DO extends DataObject, ID extends Serializable> implements Service<DAO, DO, ID> {
+public abstract class BaseService<DAO extends Dao<DO, ID>, DO extends DataObject<ID>, ID extends Serializable> implements Service<DAO, DO, ID> {
 
 	private DAO dao;
 

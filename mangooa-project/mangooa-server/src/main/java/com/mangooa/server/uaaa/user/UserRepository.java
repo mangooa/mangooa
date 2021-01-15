@@ -11,11 +11,19 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepositoryStringId<UserEntity> {
 
 	/**
-	 * 根据用户账号查找对应的用户，如果找不到返回{@code null}。
+	 * 根据用户账号查找对应的用户实体。
 	 *
-	 * @param account 用户账号。
-	 * @return 用户实体对象。
+	 * @param account 用户账号，忽略大小写。
+	 * @return 用户实体对象，如果找不到返回{@code null}。
 	 */
 	UserEntity findByAccountIgnoreCase(String account);
+
+	/**
+	 * 根据用户登录账号查找对应的用户实体。
+	 *
+	 * @param username 用户登录账号，忽略大小写。
+	 * @return 用户实体对象，如果找不到返回{@code null}。
+	 */
+	UserEntity findByUsernameIgnoreCase(String username);
 
 }

@@ -1,7 +1,5 @@
 package com.mangooa.common.domain;
 
-import java.io.Serializable;
-
 /**
  * 用户接口。
  *
@@ -9,7 +7,7 @@ import java.io.Serializable;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public interface User extends Serializable {
+public interface User {
 
 	/**
 	 * 获取用户账号。

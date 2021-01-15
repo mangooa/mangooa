@@ -20,4 +20,14 @@
 		<connection>${git.connection}</connection>
 		<developerConnection>${git.developerConnection}</developerConnection>
 	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>com.mangooa</groupId>
+			<artifactId>mangooa-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+	</dependencies>
 </project>
