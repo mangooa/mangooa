@@ -1,6 +1,6 @@
 package com.mangooa.server.uaaa.user;
 
-import com.mangooa.common.dao.JpaRepositoryStringId;
+import com.mangooa.data.jpa.JpaRepositoryStringId;
 import org.springframework.stereotype.Repository;
 
 /**

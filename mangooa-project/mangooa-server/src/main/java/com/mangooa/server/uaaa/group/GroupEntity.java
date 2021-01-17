@@ -1,6 +1,6 @@
 package com.mangooa.server.uaaa.group;
 
-import com.mangooa.common.domain.BaseJpaEntityStringId;
+import com.mangooa.data.jpa.BaseJpaEntityStringId;
 
 /**
  * 群组实体。

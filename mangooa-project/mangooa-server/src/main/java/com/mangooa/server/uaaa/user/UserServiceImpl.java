@@ -1,7 +1,7 @@
 package com.mangooa.server.uaaa.user;
 
 import com.mangooa.common.security.crypto.password.PasswordEncoder;
-import com.mangooa.common.service.impl.BaseJpaServiceStringId;
+import com.mangooa.data.jpa.BaseJpaServiceStringId;
 
 import org.springframework.stereotype.Service;
 

@@ -1,0 +1,4 @@
+mangooa:
+  server:
+    init:
+      domain: .mangooa.com

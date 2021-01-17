@@ -1,7 +1,6 @@
-package com.mangooa.common.service;
+package com.mangooa.common.data;
 
-import com.mangooa.common.dao.Dao;
-import com.mangooa.common.domain.DataObject;
+import com.mangooa.common.domain.Editor;
 
 import java.io.Serializable;
 
@@ -14,6 +13,7 @@ import java.io.Serializable;
  * @author Weimin Gao
  * @since 1.0.0
  **/
+@SuppressWarnings("unused")
 public interface Service<DAO extends Dao<DO, ID>, DO extends DataObject<ID>, ID extends Serializable> {
 
 	/**
@@ -26,17 +26,19 @@ public interface Service<DAO extends Dao<DO, ID>, DO extends DataObject<ID>, ID 
 	/**
 	 * 新建保存数据对象。
 	 *
-	 * @param object 数据对象。
+	 * @param editor 数据创建者。
+	 * @param object  数据对象。
 	 * @return 数据对象。
 	 */
-	DO save(DO object);
+	DO save(Editor editor, DO object);
 
 	/**
 	 * 编辑保存数据对象。
 	 *
-	 * @param object 数据对象。
+	 * @param editor 数据更新者。
+	 * @param object  数据对象。
 	 * @return 数据对象。
 	 */
-	DO update(DO object);
+	DO update(Editor editor, DO object);
 
 }

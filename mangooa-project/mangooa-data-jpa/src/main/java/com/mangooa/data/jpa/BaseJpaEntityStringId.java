@@ -1,6 +1,12 @@
-package com.mangooa.common.domain;
+package com.mangooa.data.jpa;
 
+import com.mangooa.common.data.DataObject;
+import com.mangooa.common.domain.Editor;
+
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -13,11 +19,19 @@ import java.util.Date;
  * @since 1.0.0
  **/
 @Getter
+@Setter(AccessLevel.PACKAGE)
 @MappedSuperclass
 @SuppressWarnings("unused")
-public abstract class BaseJpaEntityStringId implements JpaEntityStringId {
+public abstract class BaseJpaEntityStringId implements DataObject<String> {
 
 	private static final long serialVersionUID = -6348009385682984326L;
+
+	/**
+	 * 实体所属租户名称。
+	 */
+	@Setter(AccessLevel.PROTECTED)
+	@Column(name = "b_tenant", nullable = false, updatable = false, length = 32)
+	private String tenant;
 
 	/**
 	 * 实体主键。
@@ -49,7 +63,7 @@ public abstract class BaseJpaEntityStringId implements JpaEntityStringId {
 			column = @Column(name = "b_creator_name", nullable = false, length = 32)
 		)}
 	)
-	private Creator creator;
+	private Editor creator;
 
 	/**
 	 * 实体最后一次更新时间。
@@ -72,7 +86,7 @@ public abstract class BaseJpaEntityStringId implements JpaEntityStringId {
 			column = @Column(name = "b_updator_name", nullable = false, length = 32)
 		)}
 	)
-	private Updator updator;
+	private Editor updator;
 
 	/**
 	 * 实体更新版本，用于乐观锁。

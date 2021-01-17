@@ -1,6 +1,4 @@
-package com.mangooa.common.dao;
-
-import com.mangooa.common.domain.DataObject;
+package com.mangooa.common.data;
 
 import java.io.Serializable;
 

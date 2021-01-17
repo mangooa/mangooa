@@ -7,13 +7,13 @@
 		<groupId>com.mangooa</groupId>
 		<artifactId>mangooa-parent</artifactId>
 		<version>${revision}</version>
-		<relativePath>../../mangooa-project/mangooa-parent</relativePath>
+		<relativePath>../../mangooa-parent</relativePath>
 	</parent>
-	<artifactId>mangooa-wlan</artifactId>
-	<name>Mangooa Wlan</name>
-	<description>Mangooa Wlan</description>
+	<artifactId>mangooa-tools-Mail</artifactId>
+	<name>Mangooa Tools Mail</name>
+	<description>Mangooa Tools Mail</description>
 	<properties>
-		<main.basedir>${basedir}/../..</main.basedir>
+		<main.basedir>${basedir}/../../..</main.basedir>
 	</properties>
 	<scm>
 		<url>${git.url}</url>
@@ -22,12 +22,8 @@
 	</scm>
 	<dependencies>
 		<dependency>
-			<groupId>com.mangooa</groupId>
-			<artifactId>mangooa-radius</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.mangooa</groupId>
-			<artifactId>mangooa-webapp</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 	</dependencies>
 </project>

@@ -1,6 +1,6 @@
 package com.mangooa.data.jpa.hibernate;
 
-import com.mangooa.common.domain.JpaEntityStringId;
+import com.mangooa.data.jpa.BaseJpaEntityStringId;
 import com.mangooa.tools.core.lang.ObjectId;
 import com.mangooa.tools.core.lang.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +23,8 @@ public class StringIdGenerator implements IdentifierGenerator {
 	@Override
 	public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
 		String key = ObjectId.get().toHexString();
-		if (object instanceof JpaEntityStringId) {
-			JpaEntityStringId entity = (JpaEntityStringId) object;
+		if (object instanceof BaseJpaEntityStringId) {
+			BaseJpaEntityStringId entity = (BaseJpaEntityStringId) object;
 			String id = entity.getId();
 			if (StringUtil.isBlank(id)) {
 				id = key;

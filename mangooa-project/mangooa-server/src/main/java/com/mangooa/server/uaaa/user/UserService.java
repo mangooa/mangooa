@@ -1,8 +1,9 @@
 package com.mangooa.server.uaaa.user;
 
+import com.mangooa.common.domain.Editor;
 import com.mangooa.common.security.crypto.password.PasswordEncoder;
 import com.mangooa.common.security.user.UserDetails;
-import com.mangooa.common.service.JpaServiceStringId;
+import com.mangooa.data.jpa.JpaServiceStringId;
 import com.mangooa.server.uaaa.security.user.UserDetailsVo;
 
 /**
@@ -28,7 +29,7 @@ public interface UserService extends JpaServiceStringId<UserRepository, UserEnti
 	 */
 	default UserEntity registration(String email, String password) {
 		UserEntity user = UserEntity.of(email, getPasswordEncoder().encode(password));
-		return save(user, true);
+		return save(Editor.of(user),user, true);
 	}
 
 	/**

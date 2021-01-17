@@ -1,8 +1,6 @@
-package com.mangooa.common.service.impl;
+package com.mangooa.common.data;
 
-import com.mangooa.common.dao.Dao;
-import com.mangooa.common.domain.DataObject;
-import com.mangooa.common.service.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 
@@ -18,6 +16,7 @@ import java.io.Serializable;
 @SuppressWarnings("unused")
 public abstract class BaseService<DAO extends Dao<DO, ID>, DO extends DataObject<ID>, ID extends Serializable> implements Service<DAO, DO, ID> {
 
+	@Autowired(required = false)
 	private DAO dao;
 
 	@Override

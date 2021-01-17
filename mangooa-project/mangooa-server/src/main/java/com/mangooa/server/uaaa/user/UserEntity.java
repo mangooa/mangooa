@@ -1,6 +1,7 @@
 package com.mangooa.server.uaaa.user;
 
-import com.mangooa.common.domain.BaseJpaEntityStringId;
+import com.mangooa.common.domain.Editor;
+import com.mangooa.data.jpa.BaseJpaEntityStringId;
 import com.mangooa.uaaa.domain.User;
 
 import lombok.AccessLevel;

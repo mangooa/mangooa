@@ -23,6 +23,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.mangooa</groupId>
+			<artifactId>mangooa-radius</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mangooa</groupId>
 			<artifactId>mangooa-uaaa</artifactId>
 		</dependency>
 		<dependency>

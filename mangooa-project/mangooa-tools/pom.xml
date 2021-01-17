@@ -20,5 +20,6 @@
 	<modules>
 		<module>mangooa-tools-core</module>
 		<module>mangooa-tools-crypto</module>
-	</modules>
+        <module>mangooa-tools-mail</module>
+    </modules>
 </project>
