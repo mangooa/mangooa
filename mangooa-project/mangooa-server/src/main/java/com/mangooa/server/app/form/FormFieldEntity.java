@@ -1,4 +1,4 @@
-package com.mangooa.server.app.ui.form;
+package com.mangooa.server.app.form;
 
 import com.mangooa.data.jpa.BaseJpaEntityStringId;
 
