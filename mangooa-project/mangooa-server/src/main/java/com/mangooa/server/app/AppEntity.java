@@ -20,7 +20,7 @@ import javax.persistence.UniqueConstraint;
 @Table(
 	name = "t_app",
 	uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"b_tenant", "f_path", "f_name"})
+		@UniqueConstraint(columnNames = {"b_tenant", "f_name"})
 	}
 )
 @Getter
