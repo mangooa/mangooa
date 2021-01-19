@@ -1,8 +1,8 @@
-package com.mangooa.server.uaaa.security.domain;
+package com.mangooa.server.security.domain;
 
 import com.mangooa.common.security.domain.UserDetails;
-import com.mangooa.server.uaaa.user.UserEntity;
-import com.mangooa.server.uaaa.user.UserService;
+import com.mangooa.server.name.user.UserEntity;
+import com.mangooa.server.name.user.UserService;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

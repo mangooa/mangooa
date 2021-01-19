@@ -1,4 +1,4 @@
-package com.mangooa.server.uaaa.user;
+package com.mangooa.server.name.user;
 
 import com.mangooa.common.security.crypto.password.PasswordEncoder;
 

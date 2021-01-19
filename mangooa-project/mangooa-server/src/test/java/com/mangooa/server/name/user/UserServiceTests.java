@@ -1,4 +1,4 @@
-package com.mangooa.server.uaaa.user;
+package com.mangooa.server.name.user;
 
 import static org.junit.jupiter.api.Assertions.*;
 

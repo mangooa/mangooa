@@ -1,4 +1,4 @@
-package com.mangooa.server.uaaa.security.domain;
+package com.mangooa.server.security.domain;
 
 import com.mangooa.common.security.core.GrantedAuthority;
 

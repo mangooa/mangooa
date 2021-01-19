@@ -9,20 +9,10 @@ package com.mangooa.common.security.core;
 public interface GrantedAuthority extends org.springframework.security.core.GrantedAuthority {
 
 	/**
-	 * 获取权限代码。
+	 * 获取权限备注。
 	 *
-	 * @return 权限代码。
+	 * @return 权限备注。
 	 */
-	default String getCode() {
-		return getAuthority();
-	}
-
-	/**
-	 * 获取权限描述。
-	 *
-	 * @return 权限描述。
-	 */
-	String getDescription();
-
+	String getRemark();
 
 }

@@ -1,4 +1,4 @@
-package com.mangooa.server.uaaa.security.core;
+package com.mangooa.server.security.core;
 
 import com.mangooa.common.security.core.GrantedAuthority;
 import lombok.Getter;
@@ -15,12 +15,12 @@ public class SimpleGrantedAuthority implements GrantedAuthority {
 	private static final long serialVersionUID = -4400096800224312184L;
 
 	/**
-	 * 权限代码。
+	 * 权限名称。
 	 */
 	private String authority;
 
 	/**
-	 * 权限描述。
+	 * 权限备注。
 	 */
-	private String description;
+	private String remark;
 }

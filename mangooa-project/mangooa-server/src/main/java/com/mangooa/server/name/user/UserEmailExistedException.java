@@ -1,4 +1,4 @@
-package com.mangooa.server.uaaa.user;
+package com.mangooa.server.name.user;
 
 /**
  * 用户已存在异常。
