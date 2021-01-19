@@ -30,13 +30,27 @@ public class TenantEntity extends BaseJpaEntityStringId {
 	private static final long serialVersionUID = -2725123851168927991L;
 
 	/**
+	 * 新建一个租户实体对象。
+	 *
+	 * @param name   租户名称。
+	 * @param domain 租户访问域名。
+	 * @return 租户实体对象。
+	 */
+	public static TenantEntity of(String name, String domain) {
+		TenantEntity ret = new TenantEntity();
+		ret.setName(name.trim().toLowerCase());
+		ret.setDomain(domain.trim().toLowerCase());
+		return ret;
+	}
+
+	/**
 	 * 租户名称，只可以包含英文字母和中划线。
 	 */
 	@Column(name = "f_name", nullable = false, updatable = false, length = 32)
 	private String name;
 
 	/**
-	 * 租户的域，以英文字母点开头，默认为服务器域。
+	 * 租户访问域名。
 	 */
 	@Column(name = "f_domain", nullable = false, length = 32)
 	private String domain;

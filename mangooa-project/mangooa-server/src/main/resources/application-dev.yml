@@ -1,6 +1,4 @@
 spring:
-  thymeleaf:
-    cache: false
   datasource:
     url: jdbc:h2:file:~/mangooa;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE
     username: sa

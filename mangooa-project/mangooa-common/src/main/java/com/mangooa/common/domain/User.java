@@ -10,6 +10,13 @@ package com.mangooa.common.domain;
 public interface User {
 
 	/**
+	 * 获取用户登录的租户。
+	 *
+	 * @return 登录的租户。
+	 */
+	String getTenant();
+
+	/**
 	 * 获取用户账号。
 	 *
 	 * @return 用户账号。

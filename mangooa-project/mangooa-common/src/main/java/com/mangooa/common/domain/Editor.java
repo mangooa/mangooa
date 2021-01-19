@@ -1,9 +1,12 @@
 package com.mangooa.common.domain;
 
+import com.mangooa.tools.core.lang.Assert;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
 /**
  * 编辑者。
@@ -12,7 +15,7 @@ import javax.persistence.Embeddable;
  * @since 1.0.0
  **/
 @Getter
-@Setter
+@Setter(AccessLevel.PRIVATE)
 @Embeddable
 public class Editor implements User {
 
@@ -23,11 +26,30 @@ public class Editor implements User {
 	 * @return 编辑者对象。
 	 */
 	public static Editor of(User user) {
-		Editor editor = new Editor();
-		editor.setAccount(user.getAccount());
-		editor.setName(user.getName());
-		return editor;
+		return of(user.getTenant(), user.getAccount(), user.getName());
 	}
+
+	/**
+	 * 创建一个编辑者对象。
+	 *
+	 * @param tenant  编辑者登录的租户。
+	 * @param account 编辑者账号。
+	 * @param name    编辑者姓名。
+	 * @return 编辑者对象。
+	 */
+	public static Editor of(String tenant, String account, String name) {
+		Editor ret = new Editor();
+		ret.setTenant(tenant.trim().toLowerCase());
+		ret.setAccount(account.trim());
+		ret.setName(name.trim());
+		return ret;
+	}
+
+	/**
+	 * 编辑者登录的租户。
+	 */
+	@Transient
+	private String tenant;
 
 	/**
 	 * 编辑者账号。

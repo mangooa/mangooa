@@ -27,6 +27,6 @@ public class ServerProfileInitializer implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) {
-		service.init(properties.getInit(),args);
+		service.init(properties);
 	}
 }

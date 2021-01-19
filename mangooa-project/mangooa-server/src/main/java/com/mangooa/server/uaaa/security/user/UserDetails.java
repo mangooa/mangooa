@@ -1,7 +1,7 @@
 package com.mangooa.server.uaaa.security.user;
 
 import com.mangooa.common.security.core.GrantedAuthority;
-import com.mangooa.server.uaaa.security.core.SimpleGrantedAuthority;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,9 +15,11 @@ import java.util.Collection;
  **/
 @Getter
 @Setter
-public class UserDetailsVo implements com.mangooa.common.security.user.UserDetails {
+public class UserDetails implements com.mangooa.common.security.user.UserDetails {
 
 	private static final long serialVersionUID = 1013633215253971689L;
+
+	private String tenant;
 
 	private String account;
 

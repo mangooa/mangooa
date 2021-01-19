@@ -2,3 +2,5 @@ mangooa:
   server:
     init:
       domain: .mangooa.com
+      admin:
+        email: weimin.gao@aliyun.com

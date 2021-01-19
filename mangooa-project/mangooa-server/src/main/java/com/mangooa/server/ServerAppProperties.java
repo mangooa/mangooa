@@ -29,15 +29,32 @@ public class ServerAppProperties {
 	public static class Init {
 
 		/**
-		 * 服务器域，以英文字线点开头，如“.mangooa.com"。
+		 * 是否开启初始化，默认为false表示不执行初始化。
+		 */
+		private boolean enable = false;
+
+		/**
+		 * 初始化服务器域，以英文字线点开头，如“.mangooa.com"。
 		 */
 		private String domain;
 
 		/**
-		 * 是否关闭初始化操作，默认为false表示启动时执行初始化。
+		 * 初始化管理员。
 		 */
-		private boolean close = false;
+		private Admin admin = new Admin();
 
+		/**
+		 * 初始化管理员。
+		 */
+		@Getter
+		@Setter
+		public static class Admin {
+
+			/**
+			 * 管理员电子邮件。
+			 */
+			private String email;
+		}
 	}
 
 }

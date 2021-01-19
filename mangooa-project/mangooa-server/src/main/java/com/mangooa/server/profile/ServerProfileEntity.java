@@ -26,19 +26,15 @@ public class ServerProfileEntity extends BaseJpaEntityStringId {
 	private static final long serialVersionUID = 4226606781149310199L;
 
 	/**
-	 * 构造函数。
-	 */
-	public ServerProfileEntity() {
-		super();
-	}
-
-	/**
-	 * 构造函数。
+	 * 新建一个服务器配置实体对象。
 	 *
-	 * @param tenant 租户名称。
+	 * @param domain 服务器的域。
+	 * @return 服务器配置实体对象。
 	 */
-	ServerProfileEntity(String tenant) {
-		setTenant(tenant);
+	public static ServerProfileEntity of(String domain) {
+		ServerProfileEntity ret = new ServerProfileEntity();
+		ret.setDomain(domain.trim().toLowerCase());
+		return ret;
 	}
 
 	/**
