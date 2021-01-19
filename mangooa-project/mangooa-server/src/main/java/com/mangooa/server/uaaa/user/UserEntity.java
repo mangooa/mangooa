@@ -36,16 +36,16 @@ public class UserEntity extends BaseJpaEntityStringId implements User {
 
 	private static final long serialVersionUID = 5489315593638861070L;
 
-//	/**
-//	 * 新建一个用户实体。
-//	 *
-//	 * @param email    用户电子邮件。
-//	 * @param password 用户登录密码。
-//	 * @return 用户实体对象。
-//	 */
-//	public static UserEntity of(String email, String password) {
-//		return of(null, email, password, null, null, null, null, null);
-//	}
+	/**
+	 * 新建一个用户实体。
+	 *
+	 * @param email    用户电子邮件。
+	 * @param password 用户登录密码。
+	 * @return 用户实体对象。
+	 */
+	public static UserEntity of(String email, String password) {
+		return of(null, email, password, null, null, null, null, null);
+	}
 
 	/**
 	 * 新建一个用户实体。
@@ -77,12 +77,12 @@ public class UserEntity extends BaseJpaEntityStringId implements User {
 	private static UserEntity of(String account, String username, String password, String name, String nickname, String email, String cellphone, String tenant) {
 		UserEntity ret = new UserEntity();
 		ret.setAccount(account == null ? ObjectId.get().toHexString() : account.trim().toLowerCase());
-		ret.setUsername(username == null ? account : username);
+		ret.setUsername(username == null ? account : username.trim());
 		ret.setPassword(password.trim());
 		ret.setName(name.trim());
 		ret.setNickname(nickname == null ? name : nickname.trim());
 		ret.setEmail(email != null ? email.trim().toLowerCase() : null);
-		ret.setCellphone(cellphone != null ? cellphone.trim().toLowerCase() : null);
+		ret.setCellphone(cellphone != null ? cellphone.trim() : null);
 		ret.setTenant(tenant != null ? tenant.trim().toLowerCase() : null);
 		return ret;
 	}

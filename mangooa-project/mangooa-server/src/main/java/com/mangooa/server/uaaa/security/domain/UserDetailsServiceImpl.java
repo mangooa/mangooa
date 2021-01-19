@@ -1,6 +1,7 @@
-package com.mangooa.server.uaaa.security.user;
+package com.mangooa.server.uaaa.security.domain;
 
-import com.mangooa.common.security.user.UserDetails;
+import com.mangooa.common.security.domain.UserDetails;
+import com.mangooa.server.uaaa.user.UserEntity;
 import com.mangooa.server.uaaa.user.UserService;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,10 +33,10 @@ public class UserDetailsServiceImpl implements org.springframework.security.core
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserDetails user = userService.findUserByUsername(username);
+		UserEntity user = userService.find(username);
 		if (null == user) {
 			throw new UsernameNotFoundException(username);
 		}
-		return user;
+		return null;
 	}
 }

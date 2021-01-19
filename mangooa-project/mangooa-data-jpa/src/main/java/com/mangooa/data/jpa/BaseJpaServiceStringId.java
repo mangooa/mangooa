@@ -1,7 +1,7 @@
 package com.mangooa.data.jpa;
 
 import com.mangooa.common.data.BaseService;
-import com.mangooa.common.domain.Editor;
+import com.mangooa.common.security.domain.User;
 import com.mangooa.tools.core.date.SystemClock;
 
 import java.util.Date;
@@ -19,66 +19,67 @@ public abstract class BaseJpaServiceStringId<DAO extends JpaRepositoryStringId<D
 	/**
 	 * 新建保存实体。
 	 *
-	 * @param entity 实体对象。
-	 * @param creator 实体创建者。
+	 * @param entity  实体对象。
+	 * @param creator 实体对象创建者。
 	 * @return 实体对象。
 	 */
 	@Override
-	public DO save(Editor creator, DO entity) {
-		return save(creator, entity, false);
+	public DO save(DO entity, User creator) {
+		return save(entity, false, creator);
 	}
 
 	/**
 	 * 新建保存实体。
 	 *
-	 * @param creator 实体创建者。
-	 * @param entity 实体对象。
-	 * @param flush  真表示立即提交。
+	 * @param entity  实体对象。
+	 * @param flush   真表示立即提交。
+	 * @param creator 实体对象创建者。
 	 * @return 实体对象。
 	 */
 	@Override
-	public DO save(Editor creator, DO entity, boolean flush) {
+	public DO save(DO entity, boolean flush, User creator) {
 		if (entity.isSaved()) {
 			throw new IllegalStateException("entity has been saved,please call update method.");
 		}
+		String account = creator.getAccount();
 		Date now = new Date(SystemClock.now());
 		entity.setCreateTime(now);
-		entity.setCreator(creator);
+		entity.setCreator(account);
 		entity.setTenant(creator.getTenant().trim().toLowerCase());
 		entity.setUpdateTime(now);
-		entity.setUpdator(creator);
+		entity.setUpdator(account);
 		return (!flush) ? getDao().save(entity) : getDao().saveAndFlush(entity);
 	}
 
 	/**
 	 * 编号保存实体。
 	 *
-	 * @param updator 实体更新者。
-	 * @param entity 实体对象。
-	 * @param flush  真表示立即提交。
+	 * @param entity  实体对象。
+	 * @param flush   真表示立即提交。
+	 * @param updator 实体对象更新者。
 	 * @return 实体对象。
 	 */
 	@Override
-	public DO update(Editor updator, DO entity, boolean flush) {
+	public DO update(DO entity, boolean flush, User updator) {
 		if (!entity.isSaved()) {
 			throw new IllegalStateException("entity has not been saved,please call save method.");
 		}
 		Date now = new Date(SystemClock.now());
 		entity.setUpdateTime(now);
-		entity.setUpdator(updator);
+		entity.setUpdator(updator.getAccount());
 		return (!flush) ? getDao().save(entity) : getDao().saveAndFlush(entity);
 	}
 
 	/**
 	 * 编号保存实体。
 	 *
-	 * @param updator 实体更新者。
-	 * @param entity 实体对象。
+	 * @param entity  实体对象。
+	 * @param updator 实体对象更新者。
 	 * @return 实体对象。
 	 */
 	@Override
-	public DO update(Editor updator, DO entity) {
-		return update(updator, entity, false);
+	public DO update(DO entity, User updator) {
+		return update(entity, false, updator);
 	}
 
 }

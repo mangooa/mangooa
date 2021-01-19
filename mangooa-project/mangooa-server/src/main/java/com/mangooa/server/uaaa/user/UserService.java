@@ -1,9 +1,7 @@
 package com.mangooa.server.uaaa.user;
 
-import com.mangooa.common.security.user.UserDetails;
 import com.mangooa.data.jpa.JpaServiceStringId;
 import com.mangooa.server.ServerAppProperties;
-import org.springframework.boot.ApplicationArguments;
 
 /**
  * @author Weimin Gao
@@ -29,10 +27,10 @@ public interface UserService extends JpaServiceStringId<UserRepository, UserEnti
 	UserEntity registration(String email, String password);
 
 	/**
-	 * 根据给定的用户登录账号查找对应的用户，返回一个用户详情对象。
+	 * 根据给定的关键字查找对应的用户实体，如果找不到则返回{@code null}。
 	 *
-	 * @param username 给定的用户登录账号。
-	 * @return 用户详情对象，如果找不到返回{@code null}。
+	 * @param key 给定的关键字，可以为用户账号、用户登录名、用户电子邮件、用户手机号等。
+	 * @return 用户实体对象。
 	 */
-	UserDetails findUserByUsername(String username);
+	UserEntity find(String key);
 }

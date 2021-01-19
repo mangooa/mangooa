@@ -1,14 +1,13 @@
 package com.mangooa.server.app;
 
+import com.mangooa.app.AppType;
 import com.mangooa.data.jpa.BaseJpaEntityStringId;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 /**
  * 应用实体。
@@ -20,8 +19,7 @@ import javax.persistence.UniqueConstraint;
 @Table(
 	name = "t_app",
 	uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"b_tenant", "f_name"}),
-		@UniqueConstraint(columnNames = {"f_url"})
+		@UniqueConstraint(columnNames = {"b_tenant", "f_name"})
 	}
 )
 @Getter
@@ -31,29 +29,45 @@ public class AppEntity extends BaseJpaEntityStringId {
 	private static final long serialVersionUID = -6248535765695494180L;
 
 	/**
-	 * 应用名称，只可以包含英文字母及下划线。
+	 * 新建一个应用实体。
+	 *
+	 * @param title 应用的标题。
+	 * @param name  应用的名称。
+	 * @param type  应用的类型。
+	 * @return 应用实体对象。
 	 */
-	@Column(name = "f_name", nullable = false, updatable = false, length = 32)
-	private String name;
+	public static AppEntity of(String title, String name, AppType type) {
+		AppEntity ret = new AppEntity();
+		ret.setTitle(title.trim());
+		ret.setName(name.trim().toLowerCase());
+		ret.setType(type);
+		return ret;
+	}
 
 	/**
-	 * 应用访问地址。<br/>
-	 * 格式：scheme://hostname[:port]/name.app[?query][#hash]。<br/>
-	 * 例子：http://mangooa.cn/wlan.app
+	 * 应用的类型。
 	 */
-	@Column(name = "f_url", nullable = false, length = 32)
-	private String url;
-
-	/**
-	 * 应用类别，格式：名称|代码，如：协同效率|10000001。
-	 */
-	@Column(name = "f_category", length = 32)
-	private String category;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "f_type", nullable = false, length = 32)
+	private AppType type;
 
 	/**
 	 * 应用标题。
 	 */
 	@Column(name = "f_title", nullable = false, length = 32)
 	private String title;
+
+	/**
+	 * 应用名称，只可以包含英文字母及下划线。
+	 */
+	@Setter(AccessLevel.PRIVATE)
+	@Column(name = "f_name", nullable = false, updatable = false, length = 32)
+	private String name;
+
+	/**
+	 * 应用类别。
+	 */
+	@Column(name = "f_category", length = 32)
+	private String category;
 
 }

@@ -1,7 +1,7 @@
 package com.mangooa.data.jpa;
 
 import com.mangooa.common.data.Service;
-import com.mangooa.common.domain.Editor;
+import com.mangooa.common.security.domain.User;
 
 
 /**
@@ -17,20 +17,20 @@ public interface JpaServiceStringId<DAO extends JpaRepositoryStringId<DO>, DO ex
 	/**
 	 * 新建保存实体。
 	 *
-	 * @param editor 实体创建者。
 	 * @param entity 实体对象。
 	 * @param flush  真表示立即提交。
+	 * @param editor 实体对象创建者。
 	 * @return 实体对象。
 	 */
-	DO save(Editor editor, DO entity, boolean flush);
+	DO save(DO entity, boolean flush, User editor);
 
 	/**
 	 * 编号保存实体。
 	 *
-	 * @param editor 实体更新者。
 	 * @param entity 实体对象。
 	 * @param flush  真表示立即提交。
+	 * @param editor 实体对象更新者。
 	 * @return 实体对象。
 	 */
-	DO update(Editor editor, DO entity, boolean flush);
+	DO update(DO entity, boolean flush, User editor);
 }

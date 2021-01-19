@@ -1,7 +1,6 @@
 package com.mangooa.data.jpa;
 
 import com.mangooa.common.data.DataObject;
-import com.mangooa.common.domain.Editor;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -50,20 +49,10 @@ public abstract class BaseJpaEntityStringId implements DataObject<String> {
 	private Date createTime;
 
 	/**
-	 * 实体创建者。
+	 * 实体创建者账号。
 	 */
-	@Embedded
-	@AttributeOverrides({
-		@AttributeOverride(
-			name = "account",
-			column = @Column(name = "b_creator_account", nullable = false, updatable = false, length = 32)
-		),
-		@AttributeOverride(
-			name = "name",
-			column = @Column(name = "b_creator_name", nullable = false, length = 32)
-		)}
-	)
-	private Editor creator;
+	@Column(name = "b_creator", nullable = false, updatable = false, length = 32)
+	private String creator;
 
 	/**
 	 * 实体最后一次更新时间。
@@ -73,20 +62,10 @@ public abstract class BaseJpaEntityStringId implements DataObject<String> {
 	private Date updateTime;
 
 	/**
-	 * 实体最后一次更新者。
+	 * 实体最后更新者账号。
 	 */
-	@Embedded
-	@AttributeOverrides({
-		@AttributeOverride(
-			name = "account",
-			column = @Column(name = "b_updator_account", nullable = false, length = 32)
-		),
-		@AttributeOverride(
-			name = "name",
-			column = @Column(name = "b_updator_name", nullable = false, length = 32)
-		)}
-	)
-	private Editor updator;
+	@Column(name = "b_updator", nullable = false, length = 32)
+	private String updator;
 
 	/**
 	 * 实体更新版本，用于乐观锁。
@@ -106,9 +85,21 @@ public abstract class BaseJpaEntityStringId implements DataObject<String> {
 	}
 
 	/**
-	 * 是否保存标识，默认为false表示还未保存过。
+	 * 表示实体对象是否保存过，默认为false表示还未保存过。
 	 */
 	@Column(name = "b_saved", nullable = false, updatable = false)
 	private boolean saved = false;
+
+	/**
+	 * 表示实体对象是否可删除，默认为true表示可删除。
+	 */
+	@Column(name = "b_deletable", nullable = false)
+	private boolean deletable = true;
+
+	/**
+	 * 表示实体对象是否可编辑，默认为true表示可编辑。
+	 */
+	@Column(name = "b_editable", nullable = false)
+	private boolean editable = true;
 
 }

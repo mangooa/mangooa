@@ -1,6 +1,4 @@
-package com.mangooa.common.security.user;
-
-import com.mangooa.common.domain.User;
+package com.mangooa.common.security.domain;
 
 /**
  * 用户详情接口。
