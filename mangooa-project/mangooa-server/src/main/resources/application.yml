@@ -1,6 +1,7 @@
 mangooa:
   server:
     init:
+      enable: true
       domain: .mangooa.com
       admin:
         email: weimin.gao@aliyun.com

@@ -46,7 +46,7 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 	@Override
 	public void init(ServerAppProperties properties) {
 		ServerAppProperties.Init init = properties.getInit();
-		if (!init.isEnable()) {
+		if (init.isEnable()) {
 			String email = init.getAdmin().getEmail().trim().toLowerCase();
 			if (getDao().countByEmailIgnoreCase(email) == 0) {
 				String password = ObjectId.get().toHexString();
