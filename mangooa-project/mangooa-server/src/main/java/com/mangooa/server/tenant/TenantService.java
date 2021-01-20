@@ -1,6 +1,6 @@
 package com.mangooa.server.tenant;
 
-import com.mangooa.common.security.domain.User;
+import com.mangooa.common.domain.User;
 import com.mangooa.data.jpa.JpaServiceStringId;
 import com.mangooa.server.ServerAppProperties;
 

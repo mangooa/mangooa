@@ -5,3 +5,5 @@ mangooa:
       domain: .mangooa.com
       admin:
         email: weimin.gao@aliyun.com
+server:
+  port: 80

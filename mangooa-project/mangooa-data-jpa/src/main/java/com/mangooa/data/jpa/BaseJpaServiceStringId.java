@@ -1,7 +1,7 @@
 package com.mangooa.data.jpa;
 
 import com.mangooa.common.data.BaseService;
-import com.mangooa.common.security.domain.User;
+import com.mangooa.common.domain.User;
 import com.mangooa.tools.core.date.SystemClock;
 
 import java.util.Date;

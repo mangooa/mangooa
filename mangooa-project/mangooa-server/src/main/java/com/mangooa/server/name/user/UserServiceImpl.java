@@ -1,9 +1,8 @@
 package com.mangooa.server.name.user;
 
-import com.mangooa.common.security.crypto.password.PasswordEncoder;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
-
 import com.mangooa.server.ServerAppProperties;
+import com.mangooa.server.security.crypto.password.PasswordEncoder;
 import com.mangooa.tools.core.lang.ObjectId;
 
 import lombok.extern.slf4j.Slf4j;

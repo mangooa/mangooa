@@ -1,6 +1,4 @@
-package com.mangooa.server.name.user;
-
-import com.mangooa.common.security.crypto.password.PasswordEncoder;
+package com.mangooa.server.security.crypto.password;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;

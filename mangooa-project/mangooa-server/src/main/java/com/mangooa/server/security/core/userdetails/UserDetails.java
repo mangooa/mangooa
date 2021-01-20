@@ -1,9 +1,12 @@
-package com.mangooa.server.security.domain;
+package com.mangooa.server.security.core.userdetails;
 
-import com.mangooa.common.security.core.GrantedAuthority;
+import com.mangooa.common.domain.User;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+
+import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
@@ -14,8 +17,8 @@ import java.util.Collection;
  * @since 1.0.0
  **/
 @Getter
-@Setter
-public class UserDetails implements com.mangooa.common.security.domain.UserDetails {
+@Setter(AccessLevel.PACKAGE)
+public class UserDetails implements User, org.springframework.security.core.userdetails.UserDetails {
 
 	private static final long serialVersionUID = 1013633215253971689L;
 

@@ -1,4 +1,6 @@
-package com.mangooa.common.security.domain;
+package com.mangooa.common.domain;
+
+import java.io.Serializable;
 
 /**
  * 用户接口。
@@ -6,7 +8,7 @@ package com.mangooa.common.security.domain;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public interface User {
+public interface User extends Serializable {
 
 	/**
 	 * 获取用户登录租户的名称。

@@ -1,11 +1,10 @@
-package com.mangooa.server.security.domain;
+package com.mangooa.server.security.core.userdetails;
 
-import com.mangooa.common.security.domain.UserDetails;
 import com.mangooa.server.name.user.UserEntity;
 import com.mangooa.server.name.user.UserService;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * 用户详情服务。
@@ -13,9 +12,8 @@ import org.springframework.stereotype.Service;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-@Service
-@SuppressWarnings("unused")
-public class UserDetailsServiceImpl implements org.springframework.security.core.userdetails.UserDetailsService {
+@Component
+public class UserDetailsServiceImpl implements UserDetailsService {
 
 	/**
 	 * 用户服务。
@@ -37,6 +35,18 @@ public class UserDetailsServiceImpl implements org.springframework.security.core
 		if (null == user) {
 			throw new UsernameNotFoundException(username);
 		}
-		return null;
+		UserDetails ret = new UserDetails();
+		ret.setAccount(user.getAccount());
+		ret.setAccountNonExpired(true);
+		ret.setAccountNonLocked(true);
+		ret.setAuthorities(null);
+		ret.setCredentialsNonExpired(true);
+		ret.setEnabled(true);
+		ret.setName(user.getName());
+		ret.setNickname(user.getNickname());
+		ret.setPassword(user.getPassword());
+		ret.setTenant(user.getTenant());
+		ret.setUsername(user.getUsername());
+		return ret;
 	}
 }

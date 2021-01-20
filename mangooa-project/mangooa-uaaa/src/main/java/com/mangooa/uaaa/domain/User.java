@@ -7,7 +7,7 @@ package com.mangooa.uaaa.domain;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public interface User extends com.mangooa.common.security.domain.User {
+public interface User extends com.mangooa.common.domain.User {
 
 	/**
 	 * 获取用户手机号。
