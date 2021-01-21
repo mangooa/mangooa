@@ -1,0 +1,16 @@
+{
+	"properties": [
+		{
+			"name": "mangooa.server.init.enable",
+			"type": "java.lang.String"
+		},
+		{
+			"name": "mangooa.server.init.domain",
+			"type": "java.lang.String"
+		},
+		{
+			"name": "mangooa.server.init.admin.email",
+			"type": "java.lang.String"
+		}
+	]
+}

@@ -1,3 +1,16 @@
+spring:
+  thymeleaf:
+    mode: HTML5
+  application:
+    name: server
+  session:
+    store-type: redis
+server:
+  port: 80
+  servlet:
+    session:
+      cookie:
+        name: mangooa-server
 mangooa:
   server:
     init:
@@ -5,8 +18,3 @@ mangooa:
       domain: .mangooa.com
       admin:
         email: weimin.gao@aliyun.com
-server:
-  port: 80
-spring:
-  session:
-    store-type: redis

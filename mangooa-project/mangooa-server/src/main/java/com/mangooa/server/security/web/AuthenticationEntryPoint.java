@@ -15,6 +15,6 @@ public class AuthenticationEntryPoint implements org.springframework.security.we
 
 	@Override
 	public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-
+		System.out.println("调用AuthenticationEntryPoint.commence");
 	}
 }

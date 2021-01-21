@@ -4,9 +4,6 @@ import com.mangooa.common.domain.User;
 import com.mangooa.data.jpa.JpaServiceStringId;
 import com.mangooa.server.ServerAppProperties;
 
-import static com.mangooa.server.ServerAppConstant.INIT_TENANT_NAME;
-import static com.mangooa.server.ServerAppConstant.THIS_APP_NAME;
-
 /**
  * @author Weimin Gao
  * @since 1.0.0
@@ -38,13 +35,4 @@ public interface AppService extends JpaServiceStringId<AppRepository, AppEntity>
 	 * @return 应用实体的数量。
 	 */
 	long countByName(String name, String tenant);
-
-	/**
-	 * 查找服务器应用配置实体。
-	 *
-	 * @return 服务器应用配置实体对象。
-	 */
-	default AppEntity findServerApp() {
-		return findByName(THIS_APP_NAME, INIT_TENANT_NAME);
-	}
 }

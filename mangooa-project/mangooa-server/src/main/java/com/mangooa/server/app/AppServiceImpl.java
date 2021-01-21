@@ -8,7 +8,6 @@ import com.mangooa.server.ServerAppProperties;
 import org.springframework.stereotype.Service;
 
 import static com.mangooa.server.ServerAppConstant.INIT_TENANT_NAME;
-import static com.mangooa.server.ServerAppConstant.THIS_APP_NAME;
 
 /**
  * @author Weimin Gao
@@ -51,9 +50,8 @@ public class AppServiceImpl extends BaseJpaServiceStringId<AppRepository, AppEnt
 	public void init(ServerAppProperties properties, User user) {
 		ServerAppProperties.Init init = properties.getInit();
 		if (init.isEnable()) {
-			String name = THIS_APP_NAME;
-			String tenant = INIT_TENANT_NAME;
-			if (countByName(name, tenant) == 0) {
+			String name = properties.getName();
+			if (countByName(name, INIT_TENANT_NAME) == 0) {
 				AppEntity entity = AppEntity.of("应用服务器", name, AppType.WEB_APP);
 				save(entity, user);
 			}

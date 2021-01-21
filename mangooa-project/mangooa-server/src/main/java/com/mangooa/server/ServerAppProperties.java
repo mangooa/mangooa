@@ -1,9 +1,13 @@
 package com.mangooa.server;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
+import org.springframework.core.env.Environment;
 
 /**
  * 服务器应用属性。
@@ -16,9 +20,31 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "mangooa.server")
 public class ServerAppProperties {
 
+	private final Environment environment;
+
+	public ServerAppProperties(Environment environment) {
+		this.environment = environment;
+		setName(environment.getProperty("spring.application.name"));
+		setSessionCookieName(environment.getProperty("server.servlet.session.cookie.name"));
+	}
+
+	/**
+	 * 应用名称。
+	 */
+	@Setter(AccessLevel.PRIVATE)
+	private String name;
+
+
+	/**
+	 * 会话Cookie名称。
+	 */
+	@Setter(AccessLevel.PRIVATE)
+	private String sessionCookieName;
+
 	/**
 	 * 初始化配置，服务器第一次启用时创建默认配置，再次启用后此参考无效。
 	 */
+	@NestedConfigurationProperty
 	private Init init = new Init();
 
 	/**
@@ -34,7 +60,7 @@ public class ServerAppProperties {
 		private boolean enable = false;
 
 		/**
-		 * 初始化服务器域，以英文字线点开头，如“.mangooa.com"。
+		 * 初始化服务器域，以英文字线点开头，如：.mangooa.com
 		 */
 		private String domain;
 

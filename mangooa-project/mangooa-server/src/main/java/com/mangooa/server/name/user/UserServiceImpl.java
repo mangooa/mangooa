@@ -3,9 +3,9 @@ package com.mangooa.server.name.user;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
 import com.mangooa.server.ServerAppProperties;
 import com.mangooa.server.security.crypto.password.PasswordEncoder;
-import com.mangooa.tools.core.lang.ObjectId;
 
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Service;
 
 import static com.mangooa.server.ServerAppConstant.INIT_ADMIN_ACCOUNT;
@@ -46,11 +46,11 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 		if (init.isEnable()) {
 			String email = init.getAdmin().getEmail().trim().toLowerCase();
 			if (getDao().countByEmailIgnoreCase(email) == 0) {
-				String password = ObjectId.get().toHexString();
-				UserEntity user = UserEntity.of(INIT_ADMIN_ACCOUNT, passwordEncoder.encode(password), "管理员", email, INIT_TENANT_NAME);
+				String account = INIT_ADMIN_ACCOUNT;
+				UserEntity user = UserEntity.of(account, passwordEncoder.encode(account), "管理员", email, INIT_TENANT_NAME);
 				user.setEnabled(true);
 				save(user, true, user);
-				log.info("login password is {}, please change the password after login.", password);
+				log.info("login password is {}, please change the password after login.", account);
 			}
 		}
 	}

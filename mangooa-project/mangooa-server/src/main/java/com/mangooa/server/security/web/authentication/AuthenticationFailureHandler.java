@@ -15,6 +15,6 @@ public class AuthenticationFailureHandler implements org.springframework.securit
 
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-
+		System.out.println("调用AuthenticationFailureHandler.onAuthenticationFailure");
 	}
 }

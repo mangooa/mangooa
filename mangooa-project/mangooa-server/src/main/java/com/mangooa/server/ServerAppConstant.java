@@ -9,11 +9,6 @@ package com.mangooa.server;
 public class ServerAppConstant {
 
 	/**
-	 * 当前应用的名称。
-	 */
-	public static final String THIS_APP_NAME = "server";
-
-	/**
 	 * 初始化租户名称。
 	 */
 	public static final String INIT_TENANT_NAME = "admin";
@@ -22,6 +17,5 @@ public class ServerAppConstant {
 	 * 初始化管理员账号。
 	 */
 	public static final String INIT_ADMIN_ACCOUNT = "admin";
-
 
 }

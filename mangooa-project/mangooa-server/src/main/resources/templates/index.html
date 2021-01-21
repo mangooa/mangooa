@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
 <head>
-	<title>Login page</title>
+	<meta charset="UTF-8"/>
+	<title>Index page</title>
 </head>
 <body>
-<h1>Login page</h1>
-<form th:action="@{/login.html}" method="post">
-
-</form>
+<h1>Index</h1>
+<span th:text="'Welcome to our application, ' + ${name} + '!'"></span>
 </body>
 </html>

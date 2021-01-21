@@ -16,11 +16,11 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
-
+		System.out.println("调用AuthenticationSuccessHandler.onAuthenticationSuccess");
 	}
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-
+		System.out.println("调用AuthenticationSuccessHandler.onAuthenticationSuccess");
 	}
 }
