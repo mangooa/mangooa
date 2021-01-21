@@ -15,15 +15,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
+//import org.springframework.session.FindByIndexNameSessionRepository;
+//import org.springframework.session.Session;
+//import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
 
 /**
  * @author Weimin Gao
  * @since 1.0.0
  **/
-@Configuration
+@EnableWebSecurity
 @SuppressWarnings("unused")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -54,11 +57,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.debug(true)
 			.ignoring()
 			.antMatchers("/account/**")
-			.antMatchers("/static/**", "/css/**", "/js/**", "/images/**");
+			.antMatchers("/css/**", "/doc/**", "/img/**", "/js/**", "favicon.ico");
 	}
 
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
+//		super.configure(http);
+
+//		http
+//			.sessionManagement()
+//			.maximumSessions(1)
+//			.sessionRegistry(sessionRegistry());
+//		http.sessionManagement((sessionManagement) -> sessionManagement
+//			//.invalidSessionStrategy(new InvalidSessionStrategy())
+//			.sessionFixation()
+//			.migrateSession()
+//			.maximumSessions(1)
+//			.sessionRegistry(sessionRegistry())
+//		);
 //		http.authorizeRequests()
 //			.anyRequest()
 //			.authenticated()
@@ -85,13 +101,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 ////			.accessDeniedHandler(new AccessDeniedHandler())
 ////			.authenticationEntryPoint(new AuthenticationEntryPoint())
 ////			.and()
-////			.sessionManagement((sessionManagement) -> sessionManagement
-////				.invalidSessionStrategy(new InvalidSessionStrategy())
-////				.sessionFixation()
-////				.migrateSession()
-////				.maximumSessions(1)
-////				.sessionRegistry(sessionRegistry())
-////			)
+//		http
 //			.csrf()
 //			.disable()
 //			.cors();
