@@ -1,25 +1,20 @@
 package com.mangooa.server.security.config;
 
 import com.mangooa.server.ServerAppProperties;
-import com.mangooa.server.security.core.userdetails.UserDetailsServiceImpl;
+import com.mangooa.server.security.core.userdetails.UserDetailsService;
+import com.mangooa.server.security.crypto.password.PasswordEncoder;
 
-import com.mangooa.server.security.web.AuthenticationEntryPoint;
-import com.mangooa.server.security.web.access.AccessDeniedHandler;
-import com.mangooa.server.security.web.authentication.AuthenticationFailureHandler;
-import com.mangooa.server.security.web.authentication.AuthenticationSuccessHandler;
-import com.mangooa.server.security.web.authentication.logout.LogoutHandler;
-import com.mangooa.server.security.web.authentication.logout.LogoutSuccessHandler;
-import com.mangooa.server.security.web.session.InvalidSessionStrategy;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import lombok.extern.slf4j.Slf4j;
+
+
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//import org.springframework.session.FindByIndexNameSessionRepository;
-//import org.springframework.session.Session;
-//import org.springframework.session.security.SpringSessionBackedSessionRegistry;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -27,19 +22,23 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @since 1.0.0
  **/
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+@Slf4j
 @SuppressWarnings("unused")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	private final ServerAppProperties properties;
-	private final UserDetailsServiceImpl userDetailsService;
-//	private final FindByIndexNameSessionRepository<S> sessionRepository;
+	@Resource
+	private ServerAppProperties properties;
 
-	public SecurityConfiguration(ServerAppProperties properties, UserDetailsServiceImpl userDetailsService) {
-		this.properties = properties;
-		this.userDetailsService = userDetailsService;
-//		this.sessionRepository = sessionRepository;
-	}
+	@Resource
+	private UserDetailsService userDetailsService;
 
+	@Resource
+	private PasswordEncoder passwordEncoder;
+
+//	@Resource
+//	private FindByIndexNameSessionRepository<S> sessionRepository;
+//
 //	@Bean
 //	public SpringSessionBackedSessionRegistry<S> sessionRegistry() {
 //		return new SpringSessionBackedSessionRegistry<>(this.sessionRepository);
@@ -47,17 +46,41 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		super.configure(auth);
-		auth.userDetailsService(userDetailsService);
+		auth
+			.userDetailsService(userDetailsService)
+			.passwordEncoder(passwordEncoder);
 	}
 
 	@Override
-	public void configure(WebSecurity web) throws Exception {
+	public void configure(WebSecurity web) {
 		web
 			.debug(true)
 			.ignoring()
-			.antMatchers("/account/**")
-			.antMatchers("/css/**", "/doc/**", "/img/**", "/js/**", "favicon.ico");
+			.antMatchers("/css/**", "/doc/**", "/img/**", "/js/**", "/favicon.ico");
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+
+		http.authorizeRequests(requests -> requests
+			//.antMatchers("/account/**").permitAll()
+			.anyRequest().authenticated()
+		);
+
+		http.formLogin(login -> login
+			.usernameParameter("username")
+			.passwordParameter("password")
+			.loginPage("/account/login")
+			.loginProcessingUrl("/account/login")
+			.successForwardUrl("http://www.baidu.com")
+			.failureForwardUrl("/account/login?error=true")
+			.permitAll()
+		);
+
+		http.logout(logout->logout
+			.logoutUrl("/account/logout")
+			.permitAll()
+		);
 	}
 
 //	@Override

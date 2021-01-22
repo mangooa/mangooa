@@ -3,6 +3,7 @@ package com.mangooa.server.security.core.userdetails;
 import com.mangooa.server.name.user.UserEntity;
 import com.mangooa.server.name.user.UserService;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
  * @since 1.0.0
  **/
 @Component
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	/**
@@ -32,6 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserEntity user = userService.find(username);
+		log.info("user account '{}' {}found.", username, (user == null ? "not " : ""));
 		if (null == user) {
 			throw new UsernameNotFoundException(username);
 		}
