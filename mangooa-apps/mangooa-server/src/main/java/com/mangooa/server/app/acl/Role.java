@@ -22,7 +22,7 @@ import javax.persistence.*;
 )
 @Getter
 @Setter(AccessLevel.PACKAGE)
-public class RoleEntity extends BaseJpaEntityStringId {
+public class Role extends BaseJpaEntityStringId {
 
 	private static final long serialVersionUID = -3552029919228343977L;
 

@@ -24,7 +24,7 @@ import javax.persistence.*;
 )
 @Getter
 @Setter(AccessLevel.PACKAGE)
-public class AppEntity extends BaseJpaEntityStringId {
+public class App extends BaseJpaEntityStringId {
 
 	private static final long serialVersionUID = -6248535765695494180L;
 
@@ -36,8 +36,8 @@ public class AppEntity extends BaseJpaEntityStringId {
 	 * @param type  应用的类型。
 	 * @return 应用实体对象。
 	 */
-	public static AppEntity of(String title, String name, AppType type) {
-		AppEntity ret = new AppEntity();
+	public static App of(String title, String name, AppType type) {
+		App ret = new App();
 		ret.setTitle(title.trim());
 		ret.setName(name.trim().toLowerCase());
 		ret.setType(type);

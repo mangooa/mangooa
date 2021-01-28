@@ -8,7 +8,7 @@ import com.mangooa.server.ServerAppProperties;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public interface AppService extends JpaServiceStringId<AppRepository, AppEntity> {
+public interface AppService extends JpaServiceStringId<AppRepository, App> {
 
 	/**
 	 * 初始化当前服务器应用配置。
@@ -25,7 +25,7 @@ public interface AppService extends JpaServiceStringId<AppRepository, AppEntity>
 	 * @param tenant 指定租户的名称。
 	 * @return 应用实体对象。
 	 */
-	AppEntity findByName(String name, String tenant);
+	App findByName(String name, String tenant);
 
 	/**
 	 * 根据给定的应用名称查找指定租户下对应应用实体的数量，如果找不到则返回零。

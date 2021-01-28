@@ -14,7 +14,7 @@ import static com.mangooa.server.ServerAppConstant.INIT_TENANT_NAME;
  * @since 1.0.0
  **/
 @Service
-public class AppServiceImpl extends BaseJpaServiceStringId<AppRepository, AppEntity> implements AppService {
+public class AppServiceImpl extends BaseJpaServiceStringId<AppRepository, App> implements AppService {
 
 	/**
 	 * 根据给定的应用名称查找指定租户下对应的应用实体，如果找不到则返回{@code null}。
@@ -24,7 +24,7 @@ public class AppServiceImpl extends BaseJpaServiceStringId<AppRepository, AppEnt
 	 * @return 应用实体对象。
 	 */
 	@Override
-	public AppEntity findByName(String name, String tenant) {
+	public App findByName(String name, String tenant) {
 		return getDao().findByNameIgnoreCaseAndTenantIgnoreCase(name.trim(), tenant.trim());
 	}
 
@@ -52,7 +52,7 @@ public class AppServiceImpl extends BaseJpaServiceStringId<AppRepository, AppEnt
 		if (init.isEnable()) {
 			String name = properties.getName();
 			if (countByName(name, INIT_TENANT_NAME) == 0) {
-				AppEntity entity = AppEntity.of("应用服务器", name, AppType.WEB_APP);
+				App entity = App.of("应用服务器", name, AppType.WEB_APP);
 				save(entity, user);
 			}
 		}

@@ -14,39 +14,33 @@ import javax.persistence.UniqueConstraint;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-@Entity(name = "ViewColumn")
+@Entity(name = "View")
 @Table(
-	name = "t_view_column",
+	name = "t_view",
 	uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"f_app", "f_view", "f_name"})
+		@UniqueConstraint(columnNames = {"f_app", "f_name"})
 	}
 )
 @Getter
 @Setter(AccessLevel.PRIVATE)
-public class ViewColumnEntity extends BaseJpaEntityStringId {
+public class View extends BaseJpaEntityStringId {
 
-	private static final long serialVersionUID = -8656481684770021149L;
+	private static final long serialVersionUID = 4354174405594690417L;
 
 	/**
-	 * 视图列所属应用。
+	 * 视图所属应用。
 	 */
 	@Column(name = "f_app", nullable = false, updatable = false, length = 32)
 	private String app;
 
 	/**
-	 * 视图列所属视图。
-	 */
-	@Column(name = "f_view", nullable = false, updatable = false, length = 32)
-	private String view;
-
-	/**
-	 * 视图列标题。
+	 * 视图标题。
 	 */
 	@Column(name = "f_title", nullable = false, length = 32)
 	private String title;
 
 	/**
-	 * 视图列名称。
+	 * 视图名称。
 	 */
 	@Column(name = "f_name", nullable = false, updatable = false, length = 32)
 	private String name;

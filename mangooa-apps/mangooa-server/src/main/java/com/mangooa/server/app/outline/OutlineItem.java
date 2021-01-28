@@ -25,7 +25,7 @@ import javax.persistence.UniqueConstraint;
 )
 @Getter
 @Setter(AccessLevel.PRIVATE)
-public class OutlineItemEntity extends BaseJpaEntityStringId {
+public class OutlineItem extends BaseJpaEntityStringId {
 
 	private static final long serialVersionUID = 3468803501673585434L;
 

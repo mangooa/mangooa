@@ -20,7 +20,7 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames = {"f_app", "f_name"})
 	}
 )
-public class FormEntity extends BaseJpaEntityStringId {
+public class Form extends BaseJpaEntityStringId {
 
 	private static final long serialVersionUID = 1951883641360422801L;
 

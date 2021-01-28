@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * @since 1.0.0
  **/
 @Repository
-public interface AppRepository extends JpaRepositoryStringId<AppEntity> {
+public interface AppRepository extends JpaRepositoryStringId<App> {
 
 	/**
 	 * 根据给定的应用名称查找指定租户下对应的应用实体，如果找不到则返回{@code null}。
@@ -17,7 +17,7 @@ public interface AppRepository extends JpaRepositoryStringId<AppEntity> {
 	 * @param tenant 指定租户的名称，忽略大小写。
 	 * @return 应用实体对象。
 	 */
-	AppEntity findByNameIgnoreCaseAndTenantIgnoreCase(String name,String tenant);
+	App findByNameIgnoreCaseAndTenantIgnoreCase(String name, String tenant);
 
 	/**
 	 * 根据给定的应用名称查找指定租户下对应应用实体的数量，如果找不到则返回零。
