@@ -22,6 +22,9 @@
 		<module>mangooa-data-jpa</module>
 		<module>mangooa-rocketmq</module>
 		<module>mangooa-radius</module>
+		<module>mangooa-security</module>
+		<module>mangooa-oauth</module>
+		<module>mangooa-uaa</module>
 		<module>mangooa-web</module>
 		<module>mangooa-app</module>
         <module>mangooa-test</module>

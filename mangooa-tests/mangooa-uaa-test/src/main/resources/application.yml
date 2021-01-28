@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: test-uaa
+server:
+  port: 80

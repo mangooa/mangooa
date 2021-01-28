@@ -9,9 +9,9 @@
 		<version>${revision}</version>
 		<relativePath>../mangooa-parent</relativePath>
 	</parent>
-	<artifactId>mangooa-common</artifactId>
-	<name>Mangooa Common</name>
-	<description>Mangooa Common</description>
+	<artifactId>mangooa-uaa</artifactId>
+	<name>Mangooa Uaa</name>
+	<description>Mangooa Uaa</description>
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
 	</properties>
@@ -23,21 +23,15 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.mangooa</groupId>
-			<artifactId>mangooa-tools-core</artifactId>
+			<artifactId>mangooa-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-			<optional>true</optional>
+			<groupId>com.mangooa</groupId>
+			<artifactId>mangooa-oauth</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.security.oauth.boot</groupId>
-			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<groupId>com.mangooa</groupId>
+			<artifactId>mangooa-web</artifactId>
 			<optional>true</optional>
 		</dependency>
 	</dependencies>

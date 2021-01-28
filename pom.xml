@@ -5,7 +5,7 @@
 	<groupId>com.mangooa</groupId>
 	<artifactId>mangooa-build</artifactId>
 	<version>${revision}</version>
-    <packaging>pom</packaging>
+	<packaging>pom</packaging>
 	<name>Mangooa Build</name>
 	<description>Mangooa Build</description>
 	<properties>
@@ -17,8 +17,8 @@
 			<id>default</id>
 			<modules>
 				<module>mangooa-project</module>
-				<module>mangooa-apps</module>
 				<module>mangooa-tests</module>
+				<module>mangooa-apps</module>
 			</modules>
 		</profile>
 	</profiles>

@@ -98,6 +98,21 @@
 			</dependency>
 			<dependency>
 				<groupId>com.mangooa</groupId>
+				<artifactId>mangooa-security</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mangooa</groupId>
+				<artifactId>mangooa-oauth</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mangooa</groupId>
+				<artifactId>mangooa-uaa</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mangooa</groupId>
 				<artifactId>mangooa-radius</artifactId>
 				<version>${revision}</version>
 			</dependency>
@@ -121,12 +136,12 @@
 				<artifactId>mangooa-webapp</artifactId>
 				<version>${revision}</version>
 			</dependency>
+			<!-- mangooa apps -->
 			<dependency>
 				<groupId>com.mangooa</groupId>
 				<artifactId>mangooa-server</artifactId>
 				<version>${revision}</version>
 			</dependency>
-			<!-- mangooa apps -->
 			<dependency>
 				<groupId>com.mangooa</groupId>
 				<artifactId>mangooa-wlan</artifactId>

@@ -1,7 +1,7 @@
 package com.mangooa.server.security.core.userdetails;
 
-import com.mangooa.server.uaa.user.User;
-import com.mangooa.server.uaa.user.UserService;
+import com.mangooa.server.user.User;
+import com.mangooa.server.user.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
