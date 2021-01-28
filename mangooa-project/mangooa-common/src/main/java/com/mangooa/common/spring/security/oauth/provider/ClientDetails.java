@@ -1,4 +1,4 @@
-package com.mangooa.common.spring.security.oauth;
+package com.mangooa.common.spring.security.oauth.provider;
 
 /**
  * @author Weimin Gao
