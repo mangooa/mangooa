@@ -20,14 +20,11 @@
 		<module>mangooa-tools</module>
 		<module>mangooa-common</module>
 		<module>mangooa-data-jpa</module>
+		<module>mangooa-rocketmq</module>
 		<module>mangooa-radius</module>
 		<module>mangooa-web</module>
 		<module>mangooa-app</module>
-		<module>mangooa-uaaa</module>
-        <module>mangooa-server</module>
         <module>mangooa-test</module>
-        <module>mangooa-rocketmq-server</module>
-		<module>mangooa-rocketmq</module>
 		<module>mangooa-webapp</module>
 	</modules>
 </project>

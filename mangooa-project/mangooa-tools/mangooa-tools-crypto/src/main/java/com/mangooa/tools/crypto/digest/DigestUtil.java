@@ -1,6 +1,6 @@
 package com.mangooa.tools.crypto.digest;
 
-import com.mangooa.common.core.lang.CharsetUtil;
+import com.mangooa.tools.core.lang.CharsetUtil;
 
 /**
  * 摘要工具类。

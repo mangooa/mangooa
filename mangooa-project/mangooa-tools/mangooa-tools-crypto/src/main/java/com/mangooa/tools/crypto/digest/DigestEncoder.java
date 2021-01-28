@@ -1,8 +1,8 @@
 package com.mangooa.tools.crypto.digest;
 
-import com.mangooa.common.core.lang.ArrayUtil;
-import com.mangooa.common.core.lang.CharsetUtil;
-import com.mangooa.common.core.lang.StringUtil;
+import com.mangooa.tools.core.lang.ArrayUtil;
+import com.mangooa.tools.core.lang.CharsetUtil;
+import com.mangooa.tools.core.lang.StringUtil;
 import com.mangooa.tools.crypto.CryptoException;
 import com.mangooa.tools.crypto.SecurityUtil;
 

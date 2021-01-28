@@ -65,7 +65,7 @@ public class CharSequenceUtil {
 	 * @param cs 给定的字符串.
 	 * @return 真表示是空白字符串。
 	 */
-	public static boolean isBlank(CharSequence cs) {
+	public static boolean isBlank(final CharSequence cs) {
 		int length;
 		if ((null == cs) || ((length = cs.length()) == 0)) {
 			return true;
