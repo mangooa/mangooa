@@ -1,11 +1,6 @@
 spring:
-  thymeleaf:
-    mode: HTML5
   application:
     name: server
-  session:
-    store-type: redis
-    timeout: 60
 server:
   port: 80
   servlet:

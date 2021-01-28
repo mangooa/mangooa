@@ -5,4 +5,5 @@ package com.mangooa.app;
  * @since 1.0.0
  **/
 public interface ViewColumn {
+
 }

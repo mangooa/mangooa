@@ -6,6 +6,7 @@ package com.mangooa.webapp;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public abstract class BaseApp extends com.mangooa.app.BaseApp implements App {
+public abstract class BaseApp implements App {
 
+	private static final long serialVersionUID = -4334577069279598770L;
 }
