@@ -1,5 +1,6 @@
 package com.mangooa.uaa.oauth.config;
 
+import com.mangooa.common.spring.security.crypto.password.PasswordEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,7 +20,13 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import javax.annotation.Resource;
 
 /**
- * 授权服务配置。
+ * <pre>
+ * 授权服务器配置，需要配置以下内容。
+ * 1：配置客户端详细信息服务（ClientDetailsServiceConfigurer）
+ * 2：配置令牌管理服务（AuthorizationServerTokenServices）
+ * 3：配置令牌访问端点（AuthorizationServerEndpointsConfigurer）
+ * 4：配置令牌访问端点安全约束（AuthorizationServerSecurityConfigurer）
+ * </pre>
  *
  * @author Weimin Gao
  * @since 1.0.0
@@ -27,7 +34,7 @@ import javax.annotation.Resource;
 @Configuration
 @EnableAuthorizationServer
 @SuppressWarnings("unused")
-public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfigurer extends AuthorizationServerConfigurerAdapter {
 
 	@Resource
 	private ClientDetailsService clientDetailsService;
@@ -35,50 +42,59 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Resource
 	private TokenStore tokenStore;
 
-	/**
-	 * 授权码模式需要配置授权码管理服务。
-	 */
 	@Resource
 	private AuthorizationCodeServices authorizationCodeServices;
 
-	/**
-	 * 密码模式需要认证管理器。
-	 */
 	@Resource
 	private AuthenticationManager authenticationManager;
 
-	/**
-	 * 令牌管理服务。
-	 */
 	@Resource
 	private AuthorizationServerTokenServices tokenServices;
 
+	@Resource
+	private PasswordEncoder passwordEncoder;
+
 	/**
-	 * 1：配置获取客户详情。
+	 * 客户端详细信息服务配置。
 	 */
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.withClientDetails(clientDetailsService);
+		// clients.withClientDetails(clientDetailsService);
+		clients
+			.inMemory()
+			.withClient("c1")
+			.secret(passwordEncoder.encode("123456"))
+			.resourceIds("r1")
+			.authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
+			.scopes("all")
+			// 配置值为假（false）时会跳转到授权页面，否则直接发放令牌
+			.autoApprove(false)
+			.redirectUris("http://www.baidu.com");
 	}
 
 	/**
-	 * 2：配置令牌管理服务。
+	 * 令牌管理服务配置。
 	 */
 	@Bean
 	public AuthorizationServerTokenServices tokenServices() {
 		DefaultTokenServices services = new DefaultTokenServices();
+		// 客户端详细信息服务
 		services.setClientDetailsService(clientDetailsService);
+		// 是否产生刷新令牌
 		services.setSupportRefreshToken(true);
+		// 令牌存储策略
 		services.setTokenStore(tokenStore);
-		services.setAccessTokenValiditySeconds(60);
-		services.setRefreshTokenValiditySeconds(120);
+		// 访问令牌默认有效期2小时
+		services.setAccessTokenValiditySeconds(7200);
+		// 刷新令牌默认有效期3天
+		services.setRefreshTokenValiditySeconds(259200);
 		return services;
 	}
 
 	/**
 	 * <pre>
-	 * 3：配置令牌访问端点。
-	 * 	 /oauth/authorize		获取授权端点
+	 * 令牌访问端点配置。
+	 * 	 /oauth/authorize		获取授权码端点
 	 * 	 /oauth/token		    获取令牌端点
 	 * 	 /oauth/confirm_access	用户确认授权提交端点
 	 * 	 /oauth/error			授权服务报错错误信息端点
@@ -89,17 +105,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
 		endpoints
-			// 授权码服务
+			// 授权码模式需要
 			.authorizationCodeServices(authorizationCodeServices)
-			// 认证管理器
+			// 密码模式需要
 			.authenticationManager(authenticationManager)
-			// 令牌管理服务
+			// 任何模式都需要配置令牌管理服务
 			.tokenServices(tokenServices)
 			.allowedTokenEndpointRequestMethods(HttpMethod.POST);
 	}
 
 	/**
-	 * 4：配置令牌访问端点安全约束。
+	 * 令牌访问端点安全约束配置。
 	 */
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) {

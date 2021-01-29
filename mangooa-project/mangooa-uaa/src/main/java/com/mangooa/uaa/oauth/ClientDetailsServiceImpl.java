@@ -18,7 +18,6 @@ import java.util.Set;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-@Component
 public class ClientDetailsServiceImpl implements ClientDetailsService {
 
 	@Resource
