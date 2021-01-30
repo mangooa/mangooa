@@ -6,13 +6,13 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 /**
- * 令牌配置器。
+ * 授权令牌配置器。
  *
  * @author Weimin Gao
  * @since 1.0.0
  **/
 @Configuration
-public class TokenConfigurer {
+public class AuthorizationTokenConfigurer {
 
 	@Bean
 	public TokenStore tokenStore() {

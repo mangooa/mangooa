@@ -2,7 +2,7 @@ package com.mangooa.common.service;
 
 import com.mangooa.common.data.Dao;
 import com.mangooa.common.data.DataObject;
-import com.mangooa.common.domain.User;
+import com.mangooa.common.uaa.User;
 
 import java.io.Serializable;
 

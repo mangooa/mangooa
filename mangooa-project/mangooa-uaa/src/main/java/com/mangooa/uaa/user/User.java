@@ -30,7 +30,7 @@ import javax.persistence.*;
 @Getter
 @Setter(AccessLevel.PACKAGE)
 @SuppressWarnings("unused")
-public class User extends BaseJpaEntityStringId implements com.mangooa.common.domain.User {
+public class User extends BaseJpaEntityStringId implements com.mangooa.common.uaa.User {
 
 	private static final long serialVersionUID = 5489315593638861070L;
 

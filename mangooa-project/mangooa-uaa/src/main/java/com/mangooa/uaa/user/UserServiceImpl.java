@@ -83,6 +83,7 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user =  find(username);
 		com.mangooa.security.core.userdetails.UserDetails ret = new com.mangooa.security.core.userdetails.UserDetails();
+
 		return ret;
 	}
 }

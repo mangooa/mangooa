@@ -1,6 +1,6 @@
 package com.mangooa.common.spring.security.core.userdetails;
 
-import com.mangooa.common.domain.User;
+import com.mangooa.common.uaa.User;
 
 /**
  * @author Weimin Gao

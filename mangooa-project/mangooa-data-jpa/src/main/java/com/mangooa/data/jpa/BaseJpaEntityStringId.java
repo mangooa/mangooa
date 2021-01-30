@@ -102,4 +102,30 @@ public abstract class BaseJpaEntityStringId implements DataObject<String> {
 	@Column(name = "b_editable", nullable = false)
 	private boolean editable = true;
 
+	/**
+	 * <pre>
+	 * 获取实体可阅读者列表。
+	 * 说明
+	 * 1：保存值可以为用户账号、群组代码，使用英文[]进行包裹。
+	 * 2：保存值用户账号需加前缀：U_，例如：[U_ADMIN]，表示是管理员。
+	 * 3：保存值群组代码需加前缀：G_，例如：[G_ADMIN]，表示是管理员组。
+	 * 4：保存值为多值时用英文分号+英文空格进行分隔，例如：[U_ADMIN]; [G_ADMIN]。
+	 * </pre>
+	 */
+	@Column(name = "b_readers", length = 512)
+	private String readers;
+
+	/**
+	 * <pre>
+	 * 获取实体可编辑者列表。
+	 * 说明
+	 * 1：保存值可以为用户账号、群组代码，使用英文[]进行包裹。
+	 * 2：保存值用户账号需加前缀：U_，例如：[U_ADMIN]，表示是管理员。
+	 * 3：保存值群组代码需加前缀：G_，例如：[G_ADMIN]，表示是管理员组。
+	 * 4：保存值为多值时用英文分号+英文空格进行分隔，例如：[U_ADMIN]; [G_ADMIN]。
+	 * </pre>
+	 */
+	@Column(name = "b_authors", length = 512)
+	private String authors;
+
 }

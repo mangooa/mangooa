@@ -1,7 +1,7 @@
 package com.mangooa.data.jpa;
 
 import com.mangooa.common.service.Service;
-import com.mangooa.common.domain.User;
+import com.mangooa.common.uaa.User;
 
 
 /**
