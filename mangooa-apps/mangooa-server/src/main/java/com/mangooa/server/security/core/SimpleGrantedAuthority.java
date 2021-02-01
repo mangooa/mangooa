@@ -1,6 +1,6 @@
 package com.mangooa.server.security.core;
 
-import com.mangooa.common.data.OperationAuthority;
+import com.mangooa.common.data.OperationPermission;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,7 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
-public class SimpleGrantedAuthority implements OperationAuthority, org.springframework.security.core.GrantedAuthority {
+public class SimpleGrantedAuthority implements OperationPermission, org.springframework.security.core.GrantedAuthority {
 
 	private static final long serialVersionUID = -4400096800224312184L;
 

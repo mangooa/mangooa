@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public interface OperationAuthority extends Serializable {
+public interface OperationPermission extends Serializable {
 
 	/**
 	 * 返回操作权限代码，例如：SAVE。

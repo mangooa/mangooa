@@ -1,6 +1,5 @@
 package com.mangooa.security.core.userdetails;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +12,7 @@ import java.util.Collection;
  * @since 1.0.0
  **/
 @Getter
-@Setter(AccessLevel.PACKAGE)
+@Setter
 public class UserDetails implements com.mangooa.common.spring.security.core.userdetails.UserDetails {
 
 	private static final long serialVersionUID = -7202223911909422962L;

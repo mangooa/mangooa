@@ -1,13 +1,17 @@
 package com.mangooa.uaa.user;
 
 import com.mangooa.common.spring.security.crypto.password.PasswordEncoder;
+import com.mangooa.common.uaa.UaaInitConstant;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -20,39 +24,31 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User> implements UserService {
 
-	/**
-	 * 密码加密器。
-	 */
-	private final PasswordEncoder passwordEncoder;
+	@Resource
+	private PasswordEncoder passwordEncoder;
 
-	/**
-	 * 构造函数。
-	 *
-	 * @param passwordEncoder 密码加密器。
-	 */
-	public UserServiceImpl(PasswordEncoder passwordEncoder) {
-		this.passwordEncoder = passwordEncoder;
+	@Resource
+	private Environment environment;
+
+	@Override
+	public PasswordEncoder getPasswordEncoder() {
+		return passwordEncoder;
 	}
 
-//	/**
-//	 * 初始化管理员。
-//	 *
-//	 * @param properties 服务器应用配置属性。
-//	 */
-//	@Override
-//	public void init(ServerAppProperties properties) {
-//		ServerAppProperties.Init init = properties.getInit();
-//		if (init.isEnable()) {
-//			String email = init.getAdmin().getEmail().trim().toLowerCase();
-//			if (getDao().countByEmailIgnoreCase(email) == 0) {
-//				String account = INIT_ADMIN_ACCOUNT;
-//				User user = User.of(account, passwordEncoder.encode(account), "管理员", email, INIT_TENANT_NAME);
-//				user.setEnabled(true);
-//				save(user, true, user);
-//				log.info("login password is {}, please change the password after login.", account);
-//			}
-//		}
-//	}
+	/**
+	 * 初始化管理员。
+	 */
+	@Override
+	public void init() {
+		String account = UaaInitConstant.INIT_ADMIN_ACCOUNT;
+		if (getDao().countByAccountIgnoreCase(account) == 0) {
+			String tenant = UaaInitConstant.INIT_TENANT_NAME;
+			User user = User.of(account, passwordEncoder.encode(account), "管理员", null, tenant);
+			user.setEnabled(true);
+			save(user, true, user);
+			log.info("login password is {}, please change the password after login.", account);
+		}
+	}
 
 	/**
 	 * 用户注册。
@@ -81,9 +77,18 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user =  find(username);
+		User user = find(username);
 		com.mangooa.security.core.userdetails.UserDetails ret = new com.mangooa.security.core.userdetails.UserDetails();
-
+		ret.setAccount(user.getAccount());
+		ret.setAccountNonExpired(true);
+		ret.setAccountNonLocked(true);
+		ret.setAuthorities(null);
+		ret.setCredentialsNonExpired(true);
+		ret.setEnabled(true);
+		ret.setName(user.getName());
+		ret.setNickname(user.getNickname());
+		ret.setPassword(user.getPassword());
+		ret.setTenant(user.getTenant());
 		return ret;
 	}
 }

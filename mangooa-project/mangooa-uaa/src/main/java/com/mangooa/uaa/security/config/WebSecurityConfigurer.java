@@ -1,15 +1,17 @@
 package com.mangooa.uaa.security.config;
 
-import com.mangooa.common.spring.security.crypto.bcrypt.BcryptPasswordEncoder;
-import com.mangooa.common.spring.security.crypto.password.PasswordEncoder;
+import com.mangooa.uaa.user.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+
+import javax.annotation.Resource;
 
 /**
  * @author Weimin Gao
@@ -18,6 +20,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true, jsr250Enabled = true)
 @SuppressWarnings("unused")
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
+
+	@Resource
+	private UserService userService;
 
 	/**
 	 * 认证管理器。
@@ -42,7 +47,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests(requests -> requests
 				.antMatchers(HttpMethod.GET, "/oauth/authorize").permitAll()
-				.anyRequest().permitAll()
+				.anyRequest().authenticated()
 			);
 		// 会话管理配置
 		http
@@ -62,5 +67,12 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 		http
 			.csrf().disable();
+	}
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+			.userDetailsService(userService)
+			.passwordEncoder(userService.getPasswordEncoder());
 	}
 }

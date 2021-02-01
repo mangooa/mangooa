@@ -45,4 +45,12 @@ public interface UserRepository extends JpaRepositoryStringId<User> {
 	 */
 	long countByEmailIgnoreCase(String email);
 
+	/**
+	 * 根据给定的账号查找对应用户实体的数量，如果找不到则返回零。
+	 *
+	 * @param account 给定的账号，忽略大小写。
+	 * @return 用户实体的数量。
+	 */
+	long countByAccountIgnoreCase(String account);
+
 }

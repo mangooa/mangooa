@@ -1,6 +1,7 @@
 package com.mangooa.uaa.user;
 
 import com.mangooa.common.spring.security.core.userdetails.UserDetailsService;
+import com.mangooa.common.spring.security.crypto.password.PasswordEncoder;
 import com.mangooa.data.jpa.JpaServiceStringId;
 
 /**
@@ -10,12 +11,18 @@ import com.mangooa.data.jpa.JpaServiceStringId;
 @SuppressWarnings("unused")
 public interface UserService extends JpaServiceStringId<UserRepository, User>, com.mangooa.common.service.UserService<User>, UserDetailsService {
 
-//	/**
-//	 * 初始化管理员。
-//	 *
-//	 * @param properties 服务器应用配置属性。
-//	 */
-//	void init(ServerAppProperties properties);
+
+	/**
+	 * 返回用户密码编码器。
+	 *
+	 * @return 密码编码器。
+	 */
+	PasswordEncoder getPasswordEncoder();
+
+	/**
+	 * 初始化管理员。
+	 */
+	void init();
 
 	/**
 	 * 用户注册。
