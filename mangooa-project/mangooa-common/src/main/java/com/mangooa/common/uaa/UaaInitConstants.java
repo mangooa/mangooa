@@ -6,7 +6,7 @@ package com.mangooa.common.uaa;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public class UaaInitConstant {
+public class UaaInitConstants {
 
 	/**
 	 * 初始化租户名称。
@@ -18,7 +18,7 @@ public class UaaInitConstant {
 	 */
 	public static final String INIT_ADMIN_ACCOUNT = "admin";
 
-	private UaaInitConstant() {
+	private UaaInitConstants() {
 		super();
 	}
 

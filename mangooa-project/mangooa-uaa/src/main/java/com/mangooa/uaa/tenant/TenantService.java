@@ -10,7 +10,7 @@ import com.mangooa.data.jpa.JpaServiceStringId;
 public interface TenantService extends JpaServiceStringId<TenantRepository, Tenant> {
 
 	/**
-	 * 初始化租户。
+	 * 初始化系统租户。
 	 */
 	void init();
 }

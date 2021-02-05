@@ -1,12 +1,11 @@
 package com.mangooa.uaa.user;
 
 import com.mangooa.common.spring.security.crypto.password.PasswordEncoder;
-import com.mangooa.common.uaa.UaaInitConstant;
+import com.mangooa.common.uaa.UaaInitConstants;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -27,22 +26,19 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 	@Resource
 	private PasswordEncoder passwordEncoder;
 
-	@Resource
-	private Environment environment;
-
 	@Override
 	public PasswordEncoder getPasswordEncoder() {
 		return passwordEncoder;
 	}
 
 	/**
-	 * 初始化管理员。
+	 * 初始化系统管理员。
 	 */
 	@Override
 	public void init() {
-		String account = UaaInitConstant.INIT_ADMIN_ACCOUNT;
+		String account = UaaInitConstants.INIT_ADMIN_ACCOUNT;
 		if (getDao().countByAccountIgnoreCase(account) == 0) {
-			String tenant = UaaInitConstant.INIT_TENANT_NAME;
+			String tenant = UaaInitConstants.INIT_TENANT_NAME;
 			User user = User.of(account, passwordEncoder.encode(account), "管理员", null, tenant);
 			user.setEnabled(true);
 			save(user, true, user);

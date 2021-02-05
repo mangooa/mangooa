@@ -20,7 +20,7 @@ public interface UserService extends JpaServiceStringId<UserRepository, User>, c
 	PasswordEncoder getPasswordEncoder();
 
 	/**
-	 * 初始化管理员。
+	 * 初始化系统管理员。
 	 */
 	void init();
 
