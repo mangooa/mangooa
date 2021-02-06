@@ -1,0 +1,35 @@
+package com.mangooa.platform.tenant;
+
+
+import com.mangooa.common.platform.user.UaaInitConstants;
+import com.mangooa.data.jpa.BaseJpaServiceStringId;
+
+import com.mangooa.platform.user.UserEntity;
+import com.mangooa.platform.user.UserService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
+/**
+ * @author Weimin Gao
+ * @since 1.0.0
+ **/
+@Service
+public class TenantServiceImpl extends BaseJpaServiceStringId<TenantRepository, TenantEntity> implements TenantService {
+
+	@Resource
+	private UserService userService;
+
+	/**
+	 * 初始化系统租户。
+	 */
+	@Override
+	public void init() {
+		String tenant = UaaInitConstants.INIT_TENANT_NAME;
+		if (getDao().countByNameIgnoreCase(tenant) == 0) {
+			UserEntity creator = userService.find(UaaInitConstants.INIT_ADMIN_ACCOUNT);
+			TenantEntity entity = TenantEntity.of(tenant, tenant + profile.getDomain());
+			save(entity, true, creator);
+		}
+	}
+}

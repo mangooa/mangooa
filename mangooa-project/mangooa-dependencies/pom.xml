@@ -108,7 +108,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.mangooa</groupId>
-				<artifactId>mangooa-uaa</artifactId>
+				<artifactId>mangooa-platform</artifactId>
 				<version>${revision}</version>
 			</dependency>
 			<dependency>

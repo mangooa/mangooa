@@ -13,7 +13,7 @@ import java.util.Set;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class ClientDetails implements com.mangooa.common.spring.security.oauth.provider.ClientDetails {
+public class ClientDetails implements com.mangooa.common.platform.security.oauth.provider.ClientDetails {
 
 	private static final long serialVersionUID = 1515066211947873136L;
 

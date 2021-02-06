@@ -24,7 +24,7 @@
 		<module>mangooa-radius</module>
 		<module>mangooa-security</module>
 		<module>mangooa-oauth</module>
-		<module>mangooa-uaa</module>
+		<module>mangooa-Platform</module>
 		<module>mangooa-web</module>
 		<module>mangooa-app</module>
         <module>mangooa-test</module>

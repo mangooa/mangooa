@@ -1,6 +1,6 @@
 package com.mangooa.server.security.core.userdetails;
 
-import com.mangooa.common.uaa.User;
+import com.mangooa.common.platform.user.User;
 
 import lombok.AccessLevel;
 import lombok.Getter;

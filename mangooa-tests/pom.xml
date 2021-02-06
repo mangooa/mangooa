@@ -15,7 +15,4 @@
 	<properties>
 		<main.basedir>${basedir}/..</main.basedir>
 	</properties>
-	<modules>
-		<module>mangooa-uaa-test</module>
-	</modules>
 </project>

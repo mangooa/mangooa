@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    active: test
+  application:
+    name: platform
+server:
+  port: 80

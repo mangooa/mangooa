@@ -13,7 +13,7 @@ import java.util.Collection;
  **/
 @Getter
 @Setter
-public class UserDetails implements com.mangooa.common.spring.security.core.userdetails.UserDetails {
+public class UserDetails implements com.mangooa.common.platform.security.core.userdetails.UserDetails {
 
 	private static final long serialVersionUID = -7202223911909422962L;
 

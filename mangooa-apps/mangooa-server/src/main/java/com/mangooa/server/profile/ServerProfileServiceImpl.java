@@ -1,6 +1,6 @@
 package com.mangooa.server.profile;
 
-import com.mangooa.common.uaa.User;
+import com.mangooa.common.platform.user.User;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
 import com.mangooa.server.ServerAppProperties;
 

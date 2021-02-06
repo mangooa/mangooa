@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mangooa</groupId>
+		<artifactId>mangooa-parent</artifactId>
+		<version>${revision}</version>
+		<relativePath>../mangooa-parent</relativePath>
+	</parent>
+	<artifactId>mangooa-platform</artifactId>
+	<packaging>war</packaging>
+	<name>Mangooa Platform</name>
+	<description>Mangooa Platform</description>
+	<properties>
+		<main.basedir>${basedir}/../..</main.basedir>
+	</properties>
+	<scm>
+		<url>${git.url}</url>
+		<connection>${git.connection}</connection>
+		<developerConnection>${git.developerConnection}</developerConnection>
+	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>com.mangooa</groupId>
+			<artifactId>mangooa-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mangooa</groupId>
+			<artifactId>mangooa-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mangooa</groupId>
+			<artifactId>mangooa-oauth</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mangooa</groupId>
+			<artifactId>mangooa-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+</project>
