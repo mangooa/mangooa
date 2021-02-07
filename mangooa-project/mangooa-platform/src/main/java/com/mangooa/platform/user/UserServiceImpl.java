@@ -1,9 +1,10 @@
 package com.mangooa.platform.user;
 
 import com.mangooa.common.platform.security.crypto.password.PasswordEncoder;
-import com.mangooa.common.platform.user.UaaInitConstants;
+import com.mangooa.platform.PlatformConstants;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
 
+import com.mangooa.platform.PlatformProperties;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 
 /**
@@ -32,18 +34,23 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 	}
 
 	/**
-	 * 初始化系统管理员。
+	 * 初始化平台系统管理员。
+	 *
+	 * @param init 平台初始化配置。
+	 * @return 用户实体对象。
 	 */
 	@Override
-	public void init() {
-		String account = UaaInitConstants.INIT_ADMIN_ACCOUNT;
-		if (getDao().countByAccountIgnoreCase(account) == 0) {
-			String tenant = UaaInitConstants.INIT_TENANT_NAME;
-			UserEntity user = UserEntity.of(account, passwordEncoder.encode(account), "管理员", null, tenant);
+	public UserEntity init(PlatformProperties.Init init) {
+		String account = PlatformConstants.PLATFORM_ADMIN_ACCOUNT;
+		UserEntity user = getDao().findByAccountIgnoreCase(account);
+		if (Objects.isNull(user)) {
+			String tenant = PlatformConstants.PLATFORM_TENANT_NAME;
+			user = UserEntity.of(account, passwordEncoder.encode(account), "管理员", null, tenant);
 			user.setEnabled(true);
-			save(user, true, user);
+			save(user, user, true);
 			log.info("login password is {}, please change the password after login.", account);
 		}
+		return user;
 	}
 
 	/**
@@ -56,7 +63,7 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 	@Override
 	public UserEntity registration(String email, String password) {
 		UserEntity user = UserEntity.of(email, passwordEncoder.encode(password));
-		return save(user, true, user);
+		return save(user, user, true);
 	}
 
 	/**

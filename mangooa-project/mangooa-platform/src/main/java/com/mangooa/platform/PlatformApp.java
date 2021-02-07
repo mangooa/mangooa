@@ -1,5 +1,6 @@
 package com.mangooa.platform;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
@@ -10,4 +11,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties(value = {PlatformProperties.class})
 @SpringBootApplication
 public class PlatformApp {
+
+	public static void main(String[] args) {
+		SpringApplication.run(PlatformApp.class, args);
+	}
 }

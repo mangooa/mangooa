@@ -17,20 +17,20 @@ public interface JpaServiceStringId<DAO extends JpaRepositoryStringId<DO>, DO ex
 	/**
 	 * 新建保存实体。
 	 *
-	 * @param entity 实体对象。
-	 * @param flush  真表示立即提交。
-	 * @param editor 实体对象创建者。
+	 * @param creator 实体对象创建者。
+	 * @param entity  实体对象。
+	 * @param flush   真表示立即提交。
 	 * @return 实体对象。
 	 */
-	DO save(DO entity, boolean flush, User editor);
+	DO save(User creator, DO entity, boolean flush);
 
 	/**
 	 * 编号保存实体。
 	 *
-	 * @param entity 实体对象。
-	 * @param flush  真表示立即提交。
-	 * @param editor 实体对象更新者。
+	 * @param updator 实体对象更新者。
+	 * @param entity  实体对象。
+	 * @param flush   真表示立即提交。
 	 * @return 实体对象。
 	 */
-	DO update(DO entity, boolean flush, User editor);
+	DO update(User updator, DO entity, boolean flush);
 }

@@ -3,6 +3,7 @@ package com.mangooa.platform.user;
 import com.mangooa.common.platform.security.core.userdetails.UserDetailsService;
 import com.mangooa.common.platform.security.crypto.password.PasswordEncoder;
 import com.mangooa.data.jpa.JpaServiceStringId;
+import com.mangooa.platform.PlatformProperties;
 
 /**
  * @author Weimin Gao
@@ -20,9 +21,12 @@ public interface UserService extends JpaServiceStringId<UserRepository, UserEnti
 	PasswordEncoder getPasswordEncoder();
 
 	/**
-	 * 初始化系统管理员。
+	 * 初始化平台系统管理员。
+	 *
+	 * @param init 平台初始化配置。
+	 * @return 用户实体对象。
 	 */
-	void init();
+	UserEntity init(PlatformProperties.Init init);
 
 	/**
 	 * 用户注册。

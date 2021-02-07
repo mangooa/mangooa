@@ -28,19 +28,19 @@ public interface Service<DAO extends Dao<DO, ID>, DO extends DataObject<ID>, ID 
 	/**
 	 * 新建保存数据对象。
 	 *
-	 * @param object 数据对象。
-	 * @param editor 数据对象创建者。
+	 * @param creator 数据对象创建者。
+	 * @param object  数据对象。
 	 * @return 数据对象。
 	 */
-	DO save(DO object, User editor);
+	DO save(User creator, DO object);
 
 	/**
 	 * 编辑保存数据对象。
 	 *
-	 * @param object 数据对象。
-	 * @param editor 数据对象更新者。
+	 * @param updator 数据对象更新者。
+	 * @param object  数据对象。
 	 * @return 数据对象。
 	 */
-	DO update(DO object, User editor);
+	DO update(User updator, DO object);
 
 }

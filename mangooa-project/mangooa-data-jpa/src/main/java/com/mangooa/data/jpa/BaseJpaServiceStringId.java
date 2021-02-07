@@ -19,25 +19,25 @@ public abstract class BaseJpaServiceStringId<DAO extends JpaRepositoryStringId<D
 	/**
 	 * 新建保存实体。
 	 *
-	 * @param entity  实体对象。
 	 * @param creator 实体对象创建者。
+	 * @param entity  实体对象。
 	 * @return 实体对象。
 	 */
 	@Override
-	public DO save(DO entity, User creator) {
-		return save(entity, false, creator);
+	public DO save(User creator, DO entity) {
+		return save(creator, entity, false);
 	}
 
 	/**
 	 * 新建保存实体。
 	 *
+	 * @param creator 实体对象创建者。
 	 * @param entity  实体对象。
 	 * @param flush   真表示立即提交。
-	 * @param creator 实体对象创建者。
 	 * @return 实体对象。
 	 */
 	@Override
-	public DO save(DO entity, boolean flush, User creator) {
+	public DO save(User creator, DO entity, boolean flush) {
 		if (entity.isSaved()) {
 			throw new IllegalStateException("entity has been saved,please call update method.");
 		}
@@ -54,13 +54,13 @@ public abstract class BaseJpaServiceStringId<DAO extends JpaRepositoryStringId<D
 	/**
 	 * 编号保存实体。
 	 *
+	 * @param updator 实体对象更新者。
 	 * @param entity  实体对象。
 	 * @param flush   真表示立即提交。
-	 * @param updator 实体对象更新者。
 	 * @return 实体对象。
 	 */
 	@Override
-	public DO update(DO entity, boolean flush, User updator) {
+	public DO update(User updator, DO entity, boolean flush) {
 		if (!entity.isSaved()) {
 			throw new IllegalStateException("entity has not been saved,please call save method.");
 		}
@@ -73,13 +73,13 @@ public abstract class BaseJpaServiceStringId<DAO extends JpaRepositoryStringId<D
 	/**
 	 * 编号保存实体。
 	 *
-	 * @param entity  实体对象。
 	 * @param updator 实体对象更新者。
+	 * @param entity  实体对象。
 	 * @return 实体对象。
 	 */
 	@Override
-	public DO update(DO entity, User updator) {
-		return update(entity, false, updator);
+	public DO update(User updator, DO entity) {
+		return update(updator, entity, false);
 	}
 
 }

@@ -5,3 +5,4 @@ spring:
     name: platform
 server:
   port: 80
+

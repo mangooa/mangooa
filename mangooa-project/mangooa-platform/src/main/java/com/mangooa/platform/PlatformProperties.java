@@ -11,7 +11,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-@ConfigurationProperties(prefix = "mangooa.platform")
+@ConfigurationProperties(prefix = "platform")
 @Getter
 @Setter(AccessLevel.PRIVATE)
 public class PlatformProperties {
@@ -28,6 +28,11 @@ public class PlatformProperties {
 	@Getter
 	@Setter(AccessLevel.PRIVATE)
 	public static class Init {
+
+		/**
+		 * 初始化是否关闭，默认true表示不执行初始化。
+		 */
+		private boolean close = true;
 
 		/**
 		 * 初始化域名。
