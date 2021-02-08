@@ -11,7 +11,7 @@ import java.util.Objects;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class ArrayUtil {
+public class ArrayUtils {
 
 	/**
 	 * 检查给定的对象是否是数组对象。<br/>
@@ -166,7 +166,7 @@ public class ArrayUtil {
 			return Arrays.toString((float[]) object);
 		} else if (object instanceof double[]) {
 			return Arrays.toString((double[]) object);
-		} else if (ArrayUtil.isArray(object)) {
+		} else if (ArrayUtils.isArray(object)) {
 			try {
 				return Arrays.deepToString((Object[]) object);
 			} catch (Exception e) {

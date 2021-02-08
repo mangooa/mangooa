@@ -1,7 +1,7 @@
 package com.mangooa.tools.core.text;
 
-import com.mangooa.tools.core.lang.ArrayUtil;
-import com.mangooa.tools.core.lang.StringUtil;
+import com.mangooa.tools.core.lang.ArrayUtils;
+import com.mangooa.tools.core.lang.StringUtils;
 
 /**
  * 文本格式化工具类。
@@ -33,7 +33,7 @@ public class TextFormatter {
 	 * @return 格式化后的消息。
 	 */
 	protected static String format(final String msg, final Object... params) {
-		if (StringUtil.isBlank(msg) || ArrayUtil.isEmpty(params)) {
+		if (StringUtils.isBlank(msg) || ArrayUtils.isEmpty(params)) {
 			return msg;
 		}
 		final int length = msg.length() + params.length;
@@ -56,22 +56,22 @@ public class TextFormatter {
 				return builder.toString();
 			}
 			// 转义符
-			if (index > 0 && msg.charAt(index - 1) == StringUtil.BACKSLASH) {
-				if (index > 1 && msg.charAt(index - 2) == StringUtil.BACKSLASH) {
+			if (index > 0 && msg.charAt(index - 1) == StringUtils.BACKSLASH) {
+				if (index > 1 && msg.charAt(index - 2) == StringUtils.BACKSLASH) {
 					// 转义符之前还有一个转义符，占位符依旧有效
 					builder.append(msg, position, index - 1);
-					builder.append(StringUtil.toString(params[idx]));
+					builder.append(StringUtils.toString(params[idx]));
 					position = index + 2;
 				} else {
 					// 占位符被转义
 					idx--;
 					builder.append(msg, position, index - 1);
-					builder.append(StringUtil.BRACE_START);
+					builder.append(StringUtils.BRACE_START);
 					position = index + 1;
 				}
 			} else {// 正常占位符
 				builder.append(msg, position, index);
-				builder.append(StringUtil.toString(params[idx]));
+				builder.append(StringUtils.toString(params[idx]));
 				position = index + 2;
 			}
 		}

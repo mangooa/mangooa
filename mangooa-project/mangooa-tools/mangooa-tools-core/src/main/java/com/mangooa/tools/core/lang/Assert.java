@@ -23,7 +23,7 @@ public class Assert {
 	 * @throws E 如果给定的字符串为空白（null、空串或只包含空白符）时。
 	 */
 	public static <T extends CharSequence, E extends Throwable> T notBlank(T text, Supplier<E> error) throws E {
-		if (StringUtil.isBlank(text)) {
+		if (StringUtils.isBlank(text)) {
 			throw error.get();
 		}
 		return text;
@@ -40,7 +40,7 @@ public class Assert {
 	 * @throws IllegalArgumentException 如果给定的字符序列为空白（null、空串或只包含空白符）时。
 	 */
 	public static <T extends CharSequence> T notBlank(T text, String error, Object... params) throws IllegalArgumentException {
-		return notBlank(text, () -> new IllegalArgumentException(StringUtil.format(error, params)));
+		return notBlank(text, () -> new IllegalArgumentException(StringUtils.format(error, params)));
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class Assert {
 	 * @throws IllegalArgumentException 如果给定的对象不为{@code null}时。
 	 */
 	public static <T> void isNull(T object, String error, Object... params) throws IllegalArgumentException {
-		isNull(object, () -> new IllegalArgumentException(StringUtil.format(error, params)));
+		isNull(object, () -> new IllegalArgumentException(StringUtils.format(error, params)));
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class Assert {
 	 * @throws IllegalArgumentException 如果给定的对象为{@code null}时。
 	 */
 	public static <T> T notNull(T object, String error, Object... params) throws IllegalArgumentException {
-		return notNull(object, () -> new IllegalArgumentException(StringUtil.format(error, params)));
+		return notNull(object, () -> new IllegalArgumentException(StringUtils.format(error, params)));
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class Assert {
 	 * @throws IllegalArgumentException 如果被检查的对象为{@code true}时。
 	 */
 	public static void isFalse(boolean expression, String error, Object... params) throws IllegalArgumentException {
-		isFalse(expression, () -> new IllegalArgumentException(StringUtil.format(error, params)));
+		isFalse(expression, () -> new IllegalArgumentException(StringUtils.format(error, params)));
 	}
 
 	/**
@@ -184,7 +184,7 @@ public class Assert {
 	 * @throws IllegalArgumentException 如果布尔表达式为{@code false}时。
 	 */
 	public static void isTrue(boolean expression, String error, Object... params) throws IllegalArgumentException {
-		isTrue(expression, () -> new IllegalArgumentException(StringUtil.format(error, params)));
+		isTrue(expression, () -> new IllegalArgumentException(StringUtils.format(error, params)));
 	}
 
 	/**

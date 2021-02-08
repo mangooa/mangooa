@@ -1,6 +1,6 @@
 package com.mangooa.tools.crypto.digest;
 
-import com.mangooa.tools.core.lang.CharsetUtil;
+import com.mangooa.tools.core.lang.CharsetUtils;
 
 /**
  * 摘要工具类。
@@ -9,7 +9,7 @@ import com.mangooa.tools.core.lang.CharsetUtil;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class DigestUtil {
+public class DigestUtils {
 
 	/**
 	 * 计算32位MD5摘要值。
@@ -39,7 +39,7 @@ public class DigestUtil {
 	 * @return MD5摘要。
 	 */
 	public static byte[] md5(String data) {
-		return md5(data, CharsetUtil.UTF_8);
+		return md5(data, CharsetUtils.UTF_8);
 	}
 
 }

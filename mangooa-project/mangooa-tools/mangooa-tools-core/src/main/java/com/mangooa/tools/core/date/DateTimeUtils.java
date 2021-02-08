@@ -6,5 +6,5 @@ package com.mangooa.tools.core.date;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public class DateTimeUtil extends CalendarUtil {
+public class DateTimeUtils extends CalendarUtils {
 }

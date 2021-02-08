@@ -7,7 +7,7 @@ package com.mangooa.tools.core.lang;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class ObjectUtil {
+public class ObjectUtils {
 
 	/**
 	 * 检查给定的对象为{@code null}时返回默认值，否则返回给定的对象。<br/>
@@ -47,7 +47,7 @@ public class ObjectUtil {
 	 * @return 默认值，如果给定的对象为{@code null}或者""时。
 	 */
 	public static <T extends CharSequence> T defaultIfEmpty(final T str, final T defaultValue) {
-		return StringUtil.isEmpty(str) ? defaultValue : str;
+		return StringUtils.isEmpty(str) ? defaultValue : str;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class ObjectUtil {
 	 * @return 默认值, 如果给定的对象为{@code null}或者""或者空白字符时。
 	 */
 	public static <T extends CharSequence> T defaultIfBlank(final T object, final T defaultValue) {
-		return StringUtil.isBlank(object) ? defaultValue : object;
+		return StringUtils.isBlank(object) ? defaultValue : object;
 	}
 
 }

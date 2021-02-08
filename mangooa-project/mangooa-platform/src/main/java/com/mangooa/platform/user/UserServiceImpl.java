@@ -5,6 +5,7 @@ import com.mangooa.platform.PlatformConstants;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
 
 import com.mangooa.platform.PlatformProperties;
+import com.mangooa.tools.core.lang.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,16 +42,22 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 	 */
 	@Override
 	public UserEntity init(PlatformProperties.Init init) {
-		String account = PlatformConstants.PLATFORM_ADMIN_ACCOUNT;
-		UserEntity user = getDao().findByAccountIgnoreCase(account);
+		UserEntity user = getInitAdministrator();
 		if (Objects.isNull(user)) {
-			String tenant = PlatformConstants.PLATFORM_TENANT_NAME;
-			user = UserEntity.of(account, passwordEncoder.encode(account), "管理员", null, tenant);
+			String account = PlatformConstants.INIT_ADMIN_ACCOUNT;
+			String tenant = PlatformConstants.INIT_TENANT_NAME;
+			String email = StringUtils.toLowerCaseAndTrim(init.getAdministrator().getEmail());
+			user = UserEntity.of(account, passwordEncoder.encode(account), "管理员", email, tenant);
 			user.setEnabled(true);
 			save(user, user, true);
 			log.info("login password is {}, please change the password after login.", account);
 		}
 		return user;
+	}
+
+	@Override
+	public UserEntity getInitAdministrator() {
+		return getDao().findByAccountIgnoreCase(PlatformConstants.INIT_ADMIN_ACCOUNT);
 	}
 
 	/**

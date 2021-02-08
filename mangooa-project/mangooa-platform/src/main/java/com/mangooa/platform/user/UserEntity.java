@@ -42,7 +42,7 @@ public class UserEntity extends BaseJpaEntityStringId implements com.mangooa.com
 	 * @param password 用户登录密码。
 	 * @return 用户实体对象。
 	 */
-	public static UserEntity of(String email, String password) {
+	static UserEntity of(String email, String password) {
 		return of(null, email, password, null, null, null, null, null);
 	}
 

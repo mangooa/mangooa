@@ -1,6 +1,6 @@
 package com.mangooa.tools.core.date;
 
-import com.mangooa.tools.core.lang.ObjectUtil;
+import com.mangooa.tools.core.lang.ObjectUtils;
 
 import java.time.ZoneId;
 import java.util.Calendar;
@@ -186,7 +186,7 @@ public class DateTime extends Date {
 	 * @return 当前对象。
 	 */
 	public DateTime setTimeZone(TimeZone timeZone) {
-		this.timeZone = ObjectUtil.defaultIfNull(timeZone, TimeZone.getDefault());
+		this.timeZone = ObjectUtils.defaultIfNull(timeZone, TimeZone.getDefault());
 		return this;
 	}
 

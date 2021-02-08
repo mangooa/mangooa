@@ -10,7 +10,7 @@ import java.util.Date;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class CalendarUtil {
+public class CalendarUtils {
 
 	/**
 	 * 获取一个日历对象，时间为默认时区的当前时间。

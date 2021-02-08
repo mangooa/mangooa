@@ -1,8 +1,8 @@
 package com.mangooa.tools.core.text;
 
-import com.mangooa.tools.core.lang.ArrayUtil;
-import com.mangooa.tools.core.lang.CharUtil;
-import com.mangooa.tools.core.lang.CharsetUtil;
+import com.mangooa.tools.core.lang.ArrayUtils;
+import com.mangooa.tools.core.lang.CharUtils;
+import com.mangooa.tools.core.lang.CharsetUtils;
 
 import java.nio.charset.Charset;
 
@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class CharSequenceUtil {
+public class CharSequenceUtils {
 
 	/**
 	 * 字符串常量：{@code "null"} ，注意{@code "null" != null}。
@@ -72,7 +72,7 @@ public class CharSequenceUtil {
 		}
 		// 循环检测只要有一个非空字符即为非空字符串
 		for (int i = 0; i < length; i++) {
-			if (!CharUtil.isBlankChar(cs.charAt(i))) {
+			if (!CharUtils.isBlankChar(cs.charAt(i))) {
 				return false;
 			}
 		}
@@ -118,7 +118,7 @@ public class CharSequenceUtil {
 	 * @return 真表示全部为空白字符串。
 	 */
 	public static boolean isAllBlank(CharSequence... cs) {
-		if (ArrayUtil.isEmpty(cs)) {
+		if (ArrayUtils.isEmpty(cs)) {
 			return true;
 		}
 		for (CharSequence str : cs) {
@@ -162,7 +162,7 @@ public class CharSequenceUtil {
 	 * @return 真表示包含空字符串。
 	 */
 	public static boolean hasBlank(CharSequence... cs) {
-		if (ArrayUtil.isEmpty(cs)) {
+		if (ArrayUtils.isEmpty(cs)) {
 			return true;
 		}
 		for (CharSequence str : cs) {
@@ -238,7 +238,7 @@ public class CharSequenceUtil {
 	 * @return 真表示包含空字符串。
 	 */
 	public static boolean hasEmpty(CharSequence... cs) {
-		if (ArrayUtil.isEmpty(cs)) {
+		if (ArrayUtils.isEmpty(cs)) {
 			return true;
 		}
 		for (CharSequence str : cs) {
@@ -269,7 +269,7 @@ public class CharSequenceUtil {
 	 * @return 真表示全部为空字符串。
 	 */
 	public static boolean isAllEmpty(CharSequence... cs) {
-		if (ArrayUtil.isEmpty(cs)) {
+		if (ArrayUtils.isEmpty(cs)) {
 			return true;
 		}
 		for (CharSequence str : cs) {
@@ -323,7 +323,7 @@ public class CharSequenceUtil {
 		if (null == msg) {
 			return NULL;
 		}
-		if (ArrayUtil.isEmpty(msg) || isBlank(msg)) {
+		if (ArrayUtils.isEmpty(msg) || isBlank(msg)) {
 			return msg.toString();
 		}
 		return TextFormatter.format(msg.toString(), params);
@@ -366,7 +366,7 @@ public class CharSequenceUtil {
 	 * @return 编码后的字节数组。
 	 */
 	public static byte[] toBytesUseUtf8(CharSequence cs) {
-		return toBytes(cs, CharsetUtil.UTF_8);
+		return toBytes(cs, CharsetUtils.UTF_8);
 	}
 
 }

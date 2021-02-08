@@ -45,16 +45,16 @@ public class PlatformProperties {
 		private String tenant;
 
 		/**
-		 * 初始化管理员，账号为admin不可以修改。
+		 * 初始化管理员配置。
 		 */
-		private Admin admin = new Admin();
+		private Administrator administrator = new Administrator();
 
 		/**
 		 * 初始化管理员配置。
 		 */
 		@Getter
 		@Setter(AccessLevel.PRIVATE)
-		public static class Admin {
+		public static class Administrator {
 
 			/**
 			 * 初始化管理员电子邮件。

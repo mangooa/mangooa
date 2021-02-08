@@ -1,6 +1,6 @@
 package com.mangooa.tools.core.lang;
 
-import com.mangooa.tools.core.text.CharSequenceUtil;
+import com.mangooa.tools.core.text.CharSequenceUtils;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -10,82 +10,155 @@ import java.nio.charset.Charset;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class StringUtil extends CharSequenceUtil {
+public class StringUtils extends CharSequenceUtils {
 
 	/**
 	 * 字符常量：空格符 {@code ' '}
 	 */
-	public static final char SPACE = CharUtil.SPACE;
+	public static final char SPACE = CharUtils.SPACE;
 
 	/**
 	 * 字符常量：制表符 {@code '\t'}
 	 */
-	public static final char TAB = CharUtil.TAB;
+	public static final char TAB = CharUtils.TAB;
 
 	/**
 	 * 字符常量：点 {@code '.'}
 	 */
-	public static final char DOT = CharUtil.DOT;
+	public static final char DOT = CharUtils.DOT;
 
 	/**
 	 * 字符常量：斜杠 {@code '/'}
 	 */
-	public static final char SLASH = CharUtil.SLASH;
+	public static final char SLASH = CharUtils.SLASH;
 
 	/**
 	 * 字符常量：反斜杠 {@code '\\'}
 	 */
-	public static final char BACKSLASH = CharUtil.BACKSLASH;
+	public static final char BACKSLASH = CharUtils.BACKSLASH;
 
 	/**
 	 * 字符常量：回车符 {@code '\r'}
 	 */
-	public static final char CR = CharUtil.CR;
+	public static final char CR = CharUtils.CR;
 
 	/**
 	 * 字符常量：换行符 {@code '\n'}
 	 */
-	public static final char LF = CharUtil.LF;
+	public static final char LF = CharUtils.LF;
 
 	/**
 	 * 字符常量：减号（连接符） {@code '-'}
 	 */
-	public static final char DASHED = CharUtil.DASHED;
+	public static final char DASHED = CharUtils.DASHED;
 
 	/**
 	 * 字符常量：下划线 {@code '_'}
 	 */
-	public static final char UNDERLINE = CharUtil.UNDERLINE;
+	public static final char UNDERLINE = CharUtils.UNDERLINE;
 
 	/**
 	 * 字符常量：逗号 {@code ','}
 	 */
-	public static final char COMMA = CharUtil.COMMA;
+	public static final char COMMA = CharUtils.COMMA;
 
 	/**
 	 * 字符常量：花括号（左） <code>'{'</code>
 	 */
-	public static final char BRACE_START = CharUtil.BRACE_START;
+	public static final char BRACE_START = CharUtils.BRACE_START;
 
 	/**
 	 * 字符常量：花括号（右） <code>'}'</code>
 	 */
-	public static final char BRACE_END = CharUtil.BRACE_END;
+	public static final char BRACE_END = CharUtils.BRACE_END;
 
 	/**
 	 * 字符常量：中括号（左） {@code '['}
 	 */
-	public static final char BRACKET_START = CharUtil.BRACKET_START;
+	public static final char BRACKET_START = CharUtils.BRACKET_START;
 
 	/**
 	 * 字符常量：中括号（右） {@code ']'}
 	 */
-	public static final char BRACKET_END = CharUtil.BRACKET_END;
+	public static final char BRACKET_END = CharUtils.BRACKET_END;
 
 	/**
 	 * 字符常量：圆括号（左） {@code '('}
 	 */
-	public static final char PARENTHESIS_START = CharUtil.PARENTHESIS_START;
+	public static final char PARENTHESIS_START = CharUtils.PARENTHESIS_START;
+
+	/**
+	 * 截取给定字符串的前后空格，如果给定定的字符串为{@code null}时，则返回{@code null}。
+	 *
+	 * @param str 给定的字符串。
+	 * @return 字符串。
+	 * @see String#trim()
+	 */
+	public static String trim(String str) {
+		if (null != str) {
+			return str.trim();
+		}
+		return null;
+	}
+
+	/**
+	 * 将给定字符串的转换成小写，如果给定定的字符串为{@code null}时，则返回{@code null}。
+	 *
+	 * @param str 给定的字符串。
+	 * @return 字符串。
+	 * @see String#toLowerCase()
+	 */
+	public static String toLowerCase(String str) {
+		if (null != str) {
+			return str.toLowerCase();
+		}
+		return null;
+	}
+
+	/**
+	 * 截取给定字符串的前后空格并转换成小写，如果给定定的字符串为{@code null}时，则返回{@code null}。
+	 *
+	 * @param str 给定的字符串。
+	 * @return 字符串。
+	 * @see String#toLowerCase()
+	 * @see String#trim()
+	 */
+	public static String toLowerCaseAndTrim(String str) {
+		if (null != str) {
+			return str.toLowerCase().trim();
+		}
+		return null;
+	}
+
+	/**
+	 * 将给定字符串的转换成大写，如果给定定的字符串为{@code null}时，则返回{@code null}。
+	 *
+	 * @param str 给定的字符串。
+	 * @return 字符串。
+	 * @see String#toUpperCase()
+	 */
+	public static String toUpperCase(String str) {
+		if (null != str) {
+			return str.toUpperCase();
+		}
+		return null;
+	}
+
+	/**
+	 * 截取给定字符串的前后空格并转换成大写，如果给定定的字符串为{@code null}时，则返回{@code null}。
+	 *
+	 * @param str 给定的字符串。
+	 * @return 字符串。
+	 * @see String#toUpperCase()
+	 * @see String#trim()
+	 */
+	public static String toUpperCaseAndTrim(String str) {
+		if (null != str) {
+			return str.toUpperCase().trim();
+		}
+		return null;
+	}
+
 
 	/**
 	 * 调用给定对象的toString方法。<br/>
@@ -119,8 +192,8 @@ public class StringUtil extends CharSequenceUtil {
 			return toString((Byte[]) object, charset);
 		} else if (object instanceof ByteBuffer) {
 			return toString((ByteBuffer) object, charset);
-		} else if (ArrayUtil.isArray(object)) {
-			return ArrayUtil.toString(object);
+		} else if (ArrayUtils.isArray(object)) {
+			return ArrayUtils.toString(object);
 		}
 		return object.toString();
 	}

@@ -7,7 +7,7 @@ package com.mangooa.tools.core.lang;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class CharUtil {
+public class CharUtils {
 
 	/**
 	 * 字符常量：空格符 {@code ' '}

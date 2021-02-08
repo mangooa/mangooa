@@ -1,10 +1,10 @@
 package com.mangooa.tools.crypto.digest;
 
-import com.mangooa.tools.core.lang.ArrayUtil;
-import com.mangooa.tools.core.lang.CharsetUtil;
-import com.mangooa.tools.core.lang.StringUtil;
+import com.mangooa.tools.core.lang.ArrayUtils;
+import com.mangooa.tools.core.lang.CharsetUtils;
+import com.mangooa.tools.core.lang.StringUtils;
 import com.mangooa.tools.crypto.CryptoException;
-import com.mangooa.tools.crypto.SecurityUtil;
+import com.mangooa.tools.crypto.SecurityUtils;
 
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
@@ -85,7 +85,7 @@ public class DigestEncoder {
 	 */
 	public void init(String algorithm, Provider provider) {
 		if (Objects.isNull(provider)) {
-			this.digest = SecurityUtil.createMessageDigest(algorithm);
+			this.digest = SecurityUtils.createMessageDigest(algorithm);
 		} else {
 			try {
 				this.digest = MessageDigest.getInstance(algorithm, provider);
@@ -143,7 +143,7 @@ public class DigestEncoder {
 	 */
 	public byte[] digest(byte[] data) {
 		byte[] ret;
-		if (ArrayUtil.isEmpty(this.salt)) {
+		if (ArrayUtils.isEmpty(this.salt)) {
 			// 无加盐
 			ret = digest0(data);
 		} else if (this.saltPosition <= 0) {
@@ -189,7 +189,7 @@ public class DigestEncoder {
 	 * @return 字节数组。
 	 */
 	public byte[] digest(String data, Charset charset) {
-		return digest(StringUtil.toBytes(data, charset));
+		return digest(StringUtils.toBytes(data, charset));
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class DigestEncoder {
 	 * @return 加密后的字节数组。
 	 */
 	public byte[] digest(String data, String charset) {
-		return digest(data, CharsetUtil.charset(charset));
+		return digest(data, CharsetUtils.charset(charset));
 	}
 
 }

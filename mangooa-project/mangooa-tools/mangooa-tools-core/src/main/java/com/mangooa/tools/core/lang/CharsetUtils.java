@@ -9,7 +9,7 @@ import java.nio.charset.UnsupportedCharsetException;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public class CharsetUtil {
+public class CharsetUtils {
 
 	/**
 	 * UTF-8
@@ -25,7 +25,7 @@ public class CharsetUtil {
 	 * @throws UnsupportedCharsetException 如果给定的字符集不支持时。
 	 */
 	public static Charset charset(String charset) throws UnsupportedCharsetException {
-		return StringUtil.isBlank(charset) ? Charset.defaultCharset() : Charset.forName(charset);
+		return StringUtils.isBlank(charset) ? Charset.defaultCharset() : Charset.forName(charset);
 	}
 
 }

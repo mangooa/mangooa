@@ -13,7 +13,7 @@ import java.security.Provider;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public final class SecurityUtil {
+public final class SecurityUtils {
 
 	private static final Provider PROVIDER = GlobalBouncyCastleProvider.INSTANCE.getProvider();
 

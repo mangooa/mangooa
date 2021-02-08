@@ -1,6 +1,7 @@
 package com.mangooa.platform;
 
-import com.mangooa.platform.setting.PlatformProfileService;
+import com.mangooa.platform.user.UserEntity;
+import com.mangooa.platform.user.UserService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -18,10 +19,12 @@ public class PlatformInitializer implements ApplicationRunner {
 	private PlatformProperties platformProperties;
 
 	@Resource
-	private PlatformProfileService platformService;
+	private UserService userService;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		PlatformProperties.Init init = platformProperties.getInit();
+		UserEntity user = userService.init(init);
 
 	}
 }

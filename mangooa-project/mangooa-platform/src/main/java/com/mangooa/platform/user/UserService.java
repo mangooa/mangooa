@@ -12,7 +12,6 @@ import com.mangooa.platform.PlatformProperties;
 @SuppressWarnings("unused")
 public interface UserService extends JpaServiceStringId<UserRepository, UserEntity>, com.mangooa.common.service.UserService<UserEntity>, UserDetailsService {
 
-
 	/**
 	 * 返回用户密码编码器。
 	 *
@@ -27,6 +26,13 @@ public interface UserService extends JpaServiceStringId<UserRepository, UserEnti
 	 * @return 用户实体对象。
 	 */
 	UserEntity init(PlatformProperties.Init init);
+
+	/**
+	 * 返回初始化管理员。
+	 *
+	 * @return 初始化管理员。
+	 */
+	UserEntity getInitAdministrator();
 
 	/**
 	 * 用户注册。
