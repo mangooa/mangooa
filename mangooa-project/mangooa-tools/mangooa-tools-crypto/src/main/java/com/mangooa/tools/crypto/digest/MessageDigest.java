@@ -1,6 +1,6 @@
 package com.mangooa.tools.crypto.digest;
 
-import com.mangooa.tools.core.io.FileUtils;
+import com.mangooa.tools.core.io.IoException;
 import com.mangooa.tools.core.io.IoUtils;
 import com.mangooa.tools.core.lang.ArrayUtils;
 import com.mangooa.tools.core.lang.CharsetUtils;
@@ -9,7 +9,7 @@ import com.mangooa.tools.core.util.HexUtils;
 import com.mangooa.tools.crypto.CryptoException;
 import com.mangooa.tools.crypto.SecurityUtils;
 
-import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.security.NoSuchAlgorithmException;
@@ -24,7 +24,7 @@ import java.util.Objects;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class MessageDigest {
+class MessageDigest {
 
 	private java.security.MessageDigest digest;
 
@@ -166,27 +166,6 @@ public class MessageDigest {
 		return digest1(ret);
 	}
 
-
-
-	private byte[] digest0(byte[]... data) {
-		for (byte[] element : data) {
-			if (null != element) {
-				this.digest.update(element);
-			}
-		}
-		return this.digest.digest();
-	}
-
-	private byte[] digest1(byte[] data) {
-		final int digestCount = Math.max(1, this.digestCount);
-		reset();
-		for (int i = 0; i < digestCount - 1; i++) {
-			data = digest0(data);
-			reset();
-		}
-		return data;
-	}
-
 	/**
 	 * 将给定的字符串进行摘要加密，返回加密后字节数组。
 	 *
@@ -251,4 +230,157 @@ public class MessageDigest {
 	public String digestHex(byte[] data) {
 		return HexUtils.encodeHexStr(digest(data));
 	}
+
+
+	/**
+	 * 生成摘要。
+	 *
+	 * @param data         {@link InputStream}数据流。
+	 * @param bufferLength 缓存长度，不足1使用{@link IoUtils#DEFAULT_BUFFER_SIZE}做为默认值。
+	 * @return 摘要bytes。
+	 * @throws IoException IO异常。
+	 */
+	public byte[] digest(InputStream data, int bufferLength) throws IoException {
+		if (bufferLength < 1) {
+			bufferLength = IoUtils.DEFAULT_BUFFER_SIZE;
+		}
+		byte[] result;
+		try {
+			if (ArrayUtils.isEmpty(this.salt)) {
+				result = digestWithoutSalt(data, bufferLength);
+			} else {
+				result = digestWithSalt(data, bufferLength);
+			}
+		} catch (IOException e) {
+			throw new IoException(e);
+		}
+		return resetAndRepeatDigest(result);
+	}
+
+	/**
+	 * 生成摘要，并转为16进制字符串。<br>
+	 * 使用默认缓存大小，见{@link IoUtils#DEFAULT_BUFFER_SIZE}。
+	 *
+	 * @param data         被摘要数据。
+	 * @param bufferLength 缓存长度，不足1使用{@link IoUtils#DEFAULT_BUFFER_SIZE}做为默认值。
+	 * @return 摘要s
+	 */
+	public String digestHex(InputStream data, int bufferLength) {
+		return HexUtils.encodeHexStr(digest(data, bufferLength));
+	}
+
+
+	/**
+	 * 生成摘要，使用默认缓存大小，见 {@link IoUtils#DEFAULT_BUFFER_SIZE}。
+	 *
+	 * @param data {@link InputStream}数据流。
+	 * @return 摘要bytes。
+	 */
+	public byte[] digest(InputStream data) {
+		return digest(data, IoUtils.DEFAULT_BUFFER_SIZE);
+	}
+
+
+	/**
+	 * 生成摘要，并转为16进制字符串。<br>
+	 * 使用默认缓存大小，见 {@link IoUtils#DEFAULT_BUFFER_SIZE}。
+	 *
+	 * @param data 被摘要数据。
+	 * @return 摘要。
+	 */
+	public String digestHex(InputStream data) {
+		return HexUtils.encodeHexStr(digest(data));
+	}
+
+	//-----------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * 生成摘要。
+	 *
+	 * @param data         {@link InputStream}数据流。
+	 * @param bufferLength 缓存长度，不足1使用{@link IoUtils#DEFAULT_BUFFER_SIZE}做为默认值。
+	 * @return 摘要bytes。
+	 * @throws IOException 如果从流中读取数据引发的错误时。
+	 */
+	private byte[] digestWithoutSalt(InputStream data, int bufferLength) throws IOException {
+		final byte[] buffer = new byte[bufferLength];
+		int read;
+		while ((read = data.read(buffer, 0, bufferLength)) > -1) {
+			this.digest.update(buffer, 0, read);
+		}
+		return this.digest.digest();
+	}
+
+	/**
+	 * 生成摘要。
+	 *
+	 * @param data         {@link InputStream}数据流。
+	 * @param bufferLength 缓存长度，不足1使用{@link IoUtils#DEFAULT_BUFFER_SIZE}做为默认值。
+	 * @return 摘要bytes。
+	 * @throws IOException 如果从流中读取数据引发的错误时。
+	 */
+	private byte[] digestWithSalt(InputStream data, int bufferLength) throws IOException {
+		if (this.saltPosition <= 0) {
+			// 加盐在开头
+			this.digest.update(this.salt);
+		}
+		final byte[] buffer = new byte[bufferLength];
+		int total = 0;
+		int read;
+		while ((read = data.read(buffer, 0, bufferLength)) > -1) {
+			total += read;
+			if (this.saltPosition > 0 && total >= this.saltPosition) {
+				if (total != this.saltPosition) {
+					digest.update(buffer, 0, total - this.saltPosition);
+				}
+				// 加盐在中间
+				this.digest.update(this.salt);
+				this.digest.update(buffer, total - this.saltPosition, read);
+			} else {
+				this.digest.update(buffer, 0, read);
+			}
+		}
+		if (total < this.saltPosition) {
+			// 加盐在末尾
+			this.digest.update(this.salt);
+		}
+		return this.digest.digest();
+	}
+
+	/**
+	 * 重复计算摘要，取决于{@link #digestCount}值。<br>
+	 * 每次计算摘要前都会重置{@link #digest}。
+	 *
+	 * @param digestData 第一次摘要过的数据。
+	 * @return 摘要。
+	 */
+	private byte[] resetAndRepeatDigest(byte[] digestData) {
+		final int digestCount = Math.max(1, this.digestCount);
+		reset();
+		for (int i = 0; i < digestCount - 1; i++) {
+			digestData = digest1(digestData);
+			reset();
+		}
+		return digestData;
+	}
+
+	private byte[] digest0(byte[]... data) {
+		for (byte[] element : data) {
+			if (null != element) {
+				this.digest.update(element);
+			}
+		}
+		return this.digest.digest();
+	}
+
+	private byte[] digest1(byte[] data) {
+		final int digestCount = Math.max(1, this.digestCount);
+		reset();
+		for (int i = 0; i < digestCount - 1; i++) {
+			data = digest0(data);
+			reset();
+		}
+		return data;
+	}
+	//-----------------------------------------------------------------------------------------------------------------
 }

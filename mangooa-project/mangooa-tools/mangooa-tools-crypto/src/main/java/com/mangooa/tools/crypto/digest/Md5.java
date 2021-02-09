@@ -17,6 +17,15 @@ class Md5 extends MessageDigest {
 	}
 
 	/**
+	 * 创建一个MD5实例。
+	 *
+	 * @return MD5实例。
+	 */
+	public static Md5 create() {
+		return new Md5();
+	}
+
+	/**
 	 * 构造函数。
 	 *
 	 * @param salt         盐值。
@@ -47,15 +56,6 @@ class Md5 extends MessageDigest {
 	 */
 	public Md5(byte[] salt, int digestCount) {
 		this(salt, 0, digestCount);
-	}
-
-	/**
-	 * 创建一个MD5实例。
-	 *
-	 * @return MD5实例。
-	 */
-	public static Md5 create() {
-		return new Md5();
 	}
 
 

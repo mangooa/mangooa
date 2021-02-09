@@ -2,6 +2,8 @@ package com.mangooa.tools.crypto.digest;
 
 import com.mangooa.tools.core.lang.CharsetUtils;
 
+import java.io.File;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 
 /**
@@ -86,16 +88,16 @@ public class DigestUtils {
 		return md5Hex(data, CharsetUtils.UTF_8);
 	}
 
-//	/**
-//	 * 计算32位MD5摘要值并转换成十六进制摘要字符串。
-//	 *
-//	 * @param data 被摘要数据。
-//	 * @return 十六进制摘要字符串。
-//	 */
-//	public static String md5Hex(InputStream data) {
-//		return new Md5().digestHex(data);
-//	}
-//
+	/**
+	 * 计算32位MD5摘要值并转换成十六进制摘要字符串。
+	 *
+	 * @param data 被摘要数据。
+	 * @return 十六进制摘要字符串。
+	 */
+	public static String md5Hex(InputStream data) {
+		return new Md5().digestHex(data);
+	}
+
 //	/**
 //	 * 计算32位MD5摘要值并转换成十六进制摘要字符串。
 //	 *
@@ -105,6 +107,5 @@ public class DigestUtils {
 //	public static String md5Hex(File file) {
 //		return new Md5().digestHex(file);
 //	}
-
 
 }
