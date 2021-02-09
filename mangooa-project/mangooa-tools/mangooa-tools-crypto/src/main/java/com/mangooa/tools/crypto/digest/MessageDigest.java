@@ -1,5 +1,7 @@
 package com.mangooa.tools.crypto.digest;
 
+import com.mangooa.tools.core.io.FileUtils;
+import com.mangooa.tools.core.io.IoUtils;
 import com.mangooa.tools.core.lang.ArrayUtils;
 import com.mangooa.tools.core.lang.CharsetUtils;
 import com.mangooa.tools.core.lang.StringUtils;
@@ -7,23 +9,24 @@ import com.mangooa.tools.core.util.HexUtils;
 import com.mangooa.tools.crypto.CryptoException;
 import com.mangooa.tools.crypto.SecurityUtils;
 
+import java.io.File;
+import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Provider;
 import java.util.Objects;
 
 /**
- * 摘要编码器。
+ * 消息摘要。
  *
  * @author Weimin Gao
- * @see MessageDigest
+ * @see java.security.MessageDigest
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class Digester {
+public class MessageDigest {
 
-	private MessageDigest digest;
+	private java.security.MessageDigest digest;
 
 	/**
 	 * 盐值。
@@ -45,7 +48,7 @@ public class Digester {
 	 *
 	 * @param algorithm 算法。
 	 */
-	public Digester(DigestAlgorithm algorithm) {
+	public MessageDigest(DigestAlgorithm algorithm) {
 		this(algorithm.value(), null);
 	}
 
@@ -54,7 +57,7 @@ public class Digester {
 	 *
 	 * @param algorithm 摘要算法，使用jdk provider。
 	 */
-	public Digester(String algorithm) {
+	public MessageDigest(String algorithm) {
 		this(algorithm, null);
 	}
 
@@ -64,7 +67,7 @@ public class Digester {
 	 * @param algorithm 摘要算法。
 	 * @param provider  摘要算法算法提供者，此参数为{@code null}时使用jdk provider。
 	 */
-	public Digester(DigestAlgorithm algorithm, Provider provider) {
+	public MessageDigest(DigestAlgorithm algorithm, Provider provider) {
 		init(algorithm.value(), provider);
 	}
 
@@ -74,7 +77,7 @@ public class Digester {
 	 * @param algorithm 摘要算法。
 	 * @param provider  摘要算法算法提供者，此参数为{@code null}时使用jdk provider。
 	 */
-	public Digester(String algorithm, Provider provider) {
+	public MessageDigest(String algorithm, Provider provider) {
 		init(algorithm, provider);
 	}
 
@@ -89,7 +92,7 @@ public class Digester {
 			this.digest = SecurityUtils.createMessageDigest(algorithm);
 		} else {
 			try {
-				this.digest = MessageDigest.getInstance(algorithm, provider);
+				this.digest = java.security.MessageDigest.getInstance(algorithm, provider);
 			} catch (NoSuchAlgorithmException e) {
 				throw new CryptoException(e);
 			}
@@ -102,7 +105,7 @@ public class Digester {
 	 * @param salt 盐值。
 	 * @return 当前对象。
 	 */
-	public Digester setSalt(byte[] salt) {
+	public MessageDigest setSalt(byte[] salt) {
 		this.salt = salt;
 		return this;
 	}
@@ -113,7 +116,7 @@ public class Digester {
 	 * @param saltPosition 盐值插入的位置。
 	 * @return 当前对象。
 	 */
-	public Digester setSaltPosition(int saltPosition) {
+	public MessageDigest setSaltPosition(int saltPosition) {
 		this.saltPosition = saltPosition;
 		return this;
 	}
@@ -124,13 +127,13 @@ public class Digester {
 	 * @param digestCount 摘要值次数。
 	 * @return 当前对象。
 	 */
-	public Digester setDigestCount(int digestCount) {
+	public MessageDigest setDigestCount(int digestCount) {
 		this.digestCount = digestCount;
 		return this;
 	}
 
 	/**
-	 * 重置内置摘要对象{@link MessageDigest}。
+	 * 重置内置摘要对象{@link java.security.MessageDigest}。
 	 */
 	public void reset() {
 		this.digest.reset();
@@ -162,6 +165,8 @@ public class Digester {
 		}
 		return digest1(ret);
 	}
+
+
 
 	private byte[] digest0(byte[]... data) {
 		for (byte[] element : data) {

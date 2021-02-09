@@ -7,7 +7,7 @@ package com.mangooa.tools.crypto.digest;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class Md5 extends Digester {
+class Md5 extends MessageDigest {
 
 	/**
 	 * 构造函数。
@@ -57,6 +57,7 @@ public class Md5 extends Digester {
 	public static Md5 create() {
 		return new Md5();
 	}
+
 
 
 }
