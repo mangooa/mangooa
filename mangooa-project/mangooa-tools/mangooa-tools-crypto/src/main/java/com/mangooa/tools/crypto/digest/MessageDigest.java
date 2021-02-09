@@ -1,5 +1,6 @@
 package com.mangooa.tools.crypto.digest;
 
+import com.mangooa.tools.core.io.FileUtils;
 import com.mangooa.tools.core.io.IoException;
 import com.mangooa.tools.core.io.IoUtils;
 import com.mangooa.tools.core.lang.ArrayUtils;
@@ -9,6 +10,7 @@ import com.mangooa.tools.core.util.HexUtils;
 import com.mangooa.tools.crypto.CryptoException;
 import com.mangooa.tools.crypto.SecurityUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
@@ -238,7 +240,7 @@ class MessageDigest {
 	 * @param data         {@link InputStream}数据流。
 	 * @param bufferLength 缓存长度，不足1使用{@link IoUtils#DEFAULT_BUFFER_SIZE}做为默认值。
 	 * @return 摘要bytes。
-	 * @throws IoException IO异常。
+	 * @throws IoException 如果执行摘要计算发生错误时。
 	 */
 	public byte[] digest(InputStream data, int bufferLength) throws IoException {
 		if (bufferLength < 1) {
@@ -269,7 +271,6 @@ class MessageDigest {
 		return HexUtils.encodeHexStr(digest(data, bufferLength));
 	}
 
-
 	/**
 	 * 生成摘要，使用默认缓存大小，见 {@link IoUtils#DEFAULT_BUFFER_SIZE}。
 	 *
@@ -280,7 +281,6 @@ class MessageDigest {
 		return digest(data, IoUtils.DEFAULT_BUFFER_SIZE);
 	}
 
-
 	/**
 	 * 生成摘要，并转为16进制字符串。<br>
 	 * 使用默认缓存大小，见 {@link IoUtils#DEFAULT_BUFFER_SIZE}。
@@ -290,6 +290,35 @@ class MessageDigest {
 	 */
 	public String digestHex(InputStream data) {
 		return HexUtils.encodeHexStr(digest(data));
+	}
+
+	/**
+	 * 生成文件摘要。<br>
+	 * 使用默认缓存大小，见{@link IoUtils#DEFAULT_BUFFER_SIZE}。
+	 *
+	 * @param file 被摘要文件。
+	 * @return 摘要bytes。
+	 * @throws CryptoException 如果执行摘要计算发生错误时。
+	 */
+	public byte[] digest(File file) throws CryptoException {
+		InputStream in = null;
+		try {
+			in = FileUtils.getInputStream(file);
+			return digest(in);
+		} finally {
+			IoUtils.close(in);
+		}
+	}
+
+	/**
+	 * 生成文件摘要，并转为16进制字符串。<br>
+	 * 使用默认缓存大小，见{@link IoUtils#DEFAULT_BUFFER_SIZE}。
+	 *
+	 * @param file 被摘要文件。
+	 * @return 摘要。
+	 */
+	public String digestHex(File file) {
+		return HexUtils.encodeHexStr(digest(file));
 	}
 
 	//-----------------------------------------------------------------------------------------------------------------

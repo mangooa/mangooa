@@ -98,14 +98,14 @@ public class DigestUtils {
 		return new Md5().digestHex(data);
 	}
 
-//	/**
-//	 * 计算32位MD5摘要值并转换成十六进制摘要字符串。
-//	 *
-//	 * @param file 被摘要文件。
-//	 * @return 十六进制摘要字符串。
-//	 */
-//	public static String md5Hex(File file) {
-//		return new Md5().digestHex(file);
-//	}
+	/**
+	 * 计算32位MD5摘要值并转换成十六进制摘要字符串。
+	 *
+	 * @param file 被摘要文件。
+	 * @return 十六进制摘要字符串。
+	 */
+	public static String md5Hex(File file) {
+		return new Md5().digestHex(file);
+	}
 
 }
