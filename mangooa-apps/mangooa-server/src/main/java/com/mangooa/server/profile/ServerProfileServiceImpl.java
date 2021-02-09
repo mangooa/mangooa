@@ -28,7 +28,7 @@ public class ServerProfileServiceImpl extends BaseJpaServiceStringId<ServerProfi
 		if (init.isEnable() && getDao().count() == 0) {
 			String domain = init.getDomain().trim().toLowerCase();
 			ServerProfile entity = ServerProfile.of(domain);
-			save(entity, true, creator);
+			save(creator,entity, true);
 		}
 	}
 

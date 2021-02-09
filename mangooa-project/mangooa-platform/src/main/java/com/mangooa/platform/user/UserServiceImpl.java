@@ -5,6 +5,8 @@ import com.mangooa.platform.PlatformConstants;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
 
 import com.mangooa.platform.PlatformProperties;
+import com.mangooa.platform.tenant.TenantNameExistsException;
+import com.mangooa.platform.tenant.TenantService;
 import com.mangooa.tools.core.lang.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.util.Objects;
 
 
@@ -29,6 +32,9 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 	@Resource
 	private PasswordEncoder passwordEncoder;
 
+	@Resource
+	private TenantService tenantService;
+
 	@Override
 	public PasswordEncoder getPasswordEncoder() {
 		return passwordEncoder;
@@ -40,24 +46,24 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 	 * @param init 平台初始化配置。
 	 * @return 用户实体对象。
 	 */
+	@Transactional(rollbackOn = Exception.class)
 	@Override
 	public UserEntity init(PlatformProperties.Init init) {
-		UserEntity user = getInitAdministrator();
-		if (Objects.isNull(user)) {
-			String account = PlatformConstants.INIT_ADMIN_ACCOUNT;
-			String tenant = PlatformConstants.INIT_TENANT_NAME;
-			String email = StringUtils.toLowerCaseAndTrim(init.getAdministrator().getEmail());
-			user = UserEntity.of(account, passwordEncoder.encode(account), "管理员", email, tenant);
-			user.setEnabled(true);
-			save(user, user, true);
-			log.info("login password is {}, please change the password after login.", account);
+		UserEntity admin = getInitAdmin();
+		if (!init.isClose() && Objects.isNull(admin)) {
+			String account = PlatformConstants.ADMIN_ACCOUNT;
+			String email = StringUtils.toLowerCaseAndTrim(init.getAdmin().getEmail());
+			String tenant = PlatformConstants.TENANT_NAME;
+			admin = UserEntity.of(account, passwordEncoder.encode(account), "管理员", email, tenant);
+			admin.setEnabled(true);
+			save(admin, admin, true);
 		}
-		return user;
+		return admin;
 	}
 
 	@Override
-	public UserEntity getInitAdministrator() {
-		return getDao().findByAccountIgnoreCase(PlatformConstants.INIT_ADMIN_ACCOUNT);
+	public UserEntity getInitAdmin() {
+		return getDao().findByAccountIgnoreCase(PlatformConstants.ADMIN_ACCOUNT);
 	}
 
 	/**

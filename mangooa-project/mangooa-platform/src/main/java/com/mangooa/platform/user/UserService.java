@@ -32,7 +32,7 @@ public interface UserService extends JpaServiceStringId<UserRepository, UserEnti
 	 *
 	 * @return 初始化管理员。
 	 */
-	UserEntity getInitAdministrator();
+	UserEntity getInitAdmin();
 
 	/**
 	 * 用户注册。

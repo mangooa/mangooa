@@ -37,7 +37,7 @@ public class TenantServiceImpl extends BaseJpaServiceStringId<TenantRepository, 
 			String tenant = INIT_TENANT_NAME;
 			if (getDao().countByNameIgnoreCase(tenant) == 0) {
 				Tenant entity = Tenant.of(tenant, tenant + profile.getDomain());
-				save(entity, true, creator);
+				save(creator,entity, true);
 			}
 		}
 	}

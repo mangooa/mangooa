@@ -6,11 +6,11 @@ package com.mangooa.platform.user;
  * @author Weimin Gao
  * @since 1.0.0
  **/
-public class UserEmailExistedException extends RuntimeException {
+public class UserEmailExistsException extends RuntimeException {
 
 	private static final long serialVersionUID = -4797774298926611468L;
 
-	public UserEmailExistedException(String message) {
-		super(message);
+	UserEmailExistsException(String email) {
+		super(email);
 	}
 }

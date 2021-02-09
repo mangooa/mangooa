@@ -36,10 +36,10 @@ public class TenantEntity extends BaseJpaEntityStringId {
 	 * @param domain 租户访问域名。
 	 * @return 租户实体对象。
 	 */
-	public static TenantEntity of(String name, String domain) {
+	static TenantEntity of(String name, String domain) {
 		TenantEntity ret = new TenantEntity();
-		ret.setName(name.trim().toLowerCase());
-		ret.setDomain(domain.trim().toLowerCase());
+		ret.setName(name);
+		ret.setDomain(domain);
 		return ret;
 	}
 

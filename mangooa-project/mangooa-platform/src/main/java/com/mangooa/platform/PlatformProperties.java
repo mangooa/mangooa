@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
  **/
 @ConfigurationProperties(prefix = "platform")
 @Getter
-@Setter(AccessLevel.PRIVATE)
+@Setter
 public class PlatformProperties {
 
 	/**
@@ -26,7 +26,7 @@ public class PlatformProperties {
 	 * 初始化配置。
 	 */
 	@Getter
-	@Setter(AccessLevel.PRIVATE)
+	@Setter
 	public static class Init {
 
 		/**
@@ -40,21 +40,16 @@ public class PlatformProperties {
 		private String domain;
 
 		/**
-		 * 初始化租户。
-		 */
-		private String tenant;
-
-		/**
 		 * 初始化管理员配置。
 		 */
-		private Administrator administrator = new Administrator();
+		private Admin admin = new Admin();
 
 		/**
 		 * 初始化管理员配置。
 		 */
 		@Getter
-		@Setter(AccessLevel.PRIVATE)
-		public static class Administrator {
+		@Setter
+		public static class Admin {
 
 			/**
 			 * 初始化管理员电子邮件。

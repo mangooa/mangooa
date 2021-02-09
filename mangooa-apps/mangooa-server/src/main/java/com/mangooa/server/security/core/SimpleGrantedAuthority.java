@@ -26,4 +26,9 @@ public class SimpleGrantedAuthority implements OperationPermission, org.springfr
 	public String getAuthority() {
 		return name;
 	}
+
+	@Override
+	public String getCode() {
+		return null;
+	}
 }

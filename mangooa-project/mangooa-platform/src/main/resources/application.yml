@@ -5,4 +5,7 @@ spring:
     name: platform
 server:
   port: 80
-
+platform:
+  init:
+    close: false
+    domain: .mangooa.com

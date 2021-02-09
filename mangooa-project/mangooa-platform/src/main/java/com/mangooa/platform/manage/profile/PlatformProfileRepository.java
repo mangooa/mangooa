@@ -1,4 +1,4 @@
-package com.mangooa.platform.setting;
+package com.mangooa.platform.manage.profile;
 
 import com.mangooa.data.jpa.JpaRepositoryStringId;
 import org.springframework.stereotype.Repository;

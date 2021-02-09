@@ -53,7 +53,7 @@ public class AppServiceImpl extends BaseJpaServiceStringId<AppRepository, App> i
 			String name = properties.getName();
 			if (countByName(name, INIT_TENANT_NAME) == 0) {
 				App entity = App.of("应用服务器", name, AppType.WEB_APP);
-				save(entity, user);
+				save(user,entity);
 			}
 		}
 	}

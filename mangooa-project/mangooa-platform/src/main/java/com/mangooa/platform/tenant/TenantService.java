@@ -1,5 +1,6 @@
 package com.mangooa.platform.tenant;
 
+import com.mangooa.common.platform.user.User;
 import com.mangooa.data.jpa.JpaServiceStringId;
 
 /**
@@ -9,7 +10,12 @@ import com.mangooa.data.jpa.JpaServiceStringId;
 public interface TenantService extends JpaServiceStringId<TenantRepository, TenantEntity> {
 
 	/**
-	 * 初始化系统租户。
+	 * 新建租户。
+	 *
+	 * @param creator 创建者（租户所属用户）。
+	 * @param name    租户名称。
+	 * @return 租户实体对象。
+	 * @throws TenantNameExistsException 如果租户名称已存在时。
 	 */
-	void init();
+	TenantEntity create(User creator, String name) throws TenantNameExistsException;
 }

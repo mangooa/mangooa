@@ -9,14 +9,14 @@ package com.mangooa.platform;
 public class PlatformConstants {
 
 	/**
-	 * 初始化租户。
+	 * 平台租户名称。
 	 */
-	public static final String INIT_TENANT_NAME = "platform";
+	public static final String TENANT_NAME = "platform";
 
 	/**
-	 * 初始化管理员。
+	 * 平台管理员账号。
 	 */
-	public static final String INIT_ADMIN_ACCOUNT = "administrator";
+	public static final String ADMIN_ACCOUNT = "admin";
 
 	private PlatformConstants() {
 		super();

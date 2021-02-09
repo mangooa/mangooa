@@ -49,7 +49,7 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 				String account = INIT_ADMIN_ACCOUNT;
 				User user = User.of(account, passwordEncoder.encode(account), "管理员", email, INIT_TENANT_NAME);
 				user.setEnabled(true);
-				save(user, true, user);
+				save(user,user, true);
 				log.info("login password is {}, please change the password after login.", account);
 			}
 		}
@@ -65,7 +65,7 @@ public class UserServiceImpl extends BaseJpaServiceStringId<UserRepository, User
 	@Override
 	public User registration(String email, String password) {
 		User user = User.of(email, passwordEncoder.encode(password));
-		return save(user, true, user);
+		return save(user,user, true);
 	}
 
 	/**

@@ -1,5 +1,6 @@
-package com.mangooa.platform.setting;
+package com.mangooa.platform.manage.profile;
 
+import com.mangooa.common.platform.manage.PlatformProfile;
 import com.mangooa.data.jpa.BaseJpaEntityStringId;
 
 import lombok.AccessLevel;
@@ -26,9 +27,21 @@ import javax.persistence.UniqueConstraint;
 )
 @Getter
 @Setter(AccessLevel.PACKAGE)
-public class PlatformProfileEntity extends BaseJpaEntityStringId {
+public class PlatformProfileEntity extends BaseJpaEntityStringId implements PlatformProfile {
 
 	private static final long serialVersionUID = 5427895170597551832L;
+
+	/**
+	 * 创建一个平台配置实体对象。
+	 *
+	 * @param domain 平台域名。
+	 * @return 平台配置实体对象。
+	 */
+	static PlatformProfileEntity of(String domain) {
+		PlatformProfileEntity ret = new PlatformProfileEntity();
+		ret.setDomain(domain);
+		return ret;
+	}
 
 	/**
 	 * 平台域名。
