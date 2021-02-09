@@ -1,4 +1,6 @@
-package com.mangooa.tools.core.lang;
+package com.mangooa.tools.core.util;
+
+import com.mangooa.tools.core.lang.StringUtils;
 
 /**
  * 对象工具类。

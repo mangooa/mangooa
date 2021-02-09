@@ -1,4 +1,4 @@
-package com.mangooa.app;
+package com.mangooa.common.platform.app;
 
 /**
  * 应用类型枚举。
@@ -11,5 +11,5 @@ public enum AppType {
 	/**
 	 * 普通网页应用。
 	 */
-	WEB_APP;
+	WEB;
 }

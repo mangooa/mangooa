@@ -1,6 +1,6 @@
 package com.mangooa.server.app;
 
-import com.mangooa.app.AppType;
+import com.mangooa.common.platform.app.AppType;
 import com.mangooa.common.platform.user.User;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
 
@@ -52,7 +52,7 @@ public class AppServiceImpl extends BaseJpaServiceStringId<AppRepository, App> i
 		if (init.isEnable()) {
 			String name = properties.getName();
 			if (countByName(name, INIT_TENANT_NAME) == 0) {
-				App entity = App.of("应用服务器", name, AppType.WEB_APP);
+				App entity = App.of("应用服务器", name, AppType.WEB);
 				save(user,entity);
 			}
 		}

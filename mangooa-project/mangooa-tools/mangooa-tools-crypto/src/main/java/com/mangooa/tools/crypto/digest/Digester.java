@@ -3,6 +3,7 @@ package com.mangooa.tools.crypto.digest;
 import com.mangooa.tools.core.lang.ArrayUtils;
 import com.mangooa.tools.core.lang.CharsetUtils;
 import com.mangooa.tools.core.lang.StringUtils;
+import com.mangooa.tools.core.util.HexUtils;
 import com.mangooa.tools.crypto.CryptoException;
 import com.mangooa.tools.crypto.SecurityUtils;
 
@@ -20,7 +21,7 @@ import java.util.Objects;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public class DigestEncoder {
+public class Digester {
 
 	private MessageDigest digest;
 
@@ -44,7 +45,7 @@ public class DigestEncoder {
 	 *
 	 * @param algorithm 算法。
 	 */
-	public DigestEncoder(DigestAlgorithm algorithm) {
+	public Digester(DigestAlgorithm algorithm) {
 		this(algorithm.value(), null);
 	}
 
@@ -53,7 +54,7 @@ public class DigestEncoder {
 	 *
 	 * @param algorithm 摘要算法，使用jdk provider。
 	 */
-	public DigestEncoder(String algorithm) {
+	public Digester(String algorithm) {
 		this(algorithm, null);
 	}
 
@@ -63,7 +64,7 @@ public class DigestEncoder {
 	 * @param algorithm 摘要算法。
 	 * @param provider  摘要算法算法提供者，此参数为{@code null}时使用jdk provider。
 	 */
-	public DigestEncoder(DigestAlgorithm algorithm, Provider provider) {
+	public Digester(DigestAlgorithm algorithm, Provider provider) {
 		init(algorithm.value(), provider);
 	}
 
@@ -73,7 +74,7 @@ public class DigestEncoder {
 	 * @param algorithm 摘要算法。
 	 * @param provider  摘要算法算法提供者，此参数为{@code null}时使用jdk provider。
 	 */
-	public DigestEncoder(String algorithm, Provider provider) {
+	public Digester(String algorithm, Provider provider) {
 		init(algorithm, provider);
 	}
 
@@ -101,7 +102,7 @@ public class DigestEncoder {
 	 * @param salt 盐值。
 	 * @return 当前对象。
 	 */
-	public DigestEncoder setSalt(byte[] salt) {
+	public Digester setSalt(byte[] salt) {
 		this.salt = salt;
 		return this;
 	}
@@ -112,7 +113,7 @@ public class DigestEncoder {
 	 * @param saltPosition 盐值插入的位置。
 	 * @return 当前对象。
 	 */
-	public DigestEncoder setSaltPosition(int saltPosition) {
+	public Digester setSaltPosition(int saltPosition) {
 		this.saltPosition = saltPosition;
 		return this;
 	}
@@ -123,7 +124,7 @@ public class DigestEncoder {
 	 * @param digestCount 摘要值次数。
 	 * @return 当前对象。
 	 */
-	public DigestEncoder setDigestCount(int digestCount) {
+	public Digester setDigestCount(int digestCount) {
 		this.digestCount = digestCount;
 		return this;
 	}
@@ -203,4 +204,46 @@ public class DigestEncoder {
 		return digest(data, CharsetUtils.charset(charset));
 	}
 
+
+	/**
+	 * 将给定的数据进行摘要加密转换为十六进制摘要字符串。
+	 *
+	 * @param data    给定的数据。
+	 * @param charset 给定的数据的编码。
+	 * @return 十六进制摘要字符串。
+	 */
+	public String digestHex(String data, Charset charset) {
+		return HexUtils.encodeHexStr(digest(data, charset));
+	}
+
+	/**
+	 * 将给定的数据进行摘要加密转换为十六进制摘要字符串。
+	 *
+	 * @param data    给定的数据。
+	 * @param charset 给定的数据的编码。
+	 * @return 十六进制摘要字符串。
+	 */
+	public String digestHex(String data, String charset) {
+		return digestHex(data, CharsetUtils.charset(charset));
+	}
+
+	/**
+	 * 将给定的数据进行摘要加密转换为十六进制摘要字符串。
+	 *
+	 * @param data 给定的数据。
+	 * @return 十六进制摘要字符串。
+	 */
+	public String digestHex(String data) {
+		return digestHex(data, CharsetUtils.UTF_8);
+	}
+
+	/**
+	 * 将给定的字节数组进行摘要加密转换为十六进制摘要字符串。
+	 *
+	 * @param data 给定的字节数组。
+	 * @return 十六进制摘要字符串。
+	 */
+	public String digestHex(byte[] data) {
+		return HexUtils.encodeHexStr(digest(data));
+	}
 }

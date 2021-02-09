@@ -1,6 +1,6 @@
 package com.mangooa.tools.core.date;
 
-import com.mangooa.tools.core.lang.ObjectUtils;
+import com.mangooa.tools.core.util.ObjectUtils;
 
 import java.time.ZoneId;
 import java.util.Calendar;

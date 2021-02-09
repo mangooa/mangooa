@@ -1,7 +1,8 @@
 package com.mangooa.platform.group;
 
-import com.mangooa.common.data.DataPermission;
+import com.mangooa.common.platform.group.Group;
 import com.mangooa.data.jpa.BaseJpaEntityStringId;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +27,7 @@ import javax.persistence.UniqueConstraint;
 )
 @Getter
 @Setter(AccessLevel.PRIVATE)
-public class GroupEntity extends BaseJpaEntityStringId implements DataPermission {
+public class GroupEntity extends BaseJpaEntityStringId implements Group {
 
 	private static final long serialVersionUID = -4795536595416851001L;
 

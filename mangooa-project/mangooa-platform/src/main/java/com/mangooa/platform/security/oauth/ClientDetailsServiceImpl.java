@@ -1,4 +1,4 @@
-package com.mangooa.platform.oauth;
+package com.mangooa.platform.security.oauth;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetails;

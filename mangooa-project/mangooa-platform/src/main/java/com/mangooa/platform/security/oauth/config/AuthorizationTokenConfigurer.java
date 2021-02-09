@@ -1,4 +1,4 @@
-package com.mangooa.platform.oauth.config;
+package com.mangooa.platform.security.oauth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

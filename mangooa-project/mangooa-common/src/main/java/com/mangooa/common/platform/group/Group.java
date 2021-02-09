@@ -1,4 +1,4 @@
-package com.mangooa.common.platform.user;
+package com.mangooa.common.platform.group;
 
 import com.mangooa.common.data.DataPermission;
 

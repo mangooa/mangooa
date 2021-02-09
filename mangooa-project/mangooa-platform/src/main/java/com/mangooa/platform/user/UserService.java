@@ -10,7 +10,7 @@ import com.mangooa.platform.PlatformProperties;
  * @since 1.0.0
  **/
 @SuppressWarnings("unused")
-public interface UserService extends JpaServiceStringId<UserRepository, UserEntity>, com.mangooa.common.service.UserService<UserEntity>, UserDetailsService {
+public interface UserService extends JpaServiceStringId<UserRepository, UserEntity>, com.mangooa.common.platform.user.UserService<UserEntity>, UserDetailsService {
 
 	/**
 	 * 返回用户密码编码器。

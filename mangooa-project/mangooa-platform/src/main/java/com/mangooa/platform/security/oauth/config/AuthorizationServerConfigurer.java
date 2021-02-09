@@ -1,4 +1,4 @@
-package com.mangooa.platform.oauth.config;
+package com.mangooa.platform.security.oauth.config;
 
 import com.mangooa.common.platform.security.crypto.password.PasswordEncoder;
 import org.springframework.context.annotation.Bean;

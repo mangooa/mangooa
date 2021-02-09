@@ -1,6 +1,6 @@
 package com.mangooa.server.app;
 
-import com.mangooa.app.AppType;
+import com.mangooa.common.platform.app.AppType;
 import com.mangooa.data.jpa.BaseJpaEntityStringId;
 
 import lombok.AccessLevel;

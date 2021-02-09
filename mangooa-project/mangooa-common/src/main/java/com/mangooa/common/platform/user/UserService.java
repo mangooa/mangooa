@@ -1,6 +1,4 @@
-package com.mangooa.common.service;
-
-import com.mangooa.common.platform.user.User;
+package com.mangooa.common.platform.user;
 
 /**
  * @author Weimin Gao

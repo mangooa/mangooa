@@ -26,6 +26,10 @@
 			<artifactId>mangooa-tools-core</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.mangooa</groupId>
+			<artifactId>mangooa-tools-crypto</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 			<optional>true</optional>

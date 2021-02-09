@@ -1,8 +1,8 @@
 package com.mangooa.platform.user;
 
 import com.mangooa.data.jpa.BaseJpaEntityStringId;
-import com.mangooa.tools.core.lang.ObjectId;
 
+import com.mangooa.tools.core.util.IdUtils;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -75,7 +75,7 @@ public class UserEntity extends BaseJpaEntityStringId implements com.mangooa.com
 	 */
 	private static UserEntity of(String account, String username, String password, String name, String nickname, String email, String cellphone, String tenant) {
 		UserEntity ret = new UserEntity();
-		ret.setAccount(account == null ? ObjectId.get().toHexString() : account.trim().toLowerCase());
+		ret.setAccount(account == null ? IdUtils.objectId() : account.trim().toLowerCase());
 		ret.setUsername(username == null ? account : username.trim());
 		ret.setPassword(password.trim());
 		ret.setName(name.trim());
