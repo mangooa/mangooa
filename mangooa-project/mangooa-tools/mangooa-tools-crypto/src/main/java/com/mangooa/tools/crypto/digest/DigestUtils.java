@@ -2,6 +2,8 @@ package com.mangooa.tools.crypto.digest;
 
 import com.mangooa.tools.core.lang.CharsetUtils;
 
+import java.nio.charset.Charset;
+
 /**
  * 摘要工具类。
  *
@@ -50,6 +52,38 @@ public class DigestUtils {
 	 */
 	public static String md5Hex(byte[] data) {
 		return new Md5().digestHex(data);
+	}
+
+	/**
+	 * 计算32位MD5摘要值并转换成十六进制摘要字符串。
+	 *
+	 * @param data    被摘要数据。
+	 * @param charset 被摘要数据的编码。
+	 * @return 十六进制摘要字符串。
+	 */
+	public static String md5Hex(String data, String charset) {
+		return new Md5().digestHex(data, charset);
+	}
+
+	/**
+	 * 计算32位MD5摘要值并转换成十六进制摘要字符串。
+	 *
+	 * @param data    被摘要数据。
+	 * @param charset 被摘要数据的编码。
+	 * @return 十六进制摘要字符串。
+	 */
+	public static String md5Hex(String data, Charset charset) {
+		return new Md5().digestHex(data, charset);
+	}
+
+	/**
+	 * 计算32位MD5摘要值，并转为16进制字符串。
+	 *
+	 * @param data 被摘要数据。
+	 * @return 十六进制摘要字符串。
+	 */
+	public static String md5Hex(String data) {
+		return md5Hex(data, CharsetUtils.UTF_8);
 	}
 
 }

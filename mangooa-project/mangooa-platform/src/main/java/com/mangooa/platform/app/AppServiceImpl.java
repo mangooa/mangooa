@@ -3,9 +3,7 @@ package com.mangooa.platform.app;
 import com.mangooa.common.platform.app.AppType;
 import com.mangooa.common.platform.user.User;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
-import com.mangooa.platform.PlatformConstants;
-import com.mangooa.tools.core.lang.StringUtils;
-import com.mangooa.tools.crypto.digest.DigestUtils;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,9 +19,6 @@ public class AppServiceImpl extends BaseJpaServiceStringId<AppRepository, AppEnt
 			throw new AppNameExistsException(name);
 		}
 		AppEntity entity = AppEntity.of(type, name, title);
-		if (PlatformConstants.TENANT_NAME.equalsIgnoreCase(name)) {
-			entity.setClientId(DigestUtils.md5Hex(name));
-		}
 		entity = save(creator, entity, true);
 		return entity;
 	}
