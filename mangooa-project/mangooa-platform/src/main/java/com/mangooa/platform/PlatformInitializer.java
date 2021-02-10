@@ -1,7 +1,9 @@
 package com.mangooa.platform;
 
-import com.mangooa.platform.manage.profile.PlatformProfileEntity;
-import com.mangooa.platform.manage.profile.PlatformProfileService;
+import com.mangooa.platform.app.AppService;
+import com.mangooa.platform.profile.PlatformProfileEntity;
+import com.mangooa.platform.profile.PlatformProfileService;
+import com.mangooa.platform.tenant.TenantEntity;
 import com.mangooa.platform.tenant.TenantService;
 import com.mangooa.platform.user.UserEntity;
 import com.mangooa.platform.user.UserService;
@@ -11,6 +13,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * @author Weimin Gao
@@ -32,15 +35,27 @@ public class PlatformInitializer implements ApplicationRunner {
 	@Resource
 	private TenantService tenantService;
 
+	@Resource
+	private AppService appService;
+
 	@Override
 	public void run(ApplicationArguments args) {
 		PlatformProperties.Init init = platformProperties.getInit();
 		if (!init.isClose()) {
+			/*
+			 * 1.初始化平台管理员
+			 */
 			UserEntity admin = userService.init(init);
-			platformProfileService.init(admin, init);
-			String tenant = admin.getTenant();
-			if (tenantService.getDao().countByNameIgnoreCase(tenant) == 0) {
-				tenantService.create(admin, tenant);
+			/*
+			 * 2.初始化平台配置
+			 */
+			PlatformProfileEntity profile = platformProfileService.init(admin, init);
+			/*
+			 * 3.初始化平台租户
+			 */
+			TenantEntity tenant = tenantService.find(admin);
+			if (Objects.isNull(tenant)) {
+				tenantService.create(admin, admin.getTenant());
 			}
 		}
 	}

@@ -21,4 +21,13 @@ public interface AppService extends JpaServiceStringId<AppRepository, AppEntity>
 	 * @throws AppNameExistsException 如果应用名称已存在时。
 	 */
 	AppEntity create(User creator, AppType type, String name, String title) throws AppNameExistsException;
+
+	/**
+	 * 查找给定用户登录租户下指定应用名称对应的应用实体，如果找不到返回{@code null}。
+	 *
+	 * @param user 用户。
+	 * @param name 应用名称。
+	 * @return 应用实体对象。
+	 */
+	AppEntity find(User user, String name);
 }

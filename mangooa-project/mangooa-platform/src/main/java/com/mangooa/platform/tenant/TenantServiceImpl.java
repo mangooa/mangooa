@@ -3,8 +3,8 @@ package com.mangooa.platform.tenant;
 import com.mangooa.common.platform.user.User;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
 
-import com.mangooa.platform.manage.profile.PlatformProfileEntity;
-import com.mangooa.platform.manage.profile.PlatformProfileService;
+import com.mangooa.platform.profile.PlatformProfileEntity;
+import com.mangooa.platform.profile.PlatformProfileService;
 
 import org.springframework.stereotype.Service;
 
@@ -30,5 +30,10 @@ public class TenantServiceImpl extends BaseJpaServiceStringId<TenantRepository, 
 		TenantEntity entity = TenantEntity.of(name, profile.getDomain());
 		entity = save(creator, entity);
 		return entity;
+	}
+
+	@Override
+	public TenantEntity find(User user) {
+		return getDao().findByNameIgnoreCase(user.getTenant());
 	}
 }

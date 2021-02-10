@@ -1,6 +1,6 @@
-package com.mangooa.platform.manage.profile;
+package com.mangooa.platform.profile;
 
-import com.mangooa.common.platform.manage.PlatformProfile;
+import com.mangooa.common.platform.profile.PlatformProfile;
 import com.mangooa.data.jpa.BaseJpaEntityStringId;
 
 import lombok.AccessLevel;
@@ -40,6 +40,7 @@ public class PlatformProfileEntity extends BaseJpaEntityStringId implements Plat
 	static PlatformProfileEntity of(String domain) {
 		PlatformProfileEntity ret = new PlatformProfileEntity();
 		ret.setDomain(domain);
+		ret.setDeletable(false);
 		return ret;
 	}
 

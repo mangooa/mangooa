@@ -1,4 +1,4 @@
-package com.mangooa.common.platform.manage;
+package com.mangooa.common.platform.profile;
 
 import java.io.Serializable;
 

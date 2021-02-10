@@ -1,4 +1,4 @@
-package com.mangooa.platform.manage.profile;
+package com.mangooa.platform.profile;
 
 import com.mangooa.common.platform.user.User;
 import com.mangooa.data.jpa.BaseJpaServiceStringId;
@@ -36,7 +36,7 @@ public class PlatformProfileServiceImpl extends BaseJpaServiceStringId<PlatformP
 	}
 
 	@Override
-	public void init(User admin, PlatformProperties.Init init) {
+	public PlatformProfileEntity init(User admin, PlatformProperties.Init init) {
 		PlatformProfileEntity profile = null;
 		try {
 			profile = getPlatformProfile();
@@ -49,7 +49,8 @@ public class PlatformProfileServiceImpl extends BaseJpaServiceStringId<PlatformP
 				throw new PlatformInitializationException("Domain name configuration cannot be empty.");
 			}
 			profile = PlatformProfileEntity.of(domain);
-			save(admin, profile, true);
+			profile = save(admin, profile, true);
 		}
+		return profile;
 	}
 }

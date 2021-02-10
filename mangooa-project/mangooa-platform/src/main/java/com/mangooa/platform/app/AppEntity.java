@@ -9,14 +9,20 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 /**
  * @author Weimin Gao
  * @since 1.0.0
  **/
+@Entity(name = "App")
+@Table(
+	name = "sys_app",
+	uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"b_tenant", "f_name"}),
+		@UniqueConstraint(columnNames = {"f_client_id"})
+	}
+)
 @Getter
 @Setter(AccessLevel.PACKAGE)
 public class AppEntity extends BaseJpaEntityStringId implements App {

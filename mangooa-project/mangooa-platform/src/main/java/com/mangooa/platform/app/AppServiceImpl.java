@@ -22,4 +22,9 @@ public class AppServiceImpl extends BaseJpaServiceStringId<AppRepository, AppEnt
 		entity = save(creator, entity, true);
 		return entity;
 	}
+
+	@Override
+	public AppEntity find(User user, String name) {
+		return getDao().findByTenantIgnoreCaseAndNameIgnoreCase(user.getTenant(), name);
+	}
 }

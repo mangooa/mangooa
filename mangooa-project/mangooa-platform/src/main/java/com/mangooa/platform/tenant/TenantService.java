@@ -18,4 +18,12 @@ public interface TenantService extends JpaServiceStringId<TenantRepository, Tena
 	 * @throws TenantNameExistsException 如果租户名称已存在时。
 	 */
 	TenantEntity create(User creator, String name) throws TenantNameExistsException;
+
+	/**
+	 * 查找给定用户登陆的租户，如果找不到返回{@code null}。
+	 *
+	 * @param user 用户。
+	 * @return 租户实体。
+	 */
+	TenantEntity find(User user);
 }

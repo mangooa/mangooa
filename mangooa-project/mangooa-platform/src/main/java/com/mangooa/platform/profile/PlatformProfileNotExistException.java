@@ -1,4 +1,4 @@
-package com.mangooa.platform.manage.profile;
+package com.mangooa.platform.profile;
 
 import com.mangooa.common.service.ServiceException;
 

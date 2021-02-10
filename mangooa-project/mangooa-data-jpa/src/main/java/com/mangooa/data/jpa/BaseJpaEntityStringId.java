@@ -94,6 +94,7 @@ public abstract class BaseJpaEntityStringId implements DataObject<String> {
 	 * 表示实体对象是否可删除，默认为true表示可删除。
 	 */
 	@Column(name = "b_deletable", nullable = false)
+	@Setter(AccessLevel.PROTECTED)
 	private boolean deletable = true;
 
 	/**

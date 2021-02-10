@@ -1,4 +1,4 @@
-package com.mangooa.platform.manage.profile;
+package com.mangooa.platform.profile;
 
 import com.mangooa.common.platform.user.User;
 import com.mangooa.data.jpa.JpaServiceStringId;
@@ -25,5 +25,5 @@ public interface PlatformProfileService extends JpaServiceStringId<PlatformProfi
 	 * @param admin 平台管理员。
 	 * @param init  平台初始化配置。
 	 */
-	void init(User admin, PlatformProperties.Init init);
+	PlatformProfileEntity init(User admin, PlatformProperties.Init init);
 }
