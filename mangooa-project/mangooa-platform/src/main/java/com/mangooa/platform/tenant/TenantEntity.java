@@ -1,6 +1,7 @@
 package com.mangooa.platform.tenant;
 
 import com.mangooa.data.jpa.BaseJpaEntityStringId;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -54,4 +55,6 @@ public class TenantEntity extends BaseJpaEntityStringId {
 	 */
 	@Column(name = "f_domain", nullable = false, length = 32)
 	private String domain;
+
+
 }
